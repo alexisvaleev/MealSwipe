@@ -9,7 +9,7 @@ COPY . .
 RUN CGO_ENABLED=0 go build -ldflags="-s -w" -o /out/server ./cmd/server
 
 # ---------- run ----------
-FROM alpine:3.21
+FROM alpine:3.24
 RUN apk add --no-cache ca-certificates tzdata wget \
     && adduser -D -u 10001 app
 USER app
