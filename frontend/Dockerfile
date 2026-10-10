@@ -1,7 +1,7 @@
 # ---------- build ----------
 # node:22-slim (glibc) — the musl resolver in alpine fails hard on hosts whose
 # DNS refuses AAAA queries (EAI_AGAIN bursts during `npm ci`).
-FROM node:22-slim AS build
+FROM node:25-slim AS build
 WORKDIR /app
 
 COPY package*.json ./
