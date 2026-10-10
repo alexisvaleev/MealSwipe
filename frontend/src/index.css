@@ -1,0 +1,75 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans:
+    ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue',
+    Arial, 'Noto Sans', sans-serif;
+
+  /* Warm neutral surfaces */
+  --color-cream: #faf7f2;
+  --color-cream-dark: #f3ede4;
+
+  /* Brand: warm amber/orange */
+  --color-brand-50: #fff8ed;
+  --color-brand-100: #ffefd4;
+  --color-brand-200: #ffdba8;
+  --color-brand-300: #ffc071;
+  --color-brand-400: #ff9a38;
+  --color-brand-500: #fb7c14;
+  --color-brand-600: #ec620a;
+  --color-brand-700: #c44a0b;
+  --color-brand-800: #9b3a11;
+  --color-brand-900: #7d3212;
+
+  --shadow-soft: 0 12px 40px -12px rgb(60 40 20 / 0.18);
+  --shadow-card: 0 6px 24px -8px rgb(60 40 20 / 0.14);
+  --shadow-chip: 0 2px 8px -2px rgb(60 40 20 / 0.12);
+
+  --animate-fade-in: fade-in 0.25s ease-out;
+  --animate-slide-up: slide-up 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+html {
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  @apply bg-cream text-stone-800 antialiased;
+}
+
+/* Custom scrollbar, subtle */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  @apply rounded-full bg-stone-300;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Focus visibility that matches the warm theme */
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  @apply outline-2 outline-offset-2 outline-brand-500;
+}

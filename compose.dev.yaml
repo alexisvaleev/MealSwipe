@@ -1,0 +1,24 @@
+# Development stack: PostgreSQL only (published on localhost for local Go/Vite dev).
+#   docker compose -f compose.dev.yaml up -d
+# Then run backend (`make backend`) and frontend (`make frontend`) natively.
+
+services:
+  db:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-mealswipe}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-mealswipe_dev_password}
+      POSTGRES_DB: ${POSTGRES_DB:-mealswipe}
+    ports:
+      - "127.0.0.1:${DB_PORT:-5432}:5432"
+    volumes:
+      - pgdata_dev:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+volumes:
+  pgdata_dev:

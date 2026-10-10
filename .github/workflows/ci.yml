@@ -1,0 +1,101 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  backend:
+    name: Backend (test, vet, fmt, build)
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_USER: mealswipe
+          POSTGRES_PASSWORD: ci_test_password
+          POSTGRES_DB: mealswipe_test
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U mealswipe -d mealswipe_test"
+          --health-interval 5s --health-timeout 3s --health-retries 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: backend/go.mod
+          cache: true
+          cache-dependency-path: backend/go.sum
+      - name: gofmt check
+        working-directory: backend
+        run: test -z "$(gofmt -l .)"
+      - name: go vet
+        working-directory: backend
+        run: go vet ./...
+      - name: go test
+        working-directory: backend
+        env:
+          TEST_DATABASE_URL: postgres://mealswipe:ci_test_password@127.0.0.1:5432/mealswipe_test?sslmode=disable
+        run: go test ./... -count=1
+      - name: go build
+        working-directory: backend
+        run: go build ./...
+
+  frontend:
+    name: Frontend (typecheck, lint, test, build)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm test
+      - run: npm run build
+
+  docker:
+    name: Docker builds
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build backend image
+        run: docker build -t mealswipe-backend:ci ./backend
+      - name: Build frontend image
+        run: docker build -t mealswipe-frontend:ci ./frontend
+
+  deps-audit:
+    name: Dependency audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - name: npm audit (high/critical)
+        working-directory: frontend
+        run: npm audit --audit-level=high --omit=dev || true
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: backend/go.mod
+      - name: govulncheck
+        working-directory: backend
+        run: |
+          go install golang.org/x/vuln/cmd/govulncheck@latest
+          govulncheck ./... || true

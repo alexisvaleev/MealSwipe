@@ -1,0 +1,20 @@
+# Keep build contexts small; applied per-service (backend/, frontend/).
+.git
+.github
+docs
+tests
+scripts
+deployments
+*.md
+.env
+.env.*
+!.env.example
+node_modules
+frontend/dist
+backend/bin
+backups
+*.log
+*.tmp
+.DS_Store
+.idea
+.vscode

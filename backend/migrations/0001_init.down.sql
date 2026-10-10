@@ -1,0 +1,14 @@
+DROP TABLE IF EXISTS pantry_items;
+DROP TABLE IF EXISTS shopping_list_items;
+DROP TABLE IF EXISTS shopping_lists;
+DROP TABLE IF EXISTS menu_items;
+DROP TABLE IF EXISTS menus;
+DROP TABLE IF EXISTS favorites;
+DROP TABLE IF EXISTS swipes;
+DROP TABLE IF EXISTS user_excluded_ingredients;
+DROP TABLE IF EXISTS user_preferences;
+DROP TABLE IF EXISTS recipe_ingredients;
+DROP TABLE IF EXISTS recipes;
+DROP TABLE IF EXISTS ingredients;
+DROP TABLE IF EXISTS sessions;
+DROP TABLE IF EXISTS users;

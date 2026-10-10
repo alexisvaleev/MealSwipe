@@ -1,0 +1,55 @@
+name: Bug Report
+description: Report a problem with MealSwipe
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What went wrong?
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Go to ...
+        2. Click ...
+        3. See error
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: App version / commit
+      placeholder: e.g. v0.1.0 or commit sha
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating system
+      options: [Linux, macOS, Windows, Android, iOS]
+  - type: input
+    id: browser
+    attributes:
+      label: Browser (if relevant)
+      placeholder: e.g. Firefox 132, Safari 18
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: Paste relevant backend/frontend logs. Remove passwords, tokens and personal data first.
+      render: shell

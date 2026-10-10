@@ -1,0 +1,4808 @@
+{
+  "recipes": [
+    {
+      "slug": "ovsyanka-s-yablokom-i-koritsey",
+      "title": "Овсянка с яблоком и корицей",
+      "description": "Привычная овсянка становится интереснее, если добавить яблоко, потушенное с корицей и мёдом. Тёплый сытный завтрак на всю семью.",
+      "instructions": [
+        "Нарежьте яблоко мелкими кубиками, удалив сердцевину.",
+        "Растопите половину сливочного масла на сковороде и обжарьте яблоко с корицей 3–4 минуты до мягкости.",
+        "Вскипятите молоко в кастрюле, добавьте щепотку соли и всыпьте овсяные хлопья.",
+        "Варите на слабом огне 5–7 минут, помешивая, до загустения.",
+        "Снимите с огня, вмешайте оставшееся масло и накройте крышкой на 2 минуты.",
+        "Разложите кашу по тарелкам, добавьте тёплые яблоки и полейте мёдом."
+      ],
+      "prep_minutes": 5,
+      "cook_minutes": 10,
+      "servings": 2,
+      "meal_types": [
+        "breakfast"
+      ],
+      "category": "Каша",
+      "tags": [
+        "быстро",
+        "бюджетно",
+        "вегетарианское",
+        "детям"
+      ],
+      "diet_flags": [
+        "vegetarian"
+      ],
+      "image_url": "https://www.themealdb.com/images/media/meals/sng9bm1765320170.jpg",
+      "image_credit": "TheMealDB",
+      "cost_per_serving": 55,
+      "kcal_per_serving": 340,
+      "ingredients": [
+        {
+          "name": "овсяные хлопья",
+          "quantity": 100,
+          "unit": "g"
+        },
+        {
+          "name": "молоко",
+          "quantity": 300,
+          "unit": "ml"
+        },
+        {
+          "name": "яблоко",
+          "quantity": 1,
+          "unit": "pcs"
+        },
+        {
+          "name": "масло сливочное",
+          "quantity": 15,
+          "unit": "g"
+        },
+        {
+          "name": "корица",
+          "quantity": 3,
+          "unit": "g"
+        },
+        {
+          "name": "мёд",
+          "quantity": 20,
+          "unit": "g"
+        },
+        {
+          "name": "соль",
+          "quantity": 1,
+          "unit": "pinch"
+        }
+      ],
+      "ingredient_meta": {
+        "овсяные хлопья": {
+          "category": "grains",
+          "unit_family": "mass",
+          "allergen_tags": [
+            "gluten"
+          ]
+        },
+        "молоко": {
+          "category": "dairy",
+          "unit_family": "volume",
+          "allergen_tags": [
+            "milk"
+          ]
+        },
+        "яблоко": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "масло сливочное": {
+          "category": "dairy",
+          "unit_family": "mass",
+          "allergen_tags": [
+            "milk"
+          ]
+        },
+        "корица": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "мёд": {
+          "category": "other",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "соль": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        }
+      }
+    },
+    {
+      "slug": "risovaya-kasha-s-yagodami",
+      "title": "Рисовая молочная каша с ягодами",
+      "description": "Нежная рассыпчато-сливочная каша из круглого риса на молоке. Подавайте с ягодами и кусочком сливочного масла.",
+      "instructions": [
+        "Промойте рис в нескольких водах, пока вода не станет прозрачной.",
+        "Залейте рис водой, доведите до кипения и варите 7–8 минут до полувпитывания.",
+        "Влейте горячее молоко, добавьте соль и сахар, убавьте огонь до минимума.",
+        "Томите под крышкой 12–15 минут, изредка помешивая.",
+        "Снимите с огня, добавьте сливочное масло и дайте настояться 5 минут.",
+        "Разложите по тарелкам и посыпьте ягодами."
+      ],
+      "prep_minutes": 5,
+      "cook_minutes": 25,
+      "servings": 2,
+      "meal_types": [
+        "breakfast"
+      ],
+      "category": "Каша",
+      "tags": [
+        "бюджетно",
+        "вегетарианское",
+        "детям",
+        "без глютена"
+      ],
+      "diet_flags": [
+        "vegetarian",
+        "gluten_free"
+      ],
+      "image_url": "https://www.themealdb.com/images/media/meals/hyk47c1762772689.jpg",
+      "image_credit": "TheMealDB",
+      "cost_per_serving": 65,
+      "kcal_per_serving": 320,
+      "ingredients": [
+        {
+          "name": "рис",
+          "quantity": 150,
+          "unit": "g",
+          "note": "круглозёрный"
+        },
+        {
+          "name": "молоко",
+          "quantity": 500,
+          "unit": "ml"
+        },
+        {
+          "name": "вода",
+          "quantity": 200,
+          "unit": "ml"
+        },
+        {
+          "name": "сахар",
+          "quantity": 20,
+          "unit": "g"
+        },
+        {
+          "name": "соль",
+          "quantity": 1,
+          "unit": "pinch"
+        },
+        {
+          "name": "масло сливочное",
+          "quantity": 20,
+          "unit": "g"
+        },
+        {
+          "name": "ягоды замороженные",
+          "quantity": 100,
+          "unit": "g"
+        }
+      ],
+      "ingredient_meta": {
+        "рис": {
+          "category": "grains",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "молоко": {
+          "category": "dairy",
+          "unit_family": "volume",
+          "allergen_tags": [
+            "milk"
+          ]
+        },
+        "вода": {
+          "category": "other",
+          "unit_family": "volume",
+          "allergen_tags": []
+        },
+        "сахар": {
+          "category": "other",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "соль": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "масло сливочное": {
+          "category": "dairy",
+          "unit_family": "mass",
+          "allergen_tags": [
+            "milk"
+          ]
+        },
+        "ягоды замороженные": {
+          "category": "frozen",
+          "unit_family": "mass",
+          "allergen_tags": []
+        }
+      }
+    },
+    {
+      "slug": "syrniki-klassicheskie",
+      "title": "Сырники классические",
+      "description": "Румяные снаружи и мягкие внутри сырники из деревенского творога. Лучше всего — сразу со сковороды, со сметаной.",
+      "instructions": [
+        "Разомните творог вилкой или протрите через сито, чтобы не было комков.",
+        "Добавьте яйцо, сахар, ванильный сахар, соль и перемешайте.",
+        "Всыпьте муку и замесите мягкое слегка липкое тесто.",
+        "Влажными руками скатайте шарики, обваляйте в муке и приплюсните в лепёшки.",
+        "Обжаривайте на растительном масле по 2–3 минуты с каждой стороны до золотистой корочки.",
+        "Подавайте горячими со сметаной."
+      ],
+      "prep_minutes": 15,
+      "cook_minutes": 15,
+      "servings": 4,
+      "meal_types": [
+        "breakfast"
+      ],
+      "category": "Выпечка",
+      "tags": [
+        "классика",
+        "вегетарианское",
+        "детям"
+      ],
+      "diet_flags": [
+        "vegetarian"
+      ],
+      "image_url": "https://www.themealdb.com/images/media/meals/oaqz9f1766593912.jpg",
+      "image_credit": "TheMealDB",
+      "cost_per_serving": 95,
+      "kcal_per_serving": 460,
+      "ingredients": [
+        {
+          "name": "творог",
+          "quantity": 400,
+          "unit": "g",
+          "note": "9%"
+        },
+        {
+          "name": "яйцо",
+          "quantity": 1,
+          "unit": "pcs"
+        },
+        {
+          "name": "мука пшеничная",
+          "quantity": 70,
+          "unit": "g",
+          "note": "плюс на панировку"
+        },
+        {
+          "name": "сахар",
+          "quantity": 30,
+          "unit": "g"
+        },
+        {
+          "name": "ванильный сахар",
+          "quantity": 5,
+          "unit": "g"
+        },
+        {
+          "name": "соль",
+          "quantity": 1,
+          "unit": "pinch"
+        },
+        {
+          "name": "масло растительное",
+          "quantity": 40,
+          "unit": "ml"
+        },
+        {
+          "name": "сметана",
+          "quantity": 100,
+          "unit": "g",
+          "note": "для подачи"
+        }
+      ],
+      "ingredient_meta": {
+        "творог": {
+          "category": "dairy",
+          "unit_family": "mass",
+          "allergen_tags": [
+            "milk"
+          ]
+        },
+        "яйцо": {
+          "category": "dairy",
+          "unit_family": "count",
+          "allergen_tags": [
+            "eggs"
+          ]
+        },
+        "мука пшеничная": {
+          "category": "grains",
+          "unit_family": "mass",
+          "allergen_tags": [
+            "gluten"
+          ]
+        },
+        "сахар": {
+          "category": "other",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "ванильный сахар": {
+          "category": "other",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "соль": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "масло растительное": {
+          "category": "oils",
+          "unit_family": "volume",
+          "allergen_tags": []
+        },
+        "сметана": {
+          "category": "dairy",
+          "unit_family": "mass",
+          "allergen_tags": [
+            "milk"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "omlet-s-pomidorami-i-syrom",
+      "title": "Омлет с помидорами и сыром",
+      "description": "Пышный омлет на сковороде с сочными помидорами и тянущимся сыром — завтрак за четверть часа.",
+      "instructions": [
+        "Нарежьте помидор кубиками, натрите сыр на крупной тёрке.",
+        "Взбейте яйца с молоком, солью и перцем до однородности.",
+        "Растопите сливочное масло на сковороде и вылейте яичную смесь.",
+        "Готовьте на слабом огне под крышкой 4–5 минут, пока середина почти не схватится.",
+        "Разложите помидоры и сыр по поверхности, накройте и держите ещё 2–3 минуты.",
+        "Сложите омлет пополам, посыпьте укропом и подавайте."
+      ],
+      "prep_minutes": 5,
+      "cook_minutes": 10,
+      "servings": 1,
+      "meal_types": [
+        "breakfast"
+      ],
+      "category": "Основное",
+      "tags": [
+        "быстро",
+        "вегетарианское",
+        "без глютена"
+      ],
+      "diet_flags": [
+        "vegetarian",
+        "gluten_free"
+      ],
+      "image_url": "https://www.themealdb.com/images/media/meals/qwtrtp1511799242.jpg",
+      "image_credit": "TheMealDB",
+      "cost_per_serving": 70,
+      "kcal_per_serving": 330,
+      "ingredients": [
+        {
+          "name": "яйцо",
+          "quantity": 3,
+          "unit": "pcs"
+        },
+        {
+          "name": "молоко",
+          "quantity": 60,
+          "unit": "ml"
+        },
+        {
+          "name": "помидор",
+          "quantity": 1,
+          "unit": "pcs"
+        },
+        {
+          "name": "сыр твёрдый",
+          "quantity": 40,
+          "unit": "g"
+        },
+        {
+          "name": "масло сливочное",
+          "quantity": 10,
+          "unit": "g"
+        },
+        {
+          "name": "укроп",
+          "quantity": 0.5,
+          "unit": "bunch"
+        },
+        {
+          "name": "соль",
+          "quantity": 0,
+          "unit": "to_taste"
+        },
+        {
+          "name": "перец чёрный молотый",
+          "quantity": 0,
+          "unit": "to_taste"
+        }
+      ],
+      "ingredient_meta": {
+        "яйцо": {
+          "category": "dairy",
+          "unit_family": "count",
+          "allergen_tags": [
+            "eggs"
+          ]
+        },
+        "молоко": {
+          "category": "dairy",
+          "unit_family": "volume",
+          "allergen_tags": [
+            "milk"
+          ]
+        },
+        "помидор": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "сыр твёрдый": {
+          "category": "dairy",
+          "unit_family": "mass",
+          "allergen_tags": [
+            "milk"
+          ]
+        },
+        "масло сливочное": {
+          "category": "dairy",
+          "unit_family": "mass",
+          "allergen_tags": [
+            "milk"
+          ]
+        },
+        "укроп": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "соль": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "перец чёрный молотый": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        }
+      }
+    },
+    {
+      "slug": "bliny-na-moloke",
+      "title": "Блины тонкие на молоке",
+      "description": "Тонкие ажурные блины по проверенному домашнему рецепту. Тесту нужно немного постоять — тогда блины не рвутся.",
+      "instructions": [
+        "Взбейте яйца с сахаром и солью до лёгкой пены.",
+        "Влейте половину молока, всыпьте муку и размешайте до густого теста без комков.",
+        "Постепенно влейте оставшееся молоко и растительное масло, оставьте тесто на 15 минут.",
+        "Разогрейте сковороду, смажьте маслом и налейте половник теста, распределяя по дну.",
+        "Выпекайте по 1–2 минуты с каждой стороны до золотистых краёв.",
+        "Складывайте блины стопкой, промазывая сливочным маслом, и подавайте со сметаной или вареньем."
+      ],
+      "prep_minutes": 20,
+      "cook_minutes": 25,
+      "servings": 4,
+      "meal_types": [
+        "breakfast"
+      ],
+      "category": "Выпечка",
+      "tags": [
+        "классика",
+        "вегетарианское",
+        "бюджетно"
+      ],
+      "diet_flags": [
+        "vegetarian"
+      ],
+      "image_url": "https://www.themealdb.com/images/media/meals/0206h11699013358.jpg",
+      "image_credit": "TheMealDB",
+      "cost_per_serving": 60,
+      "kcal_per_serving": 380,
+      "ingredients": [
+        {
+          "name": "мука пшеничная",
+          "quantity": 200,
+          "unit": "g"
+        },
+        {
+          "name": "молоко",
+          "quantity": 500,
+          "unit": "ml"
+        },
+        {
+          "name": "яйцо",
+          "quantity": 2,
+          "unit": "pcs"
+        },
+        {
+          "name": "сахар",
+          "quantity": 20,
+          "unit": "g"
+        },
+        {
+          "name": "соль",
+          "quantity": 3,
+          "unit": "g"
+        },
+        {
+          "name": "масло растительное",
+          "quantity": 40,
+          "unit": "ml"
+        },
+        {
+          "name": "масло сливочное",
+          "quantity": 20,
+          "unit": "g"
+        }
+      ],
+      "ingredient_meta": {
+        "мука пшеничная": {
+          "category": "grains",
+          "unit_family": "mass",
+          "allergen_tags": [
+            "gluten"
+          ]
+        },
+        "молоко": {
+          "category": "dairy",
+          "unit_family": "volume",
+          "allergen_tags": [
+            "milk"
+          ]
+        },
+        "яйцо": {
+          "category": "dairy",
+          "unit_family": "count",
+          "allergen_tags": [
+            "eggs"
+          ]
+        },
+        "сахар": {
+          "category": "other",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "соль": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "масло растительное": {
+          "category": "oils",
+          "unit_family": "volume",
+          "allergen_tags": []
+        },
+        "масло сливочное": {
+          "category": "dairy",
+          "unit_family": "mass",
+          "allergen_tags": [
+            "milk"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "shakshuka",
+      "title": "Шакшука",
+      "description": "Яйца, запечённые в остром томатно-перечном соусе, — ближневосточный завтрак, который уместен и на ужин. Едят прямо из сковороды.",
+      "instructions": [
+        "Нарежьте лук полукольцами, перец — соломкой, чеснок — пластинками.",
+        "Обжарьте овощи на растительном масле 5–6 минут до мягкости.",
+        "Добавьте помидоры и паприку, посолите и тушите 8–10 минут до густоты соуса.",
+        "Сделайте ложкой углубления и выпустите в каждое по яйцу.",
+        "Накройте крышкой и готовьте 5–7 минут, пока белок не побелеет, а желток останется жидким.",
+        "Посыпьте зеленью и подавайте с хлебом."
+      ],
+      "prep_minutes": 10,
+      "cook_minutes": 15,
+      "servings": 2,
+      "meal_types": [
+        "breakfast",
+        "lunch"
+      ],
+      "category": "Основное",
+      "tags": [
+        "вегетарианское",
+        "быстро",
+        "острое",
+        "без глютена"
+      ],
+      "diet_flags": [
+        "vegetarian",
+        "gluten_free",
+        "dairy_free"
+      ],
+      "image_url": "https://www.themealdb.com/images/media/meals/g373701551450225.jpg",
+      "image_credit": "TheMealDB",
+      "cost_per_serving": 110,
+      "kcal_per_serving": 280,
+      "ingredients": [
+        {
+          "name": "яйцо",
+          "quantity": 3,
+          "unit": "pcs"
+        },
+        {
+          "name": "томаты в собственном соку",
+          "quantity": 400,
+          "unit": "g"
+        },
+        {
+          "name": "перец болгарский",
+          "quantity": 1,
+          "unit": "pcs"
+        },
+        {
+          "name": "лук репчатый",
+          "quantity": 1,
+          "unit": "pcs"
+        },
+        {
+          "name": "чеснок",
+          "quantity": 2,
+          "unit": "clove"
+        },
+        {
+          "name": "паприка",
+          "quantity": 3,
+          "unit": "g"
+        },
+        {
+          "name": "масло растительное",
+          "quantity": 20,
+          "unit": "ml"
+        },
+        {
+          "name": "петрушка",
+          "quantity": 0.5,
+          "unit": "bunch"
+        },
+        {
+          "name": "соль",
+          "quantity": 0,
+          "unit": "to_taste"
+        }
+      ],
+      "ingredient_meta": {
+        "яйцо": {
+          "category": "dairy",
+          "unit_family": "count",
+          "allergen_tags": [
+            "eggs"
+          ]
+        },
+        "томаты в собственном соку": {
+          "category": "canned",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "перец болгарский": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "лук репчатый": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "чеснок": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "паприка": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "масло растительное": {
+          "category": "oils",
+          "unit_family": "volume",
+          "allergen_tags": []
+        },
+        "петрушка": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "соль": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        }
+      }
+    },
+    {
+      "slug": "yogurt-s-granoloy-i-yagodami",
+      "title": "Йогурт с гранолой и ягодами",
+      "description": "Слоёный стакан из греческого йогурта, хрустящей гранолы и ягод — завтрак без плиты за десять минут.",
+      "instructions": [
+        "Разморозьте ягоды или промойте свежие и обсушите.",
+        "Разложите половину йогурта по стаканам или креманкам.",
+        "Выложите слой гранолы и половину ягод.",
+        "Повторите слои, полейте мёдом и подавайте сразу, пока гранола не размокла."
+      ],
+      "prep_minutes": 10,
+      "cook_minutes": 0,
+      "servings": 2,
+      "meal_types": [
+        "breakfast",
+        "snack"
+      ],
+      "category": "Десерт",
+      "tags": [
+        "быстро",
+        "без готовки",
+        "вегетарианское"
+      ],
+      "diet_flags": [
+        "vegetarian"
+      ],
+      "image_url": "https://www.themealdb.com/images/media/meals/rpvptu1511641092.jpg",
+      "image_credit": "TheMealDB",
+      "cost_per_serving": 130,
+      "kcal_per_serving": 310,
+      "ingredients": [
+        {
+          "name": "йогурт греческий",
+          "quantity": 300,
+          "unit": "g"
+        },
+        {
+          "name": "гранола",
+          "quantity": 80,
+          "unit": "g"
+        },
+        {
+          "name": "ягоды замороженные",
+          "quantity": 120,
+          "unit": "g"
+        },
+        {
+          "name": "банан",
+          "quantity": 1,
+          "unit": "pcs"
+        },
+        {
+          "name": "мёд",
+          "quantity": 20,
+          "unit": "g"
+        }
+      ],
+      "ingredient_meta": {
+        "йогурт греческий": {
+          "category": "dairy",
+          "unit_family": "mass",
+          "allergen_tags": [
+            "milk"
+          ]
+        },
+        "гранола": {
+          "category": "grains",
+          "unit_family": "mass",
+          "allergen_tags": [
+            "gluten",
+            "nuts"
+          ]
+        },
+        "ягоды замороженные": {
+          "category": "frozen",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "банан": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "мёд": {
+          "category": "other",
+          "unit_family": "mass",
+          "allergen_tags": []
+        }
+      }
+    },
+    {
+      "slug": "ovsyanoblin-s-syrom",
+      "title": "Овсяноблин с сыром",
+      "description": "Популярный блин из овсяных хлопьев и яйца: готовится за десять минут, а начинку можно менять каждый день.",
+      "instructions": [
+        "Смешайте овсяные хлопья, яйца, молоко и щепотку соли, оставьте на 5 минут набухать.",
+        "Нарежьте помидор кружочками, натрите сыр.",
+        "Вылейте смесь на разогретую сковороду с каплей масла и распределите тонким слоем.",
+        "Жарьте 3–4 минуты на слабом огне, переверните.",
+        "Выложите на одну половину сыр и помидор, накройте второй половиной.",
+        "Подержите под крышкой 1–2 минуты, чтобы сыр расплавился, и подавайте."
+      ],
+      "prep_minutes": 5,
+      "cook_minutes": 10,
+      "servings": 1,
+      "meal_types": [
+        "breakfast"
+      ],
+      "category": "Выпечка",
+      "tags": [
+        "быстро",
+        "вегетарианское",
+        "сытное"
+      ],
+      "diet_flags": [
+        "vegetarian"
+      ],
+      "image_url": "https://www.themealdb.com/images/media/meals/c400ok1764439058.jpg",
+      "image_credit": "TheMealDB",
+      "cost_per_serving": 60,
+      "kcal_per_serving": 380,
+      "ingredients": [
+        {
+          "name": "овсяные хлопья",
+          "quantity": 60,
+          "unit": "g"
+        },
+        {
+          "name": "яйцо",
+          "quantity": 2,
+          "unit": "pcs"
+        },
+        {
+          "name": "молоко",
+          "quantity": 60,
+          "unit": "ml"
+        },
+        {
+          "name": "сыр твёрдый",
+          "quantity": 40,
+          "unit": "g"
+        },
+        {
+          "name": "помидор",
+          "quantity": 1,
+          "unit": "pcs"
+        },
+        {
+          "name": "укроп",
+          "quantity": 0.5,
+          "unit": "bunch"
+        },
+        {
+          "name": "масло растительное",
+          "quantity": 10,
+          "unit": "ml"
+        },
+        {
+          "name": "соль",
+          "quantity": 1,
+          "unit": "pinch"
+        }
+      ],
+      "ingredient_meta": {
+        "овсяные хлопья": {
+          "category": "grains",
+          "unit_family": "mass",
+          "allergen_tags": [
+            "gluten"
+          ]
+        },
+        "яйцо": {
+          "category": "dairy",
+          "unit_family": "count",
+          "allergen_tags": [
+            "eggs"
+          ]
+        },
+        "молоко": {
+          "category": "dairy",
+          "unit_family": "volume",
+          "allergen_tags": [
+            "milk"
+          ]
+        },
+        "сыр твёрдый": {
+          "category": "dairy",
+          "unit_family": "mass",
+          "allergen_tags": [
+            "milk"
+          ]
+        },
+        "помидор": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "укроп": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "масло растительное": {
+          "category": "oils",
+          "unit_family": "volume",
+          "allergen_tags": []
+        },
+        "соль": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        }
+      }
+    },
+    {
+      "slug": "tvorozhnaya-zapekanka",
+      "title": "Творожная запеканка",
+      "description": "Нежная запеканка на манке с изюмом — как в детском саду, только лучше. Хороша и тёплой, и холодной.",
+      "instructions": [
+        "Залейте изюм кипятком на 10 минут и обсушите.",
+        "Разогрейте духовку до 180 °C, смажьте форму сливочным маслом.",
+        "Смешайте творог, яйца, сахар, ванильный сахар и сметану до однородности.",
+        "Всыпьте манку и разрыхлитель, перемешайте и оставьте на 10 минут.",
+        "Вмешайте изюм, выложите массу в форму и разровняйте.",
+        "Выпекайте 35–40 минут до золотистой корочки, остудите и нарежьте."
+      ],
+      "prep_minutes": 15,
+      "cook_minutes": 40,
+      "servings": 4,
+      "meal_types": [
+        "breakfast",
+        "snack"
+      ],
+      "category": "Выпечка",
+      "tags": [
+        "вегетарианское",
+        "детям",
+        "можно накануне"
+      ],
+      "diet_flags": [
+        "vegetarian"
+      ],
+      "image_url": "https://www.themealdb.com/images/media/meals/swttys1511385853.jpg",
+      "image_credit": "TheMealDB",
+      "cost_per_serving": 90,
+      "kcal_per_serving": 330,
+      "ingredients": [
+        {
+          "name": "творог",
+          "quantity": 500,
+          "unit": "g"
+        },
+        {
+          "name": "яйцо",
+          "quantity": 2,
+          "unit": "pcs"
+        },
+        {
+          "name": "манка",
+          "quantity": 60,
+          "unit": "g"
+        },
+        {
+          "name": "сахар",
+          "quantity": 60,
+          "unit": "g"
+        },
+        {
+          "name": "ванильный сахар",
+          "quantity": 5,
+          "unit": "g"
+        },
+        {
+          "name": "сметана",
+          "quantity": 100,
+          "unit": "g"
+        },
+        {
+          "name": "изюм",
+          "quantity": 50,
+          "unit": "g"
+        },
+        {
+          "name": "разрыхлитель",
+          "quantity": 5,
+          "unit": "g"
+        },
+        {
+          "name": "масло сливочное",
+          "quantity": 10,
+          "unit": "g"
+        }
+      ],
+      "ingredient_meta": {
+        "творог": {
+          "category": "dairy",
+          "unit_family": "mass",
+          "allergen_tags": [
+            "milk"
+          ]
+        },
+        "яйцо": {
+          "category": "dairy",
+          "unit_family": "count",
+          "allergen_tags": [
+            "eggs"
+          ]
+        },
+        "манка": {
+          "category": "grains",
+          "unit_family": "mass",
+          "allergen_tags": [
+            "gluten"
+          ]
+        },
+        "сахар": {
+          "category": "other",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "ванильный сахар": {
+          "category": "other",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "сметана": {
+          "category": "dairy",
+          "unit_family": "mass",
+          "allergen_tags": [
+            "milk"
+          ]
+        },
+        "изюм": {
+          "category": "other",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "разрыхлитель": {
+          "category": "other",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "масло сливочное": {
+          "category": "dairy",
+          "unit_family": "mass",
+          "allergen_tags": [
+            "milk"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "goryachie-buterbrody-s-yaytsom",
+      "title": "Горячие бутерброды с яйцом и сыром",
+      "description": "Быстрый горячий завтрак: хрустящий хлеб, жареное яйцо и расплавленный сыр — всё готовится на одной сковороде.",
+      "instructions": [
+        "Подсушите ломтики хлеба на сухой сковороде по минуте с каждой стороны.",
+        "Смажьте хлеб тонким слоем сливочного масла.",
+        "На той же сковороде пожарьте яйца глазуньей до схваченного белка.",
+        "Выложите яйцо на хлеб, посыпьте тёртым сыром и накройте крышкой на 30 секунд.",
+        "Добавьте кружочки помидора, посыпьте укропом и подавайте."
+      ],
+      "prep_minutes": 5,
+      "cook_minutes": 10,
+      "servings": 2,
+      "meal_types": [
+        "breakfast",
+        "snack"
+      ],
+      "category": "Основное",
+      "tags": [
+        "быстро",
+        "бюджетно",
+        "вегетарианское"
+      ],
+      "diet_flags": [
+        "vegetarian"
+      ],
+      "image_url": "https://www.themealdb.com/images/media/meals/hqaejl1695738653.jpg",
+      "image_credit": "TheMealDB",
+      "cost_per_serving": 60,
+      "kcal_per_serving": 350,
+      "ingredients": [
+        {
+          "name": "хлеб",
+          "quantity": 4,
+          "unit": "slice"
+        },
+        {
+          "name": "яйцо",
+          "quantity": 2,
+          "unit": "pcs"
+        },
+        {
+          "name": "сыр твёрдый",
+          "quantity": 60,
+          "unit": "g"
+        },
+        {
+          "name": "помидор",
+          "quantity": 1,
+          "unit": "pcs"
+        },
+        {
+          "name": "масло сливочное",
+          "quantity": 10,
+          "unit": "g"
+        },
+        {
+          "name": "укроп",
+          "quantity": 0.5,
+          "unit": "bunch"
+        },
+        {
+          "name": "соль",
+          "quantity": 0,
+          "unit": "to_taste"
+        }
+      ],
+      "ingredient_meta": {
+        "хлеб": {
+          "category": "bakery",
+          "unit_family": "count",
+          "allergen_tags": [
+            "gluten"
+          ]
+        },
+        "яйцо": {
+          "category": "dairy",
+          "unit_family": "count",
+          "allergen_tags": [
+            "eggs"
+          ]
+        },
+        "сыр твёрдый": {
+          "category": "dairy",
+          "unit_family": "mass",
+          "allergen_tags": [
+            "milk"
+          ]
+        },
+        "помидор": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "масло сливочное": {
+          "category": "dairy",
+          "unit_family": "mass",
+          "allergen_tags": [
+            "milk"
+          ]
+        },
+        "укроп": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "соль": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        }
+      }
+    },
+    {
+      "slug": "borshch",
+      "title": "Борщ со сметаной",
+      "description": "Наваристый борщ на говяжьем бульоне с зажаркой из свёклы и томатной пастой. Вкуснее всего на второй день.",
+      "instructions": [
+        "Залейте говядину 2 л воды, доведите до кипения, снимите пену и варите с луковицей 60–70 минут.",
+        "Достаньте мясо и лук, мясо нарежьте кубиками и верните в бульон.",
+        "Добавьте нарезанный кубиками картофель и варите 10 минут, затем добавьте нашинкованную капусту.",
+        "Обжарьте тёртую свёклу и морковь с луком на масле 5 минут, добавьте томатную пасту и тушите ещё 3 минуты.",
+        "Переложите зажарку в борщ, добавьте лавровый лист и варите 10 минут.",
+        "Выдавите чеснок, посолите, поперчите и дайте настояться 15 минут под крышкой.",
+        "Подавайте со сметаной и укропом."
+      ],
+      "prep_minutes": 25,
+      "cook_minutes": 80,
+      "servings": 4,
+      "meal_types": [
+        "lunch"
+      ],
+      "category": "Суп",
+      "tags": [
+        "классика",
+        "сытное",
+        "на второй день лучше"
+      ],
+      "diet_flags": [
+        "gluten_free"
+      ],
+      "image_url": "https://www.themealdb.com/images/media/meals/804v1j1764367088.jpg",
+      "image_credit": "TheMealDB",
+      "cost_per_serving": 130,
+      "kcal_per_serving": 240,
+      "ingredients": [
+        {
+          "name": "говядина",
+          "quantity": 400,
+          "unit": "g"
+        },
+        {
+          "name": "свёкла",
+          "quantity": 2,
+          "unit": "pcs"
+        },
+        {
+          "name": "картофель",
+          "quantity": 400,
+          "unit": "g"
+        },
+        {
+          "name": "капуста белокочанная",
+          "quantity": 300,
+          "unit": "g"
+        },
+        {
+          "name": "морковь",
+          "quantity": 1,
+          "unit": "pcs"
+        },
+        {
+          "name": "лук репчатый",
+          "quantity": 2,
+          "unit": "pcs"
+        },
+        {
+          "name": "томатная паста",
+          "quantity": 30,
+          "unit": "g"
+        },
+        {
+          "name": "чеснок",
+          "quantity": 2,
+          "unit": "clove"
+        },
+        {
+          "name": "лавровый лист",
+          "quantity": 2,
+          "unit": "pcs"
+        },
+        {
+          "name": "масло растительное",
+          "quantity": 30,
+          "unit": "ml"
+        },
+        {
+          "name": "сметана",
+          "quantity": 100,
+          "unit": "g"
+        },
+        {
+          "name": "укроп",
+          "quantity": 0.5,
+          "unit": "bunch"
+        },
+        {
+          "name": "соль",
+          "quantity": 0,
+          "unit": "to_taste"
+        },
+        {
+          "name": "перец чёрный молотый",
+          "quantity": 0,
+          "unit": "to_taste"
+        }
+      ],
+      "ingredient_meta": {
+        "говядина": {
+          "category": "meat",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "свёкла": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "картофель": {
+          "category": "produce",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "капуста белокочанная": {
+          "category": "produce",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "морковь": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "лук репчатый": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "томатная паста": {
+          "category": "canned",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "чеснок": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "лавровый лист": {
+          "category": "spices",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "масло растительное": {
+          "category": "oils",
+          "unit_family": "volume",
+          "allergen_tags": []
+        },
+        "сметана": {
+          "category": "dairy",
+          "unit_family": "mass",
+          "allergen_tags": [
+            "milk"
+          ]
+        },
+        "укроп": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "соль": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "перец чёрный молотый": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        }
+      }
+    },
+    {
+      "slug": "shchi-iz-svezhey-kapusty",
+      "title": "Щи из свежей капусты (постные)",
+      "description": "Лёгкие постные щи на овощном бульоне: простой набор овощей, а результат — наваристый ароматный суп.",
+      "instructions": [
+        "Вскипятите 1,5 л воды, добавьте нарезанный кубиками картофель и варите 10 минут.",
+        "Обжарьте лук и морковь на растительном масле 4–5 минут.",
+        "Добавьте к зажарке нарезанные помидоры и тушите 3–4 минуты.",
+        "Опустите в кастрюлю нашинкованную капусту и зажарку.",
+        "Добавьте лавровый лист, посолите и варите ещё 10 минут до мягкости капусты.",
+        "Снимите с огня и дайте настояться 10 минут, подавайте с зеленью."
+      ],
+      "prep_minutes": 15,
+      "cook_minutes": 30,
+      "servings": 4,
+      "meal_types": [
+        "lunch"
+      ],
+      "category": "Суп",
+      "tags": [
+        "постное",
+        "веганское",
+        "бюджетно",
+        "лёгкое"
+      ],
+      "diet_flags": [
+        "vegetarian",
+        "vegan",
+        "gluten_free",
+        "dairy_free"
+      ],
+      "image_url": "https://www.themealdb.com/images/media/meals/60oc3k1699009846.jpg",
+      "image_credit": "TheMealDB",
+      "cost_per_serving": 70,
+      "kcal_per_serving": 110,
+      "ingredients": [
+        {
+          "name": "капуста белокочанная",
+          "quantity": 400,
+          "unit": "g"
+        },
+        {
+          "name": "картофель",
+          "quantity": 300,
+          "unit": "g"
+        },
+        {
+          "name": "морковь",
+          "quantity": 1,
+          "unit": "pcs"
+        },
+        {
+          "name": "лук репчатый",
+          "quantity": 1,
+          "unit": "pcs"
+        },
+        {
+          "name": "помидор",
+          "quantity": 2,
+          "unit": "pcs"
+        },
+        {
+          "name": "масло растительное",
+          "quantity": 20,
+          "unit": "ml"
+        },
+        {
+          "name": "лавровый лист",
+          "quantity": 2,
+          "unit": "pcs"
+        },
+        {
+          "name": "вода",
+          "quantity": 1500,
+          "unit": "ml"
+        },
+        {
+          "name": "петрушка",
+          "quantity": 0.5,
+          "unit": "bunch"
+        },
+        {
+          "name": "соль",
+          "quantity": 0,
+          "unit": "to_taste"
+        },
+        {
+          "name": "перец чёрный молотый",
+          "quantity": 0,
+          "unit": "to_taste"
+        }
+      ],
+      "ingredient_meta": {
+        "капуста белокочанная": {
+          "category": "produce",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "картофель": {
+          "category": "produce",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "морковь": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "лук репчатый": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "помидор": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "масло растительное": {
+          "category": "oils",
+          "unit_family": "volume",
+          "allergen_tags": []
+        },
+        "лавровый лист": {
+          "category": "spices",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "вода": {
+          "category": "other",
+          "unit_family": "volume",
+          "allergen_tags": []
+        },
+        "петрушка": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "соль": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "перец чёрный молотый": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        }
+      }
+    },
+    {
+      "slug": "ukha-iz-syomgi",
+      "title": "Уха из сёмги",
+      "description": "Прозрачный рыбацкий суп из сёмги с картофелем и морковью. Лимон и укроп в тарелке делают вкус ярче.",
+      "instructions": [
+        "Залейте 1,5 л воды в кастрюле, добавьте целую луковицу и доведите до кипения.",
+        "Опустите нарезанный кружками картофель и морковь, варите 12 минут.",
+        "Добавьте куски сёмги без кожи и костей и лавровый лист.",
+        "Варите на слабом огне 10 минут, не помешивая, чтобы рыба не развалилась.",
+        "Выньте лук и лавровый лист, посолите и поперчите.",
+        "Дайте настояться 10 минут и подавайте с ломтиком лимона и укропом."
+      ],
+      "prep_minutes": 15,
+      "cook_minutes": 30,
+      "servings": 4,
+      "meal_types": [
+        "lunch"
+      ],
+      "category": "Суп",
+      "tags": [
+        "рыбное",
+        "лёгкое",
+        "без глютена"
+      ],
+      "diet_flags": [
+        "pescatarian",
+        "gluten_free",
+        "dairy_free"
+      ],
+      "image_url": "https://www.themealdb.com/images/media/meals/7n8su21699013057.jpg",
+      "image_credit": "TheMealDB",
+      "cost_per_serving": 240,
+      "kcal_per_serving": 230,
+      "ingredients": [
+        {
+          "name": "сёмга",
+          "quantity": 400,
+          "unit": "g",
+          "note": "филе"
+        },
+        {
+          "name": "картофель",
+          "quantity": 400,
+          "unit": "g"
+        },
+        {
+          "name": "морковь",
+          "quantity": 1,
+          "unit": "pcs"
+        },
+        {
+          "name": "лук репчатый",
+          "quantity": 1,
+          "unit": "pcs"
+        },
+        {
+          "name": "лавровый лист",
+          "quantity": 2,
+          "unit": "pcs"
+        },
+        {
+          "name": "лимон",
+          "quantity": 0.5,
+          "unit": "pcs"
+        },
+        {
+          "name": "укроп",
+          "quantity": 0.5,
+          "unit": "bunch"
+        },
+        {
+          "name": "вода",
+          "quantity": 1500,
+          "unit": "ml"
+        },
+        {
+          "name": "соль",
+          "quantity": 0,
+          "unit": "to_taste"
+        },
+        {
+          "name": "перец чёрный молотый",
+          "quantity": 0,
+          "unit": "to_taste"
+        }
+      ],
+      "ingredient_meta": {
+        "сёмга": {
+          "category": "fish",
+          "unit_family": "mass",
+          "allergen_tags": [
+            "fish"
+          ]
+        },
+        "картофель": {
+          "category": "produce",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "морковь": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "лук репчатый": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "лавровый лист": {
+          "category": "spices",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "лимон": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "укроп": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "вода": {
+          "category": "other",
+          "unit_family": "volume",
+          "allergen_tags": []
+        },
+        "соль": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "перец чёрный молотый": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        }
+      }
+    },
+    {
+      "slug": "sup-gorohovy-s-kopchenostyami",
+      "title": "Гороховый суп с копчёностями",
+      "description": "Густой гороховый суп на копчёных рёбрах — дымный аромат и сытость деревенского обеда. Горох лучше замочить заранее.",
+      "instructions": [
+        "Замочите горох в холодной воде на 3–4 часа или на ночь.",
+        "Промойте горох, залейте 2 л воды и варите 40 минут до размягчения.",
+        "Добавьте копчёные рёбра и варите ещё 20 минут.",
+        "Опустите нарезанный картофель и готовьте 15 минут.",
+        "Обжарьте лук и морковь на масле и переложите в суп вместе с лавровым листом.",
+        "Посолите, поперчите и потомите 5 минут, затем дайте настояться.",
+        "Достаньте рёбра, отделите мясо и верните в суп при подаче."
+      ],
+      "prep_minutes": 15,
+      "cook_minutes": 75,
+      "servings": 4,
+      "meal_types": [
+        "lunch"
+      ],
+      "category": "Суп",
+      "tags": [
+        "сытное",
+        "бюджетно",
+        "на второй день лучше"
+      ],
+      "diet_flags": [
+        "gluten_free",
+        "dairy_free"
+      ],
+      "image_url": "https://www.themealdb.com/images/media/meals/xxtsvx1511814083.jpg",
+      "image_credit": "TheMealDB",
+      "cost_per_serving": 120,
+      "kcal_per_serving": 310,
+      "ingredients": [
+        {
+          "name": "горох сушёный",
+          "quantity": 200,
+          "unit": "g",
+          "note": "колотый"
+        },
+        {
+          "name": "копчёные рёбра",
+          "quantity": 300,
+          "unit": "g"
+        },
+        {
+          "name": "картофель",
+          "quantity": 300,
+          "unit": "g"
+        },
+        {
+          "name": "морковь",
+          "quantity": 1,
+          "unit": "pcs"
+        },
+        {
+          "name": "лук репчатый",
+          "quantity": 1,
+          "unit": "pcs"
+        },
+        {
+          "name": "масло растительное",
+          "quantity": 20,
+          "unit": "ml"
+        },
+        {
+          "name": "лавровый лист",
+          "quantity": 2,
+          "unit": "pcs"
+        },
+        {
+          "name": "соль",
+          "quantity": 0,
+          "unit": "to_taste"
+        },
+        {
+          "name": "перец чёрный молотый",
+          "quantity": 0,
+          "unit": "to_taste"
+        }
+      ],
+      "ingredient_meta": {
+        "горох сушёный": {
+          "category": "grains",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "копчёные рёбра": {
+          "category": "meat",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "картофель": {
+          "category": "produce",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "морковь": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "лук репчатый": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "масло растительное": {
+          "category": "oils",
+          "unit_family": "volume",
+          "allergen_tags": []
+        },
+        "лавровый лист": {
+          "category": "spices",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "соль": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "перец чёрный молотый": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        }
+      }
+    },
+    {
+      "slug": "kuriny-sup-s-lapshoy",
+      "title": "Куриный суп с лапшой",
+      "description": "Домашний куриный бульон с яичной лапшой — тот самый суп, который хочется, когда холодно или нездоровится.",
+      "instructions": [
+        "Залейте куриное филе 1,5 л воды, доведите до кипения, снимите пену и варите 25 минут.",
+        "Достаньте курицу, нарежьте и верните в бульон вместе с картофелем.",
+        "Добавьте нарезанную морковь и лук и варите 10 минут.",
+        "Всыпьте лапшу и лавровый лист, готовьте ещё 5–7 минут.",
+        "Посолите, поперчите, снимите с огня и дайте постоять 5 минут.",
+        "Подавайте, посыпав свежим укропом."
+      ],
+      "prep_minutes": 15,
+      "cook_minutes": 30,
+      "servings": 4,
+      "meal_types": [
+        "lunch"
+      ],
+      "category": "Суп",
+      "tags": [
+        "классика",
+        "лёгкое",
+        "детям"
+      ],
+      "diet_flags": [
+        "dairy_free"
+      ],
+      "image_url": "https://www.themealdb.com/images/media/meals/lx1kkj1593349302.jpg",
+      "image_credit": "TheMealDB",
+      "cost_per_serving": 90,
+      "kcal_per_serving": 190,
+      "ingredients": [
+        {
+          "name": "куриное филе",
+          "quantity": 300,
+          "unit": "g"
+        },
+        {
+          "name": "лапша яичная",
+          "quantity": 80,
+          "unit": "g"
+        },
+        {
+          "name": "картофель",
+          "quantity": 300,
+          "unit": "g"
+        },
+        {
+          "name": "морковь",
+          "quantity": 1,
+          "unit": "pcs"
+        },
+        {
+          "name": "лук репчатый",
+          "quantity": 1,
+          "unit": "pcs"
+        },
+        {
+          "name": "лавровый лист",
+          "quantity": 1,
+          "unit": "pcs"
+        },
+        {
+          "name": "укроп",
+          "quantity": 0.5,
+          "unit": "bunch"
+        },
+        {
+          "name": "вода",
+          "quantity": 1500,
+          "unit": "ml"
+        },
+        {
+          "name": "соль",
+          "quantity": 0,
+          "unit": "to_taste"
+        },
+        {
+          "name": "перец чёрный молотый",
+          "quantity": 0,
+          "unit": "to_taste"
+        }
+      ],
+      "ingredient_meta": {
+        "куриное филе": {
+          "category": "meat",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "лапша яичная": {
+          "category": "grains",
+          "unit_family": "mass",
+          "allergen_tags": [
+            "gluten",
+            "eggs"
+          ]
+        },
+        "картофель": {
+          "category": "produce",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "морковь": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "лук репчатый": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "лавровый лист": {
+          "category": "spices",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "укроп": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "вода": {
+          "category": "other",
+          "unit_family": "volume",
+          "allergen_tags": []
+        },
+        "соль": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "перец чёрный молотый": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        }
+      }
+    },
+    {
+      "slug": "gribnoy-krem-sup",
+      "title": "Грибной крем-суп",
+      "description": "Шелковистый крем-суп из шампиньонов с картофелем и сливками. Часть грибов оставьте для красивой подачи.",
+      "instructions": [
+        "Нарежьте шампиньоны пластинками, лук — кубиками, картофель — дольками.",
+        "Обжарьте лук на сливочном масле 3 минуты, добавьте грибы и готовьте 7–8 минут до румянца.",
+        "Отложите несколько обжаренных грибов для подачи.",
+        "Добавьте картофель, влейте 800 мл воды, посолите и варите 15 минут до мягкости.",
+        "Пробейте суп блендером до гладкости, влейте сливки и прогрейте, не доводя до кипения.",
+        "Разлейте по тарелкам и украсьте отложенными грибами."
+      ],
+      "prep_minutes": 15,
+      "cook_minutes": 25,
+      "servings": 4,
+      "meal_types": [
+        "lunch"
+      ],
+      "category": "Суп",
+      "tags": [
+        "вегетарианское",
+        "крем-суп",
+        "без глютена"
+      ],
+      "diet_flags": [
+        "vegetarian",
+        "gluten_free"
+      ],
+      "image_url": "https://www.themealdb.com/images/media/meals/0r7y5n1782681336.jpg",
+      "image_credit": "TheMealDB",
+      "cost_per_serving": 110,
+      "kcal_per_serving": 210,
+      "ingredients": [
+        {
+          "name": "шампиньоны",
+          "quantity": 400,
+          "unit": "g"
+        },
+        {
+          "name": "картофель",
+          "quantity": 300,
+          "unit": "g"
+        },
+        {
+          "name": "лук репчатый",
+          "quantity": 1,
+          "unit": "pcs"
+        },
+        {
+          "name": "сливки",
+          "quantity": 200,
+          "unit": "ml"
+        },
+        {
+          "name": "масло сливочное",
+          "quantity": 25,
+          "unit": "g"
+        },
+        {
+          "name": "чеснок",
+          "quantity": 1,
+          "unit": "clove"
+        },
+        {
+          "name": "вода",
+          "quantity": 800,
+          "unit": "ml"
+        },
+        {
+          "name": "соль",
+          "quantity": 0,
+          "unit": "to_taste"
+        },
+        {
+          "name": "перец чёрный молотый",
+          "quantity": 0,
+          "unit": "to_taste"
+        }
+      ],
+      "ingredient_meta": {
+        "шампиньоны": {
+          "category": "produce",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "картофель": {
+          "category": "produce",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "лук репчатый": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "сливки": {
+          "category": "dairy",
+          "unit_family": "volume",
+          "allergen_tags": [
+            "milk"
+          ]
+        },
+        "масло сливочное": {
+          "category": "dairy",
+          "unit_family": "mass",
+          "allergen_tags": [
+            "milk"
+          ]
+        },
+        "чеснок": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "вода": {
+          "category": "other",
+          "unit_family": "volume",
+          "allergen_tags": []
+        },
+        "соль": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "перец чёрный молотый": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        }
+      }
+    },
+    {
+      "slug": "olivye-s-kuritsey",
+      "title": "Оливье с курицей",
+      "description": "Лёгкая версия праздничного салата: вместо колбасы — отварная куриная грудка, а майонез можно подмешать йогуртом.",
+      "instructions": [
+        "Отварите куриное филе в подсоленной воде 20 минут и остудите.",
+        "Отдельно сварите картофель и морковь до мягкости, яйца — вкрутую.",
+        "Остудите и нарежьте все ингредиенты мелкими кубиками одинакового размера.",
+        "Добавьте маринованные огурцы и зелёный горошек без жидкости.",
+        "Заправьте майонезом, посолите и аккуратно перемешайте.",
+        "Охладите 30 минут и подавайте, посыпав зеленью."
+      ],
+      "prep_minutes": 20,
+      "cook_minutes": 25,
+      "servings": 4,
+      "meal_types": [
+        "lunch"
+      ],
+      "category": "Салат",
+      "tags": [
+        "классика",
+        "праздничное",
+        "можно накануне"
+      ],
+      "diet_flags": [
+        "gluten_free"
+      ],
+      "image_url": "https://www.themealdb.com/images/media/meals/ebvuir1699013665.jpg",
+      "image_credit": "TheMealDB",
+      "cost_per_serving": 110,
+      "kcal_per_serving": 360,
+      "ingredients": [
+        {
+          "name": "куриное филе",
+          "quantity": 250,
+          "unit": "g"
+        },
+        {
+          "name": "картофель",
+          "quantity": 300,
+          "unit": "g"
+        },
+        {
+          "name": "морковь",
+          "quantity": 1,
+          "unit": "pcs"
+        },
+        {
+          "name": "яйцо",
+          "quantity": 3,
+          "unit": "pcs"
+        },
+        {
+          "name": "огурец маринованный",
+          "quantity": 150,
+          "unit": "g"
+        },
+        {
+          "name": "горошек зелёный консервированный",
+          "quantity": 150,
+          "unit": "g"
+        },
+        {
+          "name": "майонез",
+          "quantity": 120,
+          "unit": "g"
+        },
+        {
+          "name": "укроп",
+          "quantity": 0.5,
+          "unit": "bunch"
+        },
+        {
+          "name": "соль",
+          "quantity": 0,
+          "unit": "to_taste"
+        }
+      ],
+      "ingredient_meta": {
+        "куриное филе": {
+          "category": "meat",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "картофель": {
+          "category": "produce",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "морковь": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "яйцо": {
+          "category": "dairy",
+          "unit_family": "count",
+          "allergen_tags": [
+            "eggs"
+          ]
+        },
+        "огурец маринованный": {
+          "category": "canned",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "горошек зелёный консервированный": {
+          "category": "canned",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "майонез": {
+          "category": "other",
+          "unit_family": "mass",
+          "allergen_tags": [
+            "eggs"
+          ]
+        },
+        "укроп": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "соль": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        }
+      }
+    },
+    {
+      "slug": "teply-salat-s-kuritsey-i-ovoshchami",
+      "title": "Тёплый салат с курицей и овощами",
+      "description": "Лёгкий, но сытный салат: обжаренная до румянца курица на подушке из хрустящих овощей с лимонной заправкой.",
+      "instructions": [
+        "Нарежьте куриное филе полосками, посолите и обжарьте на оливковом масле 8–10 минут до готовности.",
+        "Нарежьте перец и огурец соломкой, черри — половинками, лук — тонкими перьями.",
+        "Смешайте заправку из оливкового масла, лимонного сока и щепотки соли.",
+        "Выложите овощи в салатник, добавьте тёплую курицу.",
+        "Полейте заправкой, перемешайте и посыпьте зеленью."
+      ],
+      "prep_minutes": 15,
+      "cook_minutes": 12,
+      "servings": 2,
+      "meal_types": [
+        "lunch"
+      ],
+      "category": "Салат",
+      "tags": [
+        "быстро",
+        "лёгкое",
+        "без глютена"
+      ],
+      "diet_flags": [
+        "gluten_free",
+        "dairy_free"
+      ],
+      "image_url": "https://www.themealdb.com/images/media/meals/k29viq1585565980.jpg",
+      "image_credit": "TheMealDB",
+      "cost_per_serving": 160,
+      "kcal_per_serving": 290,
+      "ingredients": [
+        {
+          "name": "куриное филе",
+          "quantity": 300,
+          "unit": "g"
+        },
+        {
+          "name": "перец болгарский",
+          "quantity": 1,
+          "unit": "pcs"
+        },
+        {
+          "name": "огурец",
+          "quantity": 1,
+          "unit": "pcs"
+        },
+        {
+          "name": "помидоры черри",
+          "quantity": 150,
+          "unit": "g"
+        },
+        {
+          "name": "лук красный",
+          "quantity": 0.5,
+          "unit": "pcs"
+        },
+        {
+          "name": "масло оливковое",
+          "quantity": 30,
+          "unit": "ml"
+        },
+        {
+          "name": "лимон",
+          "quantity": 0.5,
+          "unit": "pcs"
+        },
+        {
+          "name": "петрушка",
+          "quantity": 0.5,
+          "unit": "bunch"
+        },
+        {
+          "name": "соль",
+          "quantity": 0,
+          "unit": "to_taste"
+        }
+      ],
+      "ingredient_meta": {
+        "куриное филе": {
+          "category": "meat",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "перец болгарский": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "огурец": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "помидоры черри": {
+          "category": "produce",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "лук красный": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "масло оливковое": {
+          "category": "oils",
+          "unit_family": "volume",
+          "allergen_tags": []
+        },
+        "лимон": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "петрушка": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "соль": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        }
+      }
+    },
+    {
+      "slug": "grechesky-salat",
+      "title": "Греческий салат",
+      "description": "Классический салат из помидоров, огурцов, феты и оливок — свежий, яркий и собирается за пятнадцать минут.",
+      "instructions": [
+        "Нарежьте помидоры и огурцы крупными кусками, перец — кольцами.",
+        "Лук нарежьте тонкими полукольцами и слегка помните руками.",
+        "Сложите овощи в салатник, добавьте оливки.",
+        "Смешайте оливковое масло с уксусом и орегано, полейте салат.",
+        "Выложите сверху фету крупными кубиками и слегка перемешайте."
+      ],
+      "prep_minutes": 15,
+      "cook_minutes": 0,
+      "servings": 2,
+      "meal_types": [
+        "lunch"
+      ],
+      "category": "Салат",
+      "tags": [
+        "быстро",
+        "вегетарианское",
+        "без готовки",
+        "без глютена"
+      ],
+      "diet_flags": [
+        "vegetarian",
+        "gluten_free"
+      ],
+      "image_url": "https://www.themealdb.com/images/media/meals/bqx8mc1782684286.jpg",
+      "image_credit": "TheMealDB",
+      "cost_per_serving": 150,
+      "kcal_per_serving": 230,
+      "ingredients": [
+        {
+          "name": "помидор",
+          "quantity": 3,
+          "unit": "pcs"
+        },
+        {
+          "name": "огурец",
+          "quantity": 2,
+          "unit": "pcs"
+        },
+        {
+          "name": "перец болгарский",
+          "quantity": 1,
+          "unit": "pcs"
+        },
+        {
+          "name": "лук красный",
+          "quantity": 0.5,
+          "unit": "pcs"
+        },
+        {
+          "name": "фета",
+          "quantity": 150,
+          "unit": "g"
+        },
+        {
+          "name": "оливки",
+          "quantity": 80,
+          "unit": "g"
+        },
+        {
+          "name": "масло оливковое",
+          "quantity": 30,
+          "unit": "ml"
+        },
+        {
+          "name": "уксус яблочный",
+          "quantity": 15,
+          "unit": "ml"
+        },
+        {
+          "name": "орегано",
+          "quantity": 3,
+          "unit": "g"
+        },
+        {
+          "name": "соль",
+          "quantity": 1,
+          "unit": "pinch"
+        }
+      ],
+      "ingredient_meta": {
+        "помидор": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "огурец": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "перец болгарский": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "лук красный": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "фета": {
+          "category": "dairy",
+          "unit_family": "mass",
+          "allergen_tags": [
+            "milk"
+          ]
+        },
+        "оливки": {
+          "category": "canned",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "масло оливковое": {
+          "category": "oils",
+          "unit_family": "volume",
+          "allergen_tags": []
+        },
+        "уксус яблочный": {
+          "category": "other",
+          "unit_family": "volume",
+          "allergen_tags": []
+        },
+        "орегано": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "соль": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        }
+      }
+    },
+    {
+      "slug": "salat-s-tuntsom-i-fasolyu",
+      "title": "Салат с тунцом и белой фасолью",
+      "description": "Сытный салат-белка без гарнира: тунец, фасоль и хрустящие овощи под лимонной заправкой. Готовится из консервов.",
+      "instructions": [
+        "Слейте жидкость с тунца и фасоли, разомните тунца вилкой.",
+        "Нарежьте огурец и черри, лук — тонкими полукольцами.",
+        "Смешайте оливковое масло с лимонным соком и солью.",
+        "Соедините все ингредиенты в салатнике и полейте заправкой.",
+        "Перемешайте и подавайте, посыпав петрушкой."
+      ],
+      "prep_minutes": 15,
+      "cook_minutes": 0,
+      "servings": 2,
+      "meal_types": [
+        "lunch"
+      ],
+      "category": "Салат",
+      "tags": [
+        "быстро",
+        "из консервов",
+        "без глютена",
+        "белковое"
+      ],
+      "diet_flags": [
+        "pescatarian",
+        "gluten_free",
+        "dairy_free"
+      ],
+      "image_url": "https://www.themealdb.com/images/media/meals/yypwwq1511304979.jpg",
+      "image_credit": "TheMealDB",
+      "cost_per_serving": 170,
+      "kcal_per_serving": 240,
+      "ingredients": [
+        {
+          "name": "тунец консервированный",
+          "quantity": 170,
+          "unit": "g"
+        },
+        {
+          "name": "фасоль консервированная",
+          "quantity": 200,
+          "unit": "g"
+        },
+        {
+          "name": "огурец",
+          "quantity": 1,
+          "unit": "pcs"
+        },
+        {
+          "name": "помидоры черри",
+          "quantity": 150,
+          "unit": "g"
+        },
+        {
+          "name": "лук красный",
+          "quantity": 0.5,
+          "unit": "pcs"
+        },
+        {
+          "name": "масло оливковое",
+          "quantity": 20,
+          "unit": "ml"
+        },
+        {
+          "name": "лимон",
+          "quantity": 0.5,
+          "unit": "pcs"
+        },
+        {
+          "name": "петрушка",
+          "quantity": 0.5,
+          "unit": "bunch"
+        },
+        {
+          "name": "соль",
+          "quantity": 0,
+          "unit": "to_taste"
+        }
+      ],
+      "ingredient_meta": {
+        "тунец консервированный": {
+          "category": "canned",
+          "unit_family": "mass",
+          "allergen_tags": [
+            "fish"
+          ]
+        },
+        "фасоль консервированная": {
+          "category": "canned",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "огурец": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "помидоры черри": {
+          "category": "produce",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "лук красный": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "масло оливковое": {
+          "category": "oils",
+          "unit_family": "volume",
+          "allergen_tags": []
+        },
+        "лимон": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "петрушка": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "соль": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        }
+      }
+    },
+    {
+      "slug": "pasta-karbonara",
+      "title": "Паста карбонара",
+      "description": "Настоящая карбонара без сливок: шелковистый соус получается из яиц, пармезана и жирного бекона.",
+      "instructions": [
+        "Отварите спагетти в подсоленной воде до состояния аль денте, сохраните стакан воды.",
+        "Обжарьте нарезанный бекон на сухой сковороде до хрустящей корочки.",
+        "Взбейте яйца с тёртым пармезаном и щедрой порцией чёрного перца.",
+        "Переложите горячие спагетти к бекону и снимите сковороду с огня.",
+        "Влейте яичную смесь и быстро перемешайте, добавляя горячую воду до кремовой консистенции.",
+        "Подавайте сразу, посыпав пармезаном и перцем."
+      ],
+      "prep_minutes": 10,
+      "cook_minutes": 15,
+      "servings": 2,
+      "meal_types": [
+        "lunch",
+        "dinner"
+      ],
+      "category": "Основное",
+      "tags": [
+        "быстро",
+        "итальянское",
+        "классика"
+      ],
+      "diet_flags": [],
+      "image_url": "https://www.themealdb.com/images/media/meals/llcbn01574260722.jpg",
+      "image_credit": "TheMealDB",
+      "cost_per_serving": 160,
+      "kcal_per_serving": 560,
+      "ingredients": [
+        {
+          "name": "спагетти",
+          "quantity": 200,
+          "unit": "g"
+        },
+        {
+          "name": "бекон",
+          "quantity": 150,
+          "unit": "g"
+        },
+        {
+          "name": "яйцо",
+          "quantity": 3,
+          "unit": "pcs"
+        },
+        {
+          "name": "пармезан",
+          "quantity": 60,
+          "unit": "g"
+        },
+        {
+          "name": "чеснок",
+          "quantity": 1,
+          "unit": "clove"
+        },
+        {
+          "name": "соль",
+          "quantity": 0,
+          "unit": "to_taste"
+        },
+        {
+          "name": "перец чёрный молотый",
+          "quantity": 0,
+          "unit": "to_taste"
+        }
+      ],
+      "ingredient_meta": {
+        "спагетти": {
+          "category": "grains",
+          "unit_family": "mass",
+          "allergen_tags": [
+            "gluten"
+          ]
+        },
+        "бекон": {
+          "category": "meat",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "яйцо": {
+          "category": "dairy",
+          "unit_family": "count",
+          "allergen_tags": [
+            "eggs"
+          ]
+        },
+        "пармезан": {
+          "category": "dairy",
+          "unit_family": "mass",
+          "allergen_tags": [
+            "milk"
+          ]
+        },
+        "чеснок": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "соль": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "перец чёрный молотый": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        }
+      }
+    },
+    {
+      "slug": "pasta-bolognese",
+      "title": "Паста болоньезе",
+      "description": "Домашний мясной соус, томлёный с овощами и томатами, — классика, которую любят и дети, и взрослые.",
+      "instructions": [
+        "Обжарьте мелко нарезанные лук, морковь и чеснок на оливковом масле 5–6 минут.",
+        "Добавьте фарш и жарьте 8–10 минут, разбивая комки лопаткой.",
+        "Вмешайте томатную пасту, затем томаты в собственном соку и орегано.",
+        "Тушите соус на слабом огне 25–30 минут, помешивая, посолите и поперчите.",
+        "Отварите спагетти аль денте и переложите к соусу.",
+        "Перемешайте, разложите по тарелкам и посыпьте пармезаном."
+      ],
+      "prep_minutes": 15,
+      "cook_minutes": 40,
+      "servings": 4,
+      "meal_types": [
+        "lunch",
+        "dinner"
+      ],
+      "category": "Основное",
+      "tags": [
+        "итальянское",
+        "сытное",
+        "детям"
+      ],
+      "diet_flags": [],
+      "image_url": "https://www.themealdb.com/images/media/meals/sutysw1468247559.jpg",
+      "image_credit": "TheMealDB",
+      "cost_per_serving": 160,
+      "kcal_per_serving": 540,
+      "ingredients": [
+        {
+          "name": "спагетти",
+          "quantity": 250,
+          "unit": "g"
+        },
+        {
+          "name": "фарш говяжий",
+          "quantity": 400,
+          "unit": "g"
+        },
+        {
+          "name": "лук репчатый",
+          "quantity": 1,
+          "unit": "pcs"
+        },
+        {
+          "name": "морковь",
+          "quantity": 1,
+          "unit": "pcs"
+        },
+        {
+          "name": "чеснок",
+          "quantity": 2,
+          "unit": "clove"
+        },
+        {
+          "name": "томаты в собственном соку",
+          "quantity": 400,
+          "unit": "g"
+        },
+        {
+          "name": "томатная паста",
+          "quantity": 20,
+          "unit": "g"
+        },
+        {
+          "name": "масло оливковое",
+          "quantity": 30,
+          "unit": "ml"
+        },
+        {
+          "name": "орегано",
+          "quantity": 3,
+          "unit": "g"
+        },
+        {
+          "name": "пармезан",
+          "quantity": 40,
+          "unit": "g"
+        },
+        {
+          "name": "соль",
+          "quantity": 0,
+          "unit": "to_taste"
+        },
+        {
+          "name": "перец чёрный молотый",
+          "quantity": 0,
+          "unit": "to_taste"
+        }
+      ],
+      "ingredient_meta": {
+        "спагетти": {
+          "category": "grains",
+          "unit_family": "mass",
+          "allergen_tags": [
+            "gluten"
+          ]
+        },
+        "фарш говяжий": {
+          "category": "meat",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "лук репчатый": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "морковь": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "чеснок": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "томаты в собственном соку": {
+          "category": "canned",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "томатная паста": {
+          "category": "canned",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "масло оливковое": {
+          "category": "oils",
+          "unit_family": "volume",
+          "allergen_tags": []
+        },
+        "орегано": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "пармезан": {
+          "category": "dairy",
+          "unit_family": "mass",
+          "allergen_tags": [
+            "milk"
+          ]
+        },
+        "соль": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "перец чёрный молотый": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        }
+      }
+    },
+    {
+      "slug": "kuritsa-s-kartofelem-v-duhovke",
+      "title": "Курица с картофелем в духовке",
+      "description": "Ужин из одного противня: румяные куриные бёдра и картофельные дольки в чесночно-паприковом маринаде.",
+      "instructions": [
+        "Разогрейте духовку до 200 °C.",
+        "Смешайте масло, паприку, давленый чеснок, соль и перец.",
+        "Нарежьте картофель дольками и промокните куриные бёдра.",
+        "Промажьте маринадом курицу и картофель и выложите на противень.",
+        "Запекайте 45–50 минут, один раз перевернув картофель, до румяной корочки.",
+        "Подавайте горячим с зеленью или соленьями."
+      ],
+      "prep_minutes": 15,
+      "cook_minutes": 50,
+      "servings": 4,
+      "meal_types": [
+        "dinner"
+      ],
+      "category": "Основное",
+      "tags": [
+        "в духовке",
+        "сытное",
+        "бюджетно",
+        "семейное"
+      ],
+      "diet_flags": [
+        "gluten_free",
+        "dairy_free"
+      ],
+      "image_url": "https://www.themealdb.com/images/media/meals/kvbotn1581012881.jpg",
+      "image_credit": "TheMealDB",
+      "cost_per_serving": 140,
+      "kcal_per_serving": 520,
+      "ingredients": [
+        {
+          "name": "куриное бедро",
+          "quantity": 700,
+          "unit": "g"
+        },
+        {
+          "name": "картофель",
+          "quantity": 800,
+          "unit": "g"
+        },
+        {
+          "name": "чеснок",
+          "quantity": 3,
+          "unit": "clove"
+        },
+        {
+          "name": "паприка",
+          "quantity": 5,
+          "unit": "g"
+        },
+        {
+          "name": "масло растительное",
+          "quantity": 40,
+          "unit": "ml"
+        },
+        {
+          "name": "соль",
+          "quantity": 6,
+          "unit": "g"
+        },
+        {
+          "name": "перец чёрный молотый",
+          "quantity": 0,
+          "unit": "to_taste"
+        }
+      ],
+      "ingredient_meta": {
+        "куриное бедро": {
+          "category": "meat",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "картофель": {
+          "category": "produce",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "чеснок": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "паприка": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "масло растительное": {
+          "category": "oils",
+          "unit_family": "volume",
+          "allergen_tags": []
+        },
+        "соль": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "перец чёрный молотый": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        }
+      }
+    },
+    {
+      "slug": "plov-s-kuritsey",
+      "title": "Плов с курицей (упрощённый)",
+      "description": "Домашний плов без казана и сложностей: обжаренная курица, морковь с зирой и рассыпчатый рис в одной кастрюле.",
+      "instructions": [
+        "Нарежьте курицу кусками, лук — кубиками, морковь — соломкой.",
+        "Разогрейте масло в казане или толстостенной кастрюле и обжарьте курицу до золотистого цвета.",
+        "Добавьте лук и морковь, жарьте 7–8 минут, затем всыпьте зиру и куркуму.",
+        "Залейте горячей водой так, чтобы она едва покрыла содержимое, и тушите 10 минут.",
+        "Равномерно распределите промытый рис, влейте кипяток на 2 см выше риса и посолите.",
+        "Варите без крышки до впитывания воды, затем воткните головку чеснока и томите под крышкой 20 минут на минимальном огне.",
+        "Аккуратно перемешайте и подавайте."
+      ],
+      "prep_minutes": 20,
+      "cook_minutes": 50,
+      "servings": 4,
+      "meal_types": [
+        "dinner"
+      ],
+      "category": "Основное",
+      "tags": [
+        "узбекское",
+        "сытное",
+        "в одной кастрюле"
+      ],
+      "diet_flags": [
+        "gluten_free",
+        "dairy_free"
+      ],
+      "image_url": "https://www.themealdb.com/images/media/meals/kos9av1699014767.jpg",
+      "image_credit": "TheMealDB",
+      "cost_per_serving": 150,
+      "kcal_per_serving": 540,
+      "ingredients": [
+        {
+          "name": "куриное бедро",
+          "quantity": 500,
+          "unit": "g"
+        },
+        {
+          "name": "рис",
+          "quantity": 300,
+          "unit": "g",
+          "note": "длиннозёрный"
+        },
+        {
+          "name": "морковь",
+          "quantity": 2,
+          "unit": "pcs"
+        },
+        {
+          "name": "лук репчатый",
+          "quantity": 2,
+          "unit": "pcs"
+        },
+        {
+          "name": "чеснок",
+          "quantity": 6,
+          "unit": "clove"
+        },
+        {
+          "name": "зира",
+          "quantity": 5,
+          "unit": "g"
+        },
+        {
+          "name": "куркума",
+          "quantity": 3,
+          "unit": "g"
+        },
+        {
+          "name": "масло растительное",
+          "quantity": 60,
+          "unit": "ml"
+        },
+        {
+          "name": "соль",
+          "quantity": 8,
+          "unit": "g"
+        }
+      ],
+      "ingredient_meta": {
+        "куриное бедро": {
+          "category": "meat",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "рис": {
+          "category": "grains",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "морковь": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "лук репчатый": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "чеснок": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "зира": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "куркума": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "масло растительное": {
+          "category": "oils",
+          "unit_family": "volume",
+          "allergen_tags": []
+        },
+        "соль": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        }
+      }
+    },
+    {
+      "slug": "befstroganov-s-pyure",
+      "title": "Бефстроганов с картофельным пюре",
+      "description": "Тонкие полоски говядины в сметанной подливке с луком — и картофельное пюре, как положено классике.",
+      "instructions": [
+        "Нарежьте говядину поперёк волокон пластинами и слегка отбейте, затем — тонкой соломкой.",
+        "Обжарьте мясо на сильном огне частями по 2–3 минуты до румянца и отложите.",
+        "В той же сковороде спассеруйте лук, верните мясо.",
+        "Добавьте сметану и горчицу, посолите и тушите под крышкой 20–30 минут до мягкости мяса.",
+        "Отварите картофель, разомните с молоком и сливочным маслом в пюре.",
+        "Подавайте бефстроганов на подушке из пюре, полив подливкой."
+      ],
+      "prep_minutes": 15,
+      "cook_minutes": 40,
+      "servings": 4,
+      "meal_types": [
+        "dinner"
+      ],
+      "category": "Основное",
+      "tags": [
+        "классика",
+        "сытное",
+        "русская кухня"
+      ],
+      "diet_flags": [
+        "gluten_free"
+      ],
+      "image_url": "https://www.themealdb.com/images/media/meals/svprys1511176755.jpg",
+      "image_credit": "TheMealDB",
+      "cost_per_serving": 210,
+      "kcal_per_serving": 490,
+      "ingredients": [
+        {
+          "name": "говядина",
+          "quantity": 500,
+          "unit": "g",
+          "note": "вырезка или толстый край"
+        },
+        {
+          "name": "лук репчатый",
+          "quantity": 2,
+          "unit": "pcs"
+        },
+        {
+          "name": "сметана",
+          "quantity": 200,
+          "unit": "g"
+        },
+        {
+          "name": "горчица",
+          "quantity": 1,
+          "unit": "tsp"
+        },
+        {
+          "name": "картофель",
+          "quantity": 700,
+          "unit": "g"
+        },
+        {
+          "name": "молоко",
+          "quantity": 100,
+          "unit": "ml"
+        },
+        {
+          "name": "масло сливочное",
+          "quantity": 30,
+          "unit": "g"
+        },
+        {
+          "name": "масло растительное",
+          "quantity": 30,
+          "unit": "ml"
+        },
+        {
+          "name": "соль",
+          "quantity": 0,
+          "unit": "to_taste"
+        },
+        {
+          "name": "перец чёрный молотый",
+          "quantity": 0,
+          "unit": "to_taste"
+        }
+      ],
+      "ingredient_meta": {
+        "говядина": {
+          "category": "meat",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "лук репчатый": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "сметана": {
+          "category": "dairy",
+          "unit_family": "mass",
+          "allergen_tags": [
+            "milk"
+          ]
+        },
+        "горчица": {
+          "category": "other",
+          "unit_family": "volume",
+          "allergen_tags": []
+        },
+        "картофель": {
+          "category": "produce",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "молоко": {
+          "category": "dairy",
+          "unit_family": "volume",
+          "allergen_tags": [
+            "milk"
+          ]
+        },
+        "масло сливочное": {
+          "category": "dairy",
+          "unit_family": "mass",
+          "allergen_tags": [
+            "milk"
+          ]
+        },
+        "масло растительное": {
+          "category": "oils",
+          "unit_family": "volume",
+          "allergen_tags": []
+        },
+        "соль": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "перец чёрный молотый": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        }
+      }
+    },
+    {
+      "slug": "semga-zapechennaya-s-ovoshchami",
+      "title": "Сёмга, запечённая с овощами",
+      "description": "Нежный лосось с хрустящей брокколи и черри — полезный ужин на одном противне за полчаса.",
+      "instructions": [
+        "Разогрейте духовку до 200 °C и застелите противень пергаментом.",
+        "Разберите брокколи на соцветия, черри разрежьте пополам.",
+        "Выложите овощи на противень, сбрызните маслом, посолите и запекайте 10 минут.",
+        "Выложите филе сёмги кожей вниз, сбрызните маслом и лимонным соком, посолите и поперчите.",
+        "Запекайте ещё 10–12 минут, пока рыба не станет матовой и не будет легко расслаиваться.",
+        "Подавайте с долькой лимона."
+      ],
+      "prep_minutes": 10,
+      "cook_minutes": 20,
+      "servings": 2,
+      "meal_types": [
+        "dinner"
+      ],
+      "category": "Основное",
+      "tags": [
+        "быстро",
+        "полезное",
+        "без глютена",
+        "в духовке"
+      ],
+      "diet_flags": [
+        "pescatarian",
+        "gluten_free",
+        "dairy_free"
+      ],
+      "image_url": "https://www.themealdb.com/images/media/meals/1548772327.jpg",
+      "image_credit": "TheMealDB",
+      "cost_per_serving": 290,
+      "kcal_per_serving": 430,
+      "ingredients": [
+        {
+          "name": "сёмга",
+          "quantity": 320,
+          "unit": "g",
+          "note": "филе на коже"
+        },
+        {
+          "name": "брокколи",
+          "quantity": 300,
+          "unit": "g"
+        },
+        {
+          "name": "помидоры черри",
+          "quantity": 150,
+          "unit": "g"
+        },
+        {
+          "name": "лимон",
+          "quantity": 0.5,
+          "unit": "pcs"
+        },
+        {
+          "name": "чеснок",
+          "quantity": 2,
+          "unit": "clove"
+        },
+        {
+          "name": "масло оливковое",
+          "quantity": 20,
+          "unit": "ml"
+        },
+        {
+          "name": "соль",
+          "quantity": 0,
+          "unit": "to_taste"
+        },
+        {
+          "name": "перец чёрный молотый",
+          "quantity": 0,
+          "unit": "to_taste"
+        }
+      ],
+      "ingredient_meta": {
+        "сёмга": {
+          "category": "fish",
+          "unit_family": "mass",
+          "allergen_tags": [
+            "fish"
+          ]
+        },
+        "брокколи": {
+          "category": "produce",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "помидоры черри": {
+          "category": "produce",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "лимон": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "чеснок": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "масло оливковое": {
+          "category": "oils",
+          "unit_family": "volume",
+          "allergen_tags": []
+        },
+        "соль": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "перец чёрный молотый": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        }
+      }
+    },
+    {
+      "slug": "kotlety-kurinye-s-grechkoy",
+      "title": "Котлеты куриные с гречкой",
+      "description": "Сочные куриные котлеты на сковороде и рассыпчатая гречка — простой домашний ужин без лишних хлопот.",
+      "instructions": [
+        "Замочите хлеб в молоке на 5 минут и отожмите.",
+        "Натрите лук, смешайте с фаршем, яйцом, размятым хлебом, солью и перцем.",
+        "Вымесите фарш и отбейте его о миску для плотности.",
+        "Сформируйте котлеты мокрыми руками и обваляйте в панировочных сухарях.",
+        "Обжарьте на разогретом масле по 4–5 минут с каждой стороны до готовности.",
+        "Промойте гречку, залейте водой 1:2, посолите и сварите под крышкой 15 минут.",
+        "Подавайте котлеты с гречкой и свежими овощами."
+      ],
+      "prep_minutes": 15,
+      "cook_minutes": 30,
+      "servings": 4,
+      "meal_types": [
+        "dinner"
+      ],
+      "category": "Основное",
+      "tags": [
+        "сытное",
+        "детям",
+        "на сковороде"
+      ],
+      "diet_flags": [],
+      "image_url": "https://www.themealdb.com/images/media/meals/vvn5f71764360273.jpg",
+      "image_credit": "TheMealDB",
+      "cost_per_serving": 130,
+      "kcal_per_serving": 470,
+      "ingredients": [
+        {
+          "name": "фарш куриный",
+          "quantity": 500,
+          "unit": "g"
+        },
+        {
+          "name": "яйцо",
+          "quantity": 1,
+          "unit": "pcs"
+        },
+        {
+          "name": "лук репчатый",
+          "quantity": 1,
+          "unit": "pcs"
+        },
+        {
+          "name": "хлеб",
+          "quantity": 2,
+          "unit": "slice"
+        },
+        {
+          "name": "молоко",
+          "quantity": 50,
+          "unit": "ml"
+        },
+        {
+          "name": "панировочные сухари",
+          "quantity": 50,
+          "unit": "g"
+        },
+        {
+          "name": "гречка",
+          "quantity": 250,
+          "unit": "g"
+        },
+        {
+          "name": "масло растительное",
+          "quantity": 40,
+          "unit": "ml"
+        },
+        {
+          "name": "соль",
+          "quantity": 0,
+          "unit": "to_taste"
+        },
+        {
+          "name": "перец чёрный молотый",
+          "quantity": 0,
+          "unit": "to_taste"
+        }
+      ],
+      "ingredient_meta": {
+        "фарш куриный": {
+          "category": "meat",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "яйцо": {
+          "category": "dairy",
+          "unit_family": "count",
+          "allergen_tags": [
+            "eggs"
+          ]
+        },
+        "лук репчатый": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "хлеб": {
+          "category": "bakery",
+          "unit_family": "count",
+          "allergen_tags": [
+            "gluten"
+          ]
+        },
+        "молоко": {
+          "category": "dairy",
+          "unit_family": "volume",
+          "allergen_tags": [
+            "milk"
+          ]
+        },
+        "панировочные сухари": {
+          "category": "bakery",
+          "unit_family": "mass",
+          "allergen_tags": [
+            "gluten"
+          ]
+        },
+        "гречка": {
+          "category": "grains",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "масло растительное": {
+          "category": "oils",
+          "unit_family": "volume",
+          "allergen_tags": []
+        },
+        "соль": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "перец чёрный молотый": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        }
+      }
+    },
+    {
+      "slug": "gulyash-iz-svininy",
+      "title": "Гуляш из свинины с подливкой",
+      "description": "Мягкие кусочки свинины в густой томатной подливке — к нему просится пюре, гречка или просто хлеб.",
+      "instructions": [
+        "Нарежьте свинину кубиками по 3 см и обжарьте на масле до румянца.",
+        "Добавьте лук и морковь, жарьте ещё 5 минут.",
+        "Всыпьте муку, перемешайте и готовьте минуту, затем вмешайте томатную пасту.",
+        "Залейте горячей водой так, чтобы она покрыла мясо, добавьте лавровый лист.",
+        "Тушите под крышкой на слабом огне 50–60 минут до мягкости.",
+        "Посолите, поперчите и подавайте с любым гарниром."
+      ],
+      "prep_minutes": 15,
+      "cook_minutes": 65,
+      "servings": 4,
+      "meal_types": [
+        "dinner"
+      ],
+      "category": "Основное",
+      "tags": [
+        "сытное",
+        "с подливкой",
+        "бюджетно"
+      ],
+      "diet_flags": [
+        "dairy_free"
+      ],
+      "image_url": "https://www.themealdb.com/images/media/meals/n1hcou1628770088.jpg",
+      "image_credit": "TheMealDB",
+      "cost_per_serving": 160,
+      "kcal_per_serving": 430,
+      "ingredients": [
+        {
+          "name": "свинина",
+          "quantity": 500,
+          "unit": "g",
+          "note": "шея или лопатка"
+        },
+        {
+          "name": "лук репчатый",
+          "quantity": 1,
+          "unit": "pcs"
+        },
+        {
+          "name": "морковь",
+          "quantity": 1,
+          "unit": "pcs"
+        },
+        {
+          "name": "томатная паста",
+          "quantity": 30,
+          "unit": "g"
+        },
+        {
+          "name": "мука пшеничная",
+          "quantity": 20,
+          "unit": "g"
+        },
+        {
+          "name": "масло растительное",
+          "quantity": 30,
+          "unit": "ml"
+        },
+        {
+          "name": "лавровый лист",
+          "quantity": 2,
+          "unit": "pcs"
+        },
+        {
+          "name": "вода",
+          "quantity": 400,
+          "unit": "ml"
+        },
+        {
+          "name": "соль",
+          "quantity": 0,
+          "unit": "to_taste"
+        },
+        {
+          "name": "перец чёрный молотый",
+          "quantity": 0,
+          "unit": "to_taste"
+        }
+      ],
+      "ingredient_meta": {
+        "свинина": {
+          "category": "meat",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "лук репчатый": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "морковь": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "томатная паста": {
+          "category": "canned",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "мука пшеничная": {
+          "category": "grains",
+          "unit_family": "mass",
+          "allergen_tags": [
+            "gluten"
+          ]
+        },
+        "масло растительное": {
+          "category": "oils",
+          "unit_family": "volume",
+          "allergen_tags": []
+        },
+        "лавровый лист": {
+          "category": "spices",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "вода": {
+          "category": "other",
+          "unit_family": "volume",
+          "allergen_tags": []
+        },
+        "соль": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "перец чёрный молотый": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        }
+      }
+    },
+    {
+      "slug": "ovoshchnoe-ragu",
+      "title": "Овощное рагу",
+      "description": "Яркое тушёное рагу из сезонных овощей — самостоятельный лёгкий ужин или гарнир к мясу.",
+      "instructions": [
+        "Нарежьте все овощи крупными кубиками, лук — полукольцами.",
+        "Обжарьте лук и морковь на масле 4–5 минут.",
+        "Добавьте баклажан и кабачок, жарьте ещё 5–6 минут.",
+        "Добавьте картофель, перец и помидоры, влейте полстакана воды.",
+        "Тушите под крышкой 25–30 минут до мягкости картофеля.",
+        "Добавьте чеснок, посолите, поперчите и посыпьте зеленью."
+      ],
+      "prep_minutes": 15,
+      "cook_minutes": 35,
+      "servings": 4,
+      "meal_types": [
+        "dinner"
+      ],
+      "category": "Основное",
+      "tags": [
+        "веганское",
+        "лёгкое",
+        "постное",
+        "бюджетно"
+      ],
+      "diet_flags": [
+        "vegetarian",
+        "vegan",
+        "gluten_free",
+        "dairy_free"
+      ],
+      "image_url": "https://www.themealdb.com/images/media/meals/wrpwuu1511786491.jpg",
+      "image_credit": "TheMealDB",
+      "cost_per_serving": 120,
+      "kcal_per_serving": 190,
+      "ingredients": [
+        {
+          "name": "картофель",
+          "quantity": 400,
+          "unit": "g"
+        },
+        {
+          "name": "кабачок",
+          "quantity": 1,
+          "unit": "pcs"
+        },
+        {
+          "name": "баклажан",
+          "quantity": 1,
+          "unit": "pcs"
+        },
+        {
+          "name": "перец болгарский",
+          "quantity": 2,
+          "unit": "pcs"
+        },
+        {
+          "name": "помидор",
+          "quantity": 2,
+          "unit": "pcs"
+        },
+        {
+          "name": "морковь",
+          "quantity": 1,
+          "unit": "pcs"
+        },
+        {
+          "name": "лук репчатый",
+          "quantity": 1,
+          "unit": "pcs"
+        },
+        {
+          "name": "чеснок",
+          "quantity": 2,
+          "unit": "clove"
+        },
+        {
+          "name": "масло растительное",
+          "quantity": 40,
+          "unit": "ml"
+        },
+        {
+          "name": "укроп",
+          "quantity": 0.5,
+          "unit": "bunch"
+        },
+        {
+          "name": "соль",
+          "quantity": 0,
+          "unit": "to_taste"
+        },
+        {
+          "name": "перец чёрный молотый",
+          "quantity": 0,
+          "unit": "to_taste"
+        }
+      ],
+      "ingredient_meta": {
+        "картофель": {
+          "category": "produce",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "кабачок": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "баклажан": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "перец болгарский": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "помидор": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "морковь": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "лук репчатый": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "чеснок": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "масло растительное": {
+          "category": "oils",
+          "unit_family": "volume",
+          "allergen_tags": []
+        },
+        "укроп": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "соль": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "перец чёрный молотый": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        }
+      }
+    },
+    {
+      "slug": "penne-arrabiata",
+      "title": "Пенне арабьята",
+      "description": "Острая томатная паста с чесноком и петрушкой — классика итальянской кухни, готовая быстрее, чем варится паста.",
+      "instructions": [
+        "Отварите пенне в подсоленной воде аль денте, сохраните полстакана воды.",
+        "Разогрейте оливковое масло и обжарьте тонко нарезанные чеснок и чили 1 минуту — не пережарьте.",
+        "Добавьте томаты, посолите и тушите соус 10 минут, разминая кусочки.",
+        "Переложите пенне в соус, влейте немного воды от пасты и перемешайте.",
+        "Снимите с огня, посыпьте петрушкой и подавайте."
+      ],
+      "prep_minutes": 5,
+      "cook_minutes": 15,
+      "servings": 3,
+      "meal_types": [
+        "dinner"
+      ],
+      "category": "Основное",
+      "tags": [
+        "быстро",
+        "итальянское",
+        "острое",
+        "веганское"
+      ],
+      "diet_flags": [
+        "vegetarian",
+        "vegan",
+        "dairy_free"
+      ],
+      "image_url": "https://www.themealdb.com/images/media/meals/ustsqw1468250014.jpg",
+      "image_credit": "TheMealDB",
+      "cost_per_serving": 80,
+      "kcal_per_serving": 400,
+      "ingredients": [
+        {
+          "name": "пенне",
+          "quantity": 250,
+          "unit": "g"
+        },
+        {
+          "name": "томаты в собственном соку",
+          "quantity": 400,
+          "unit": "g"
+        },
+        {
+          "name": "чеснок",
+          "quantity": 3,
+          "unit": "clove"
+        },
+        {
+          "name": "перец чили",
+          "quantity": 1,
+          "unit": "pcs"
+        },
+        {
+          "name": "масло оливковое",
+          "quantity": 30,
+          "unit": "ml"
+        },
+        {
+          "name": "петрушка",
+          "quantity": 0.5,
+          "unit": "bunch"
+        },
+        {
+          "name": "соль",
+          "quantity": 0,
+          "unit": "to_taste"
+        }
+      ],
+      "ingredient_meta": {
+        "пенне": {
+          "category": "grains",
+          "unit_family": "mass",
+          "allergen_tags": [
+            "gluten"
+          ]
+        },
+        "томаты в собственном соку": {
+          "category": "canned",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "чеснок": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "перец чили": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "масло оливковое": {
+          "category": "oils",
+          "unit_family": "volume",
+          "allergen_tags": []
+        },
+        "петрушка": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "соль": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        }
+      }
+    },
+    {
+      "slug": "kuritsa-teriyaki-s-risom",
+      "title": "Курица терияки с рисом",
+      "description": "Кусочки курицы в липком карамельно-соевом соусе с кунжутом — домашняя версия любимого азиатского ужина.",
+      "instructions": [
+        "Отварите рис в подсоленной воде по инструкции на упаковке.",
+        "Смешайте соевый соус с мёдом и 50 мл воды.",
+        "Обжарьте кусочки курицы на масле 6–8 минут до румянца.",
+        "Добавьте тертые имбирь и чеснок, готовьте 1 минуту.",
+        "Влейте соус и тушите 3–4 минуты, пока он не загустеет и не покроет курицу глазурью.",
+        "Подавайте на рисе, посыпав кунжутом и зелёным луком."
+      ],
+      "prep_minutes": 10,
+      "cook_minutes": 20,
+      "servings": 3,
+      "meal_types": [
+        "dinner"
+      ],
+      "category": "Основное",
+      "tags": [
+        "быстро",
+        "азиатское",
+        "сытное"
+      ],
+      "diet_flags": [
+        "dairy_free"
+      ],
+      "image_url": "https://www.themealdb.com/images/media/meals/wvpsxx1468256321.jpg",
+      "image_credit": "TheMealDB",
+      "cost_per_serving": 160,
+      "kcal_per_serving": 470,
+      "ingredients": [
+        {
+          "name": "куриное филе",
+          "quantity": 400,
+          "unit": "g"
+        },
+        {
+          "name": "соевый соус",
+          "quantity": 60,
+          "unit": "ml"
+        },
+        {
+          "name": "мёд",
+          "quantity": 20,
+          "unit": "g"
+        },
+        {
+          "name": "чеснок",
+          "quantity": 2,
+          "unit": "clove"
+        },
+        {
+          "name": "имбирь",
+          "quantity": 15,
+          "unit": "g"
+        },
+        {
+          "name": "рис",
+          "quantity": 200,
+          "unit": "g"
+        },
+        {
+          "name": "кунжут",
+          "quantity": 5,
+          "unit": "g"
+        },
+        {
+          "name": "лук зелёный",
+          "quantity": 0.5,
+          "unit": "bunch"
+        },
+        {
+          "name": "масло растительное",
+          "quantity": 20,
+          "unit": "ml"
+        },
+        {
+          "name": "соль",
+          "quantity": 1,
+          "unit": "pinch"
+        }
+      ],
+      "ingredient_meta": {
+        "куриное филе": {
+          "category": "meat",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "соевый соус": {
+          "category": "other",
+          "unit_family": "volume",
+          "allergen_tags": [
+            "soy",
+            "gluten"
+          ]
+        },
+        "мёд": {
+          "category": "other",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "чеснок": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "имбирь": {
+          "category": "produce",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "рис": {
+          "category": "grains",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "кунжут": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": [
+            "sesame"
+          ]
+        },
+        "лук зелёный": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "масло растительное": {
+          "category": "oils",
+          "unit_family": "volume",
+          "allergen_tags": []
+        },
+        "соль": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        }
+      }
+    },
+    {
+      "slug": "kartofelnaya-zapekanka-s-farshem",
+      "title": "Картофельная запеканка с фаршем",
+      "description": "Слоёная запеканка из картофельного пюре и сочного фарша с луком под сырной корочкой — субботний семейный ужин.",
+      "instructions": [
+        "Отварите картофель в подсоленной воде до мягкости.",
+        "Обжарьте лук, добавьте фарш и готовьте 10 минут, разбивая комки, посолите и поперчите.",
+        "Разомните картофель с молоком, яйцом и сливочным маслом в пюре.",
+        "Выложите половину пюре в смазанную форму, затем фарш, затем оставшееся пюре.",
+        "Посыпьте тёртым сыром и запекайте при 190 °C 25–30 минут до золотистой корочки.",
+        "Дайте постоять 10 минут и нарежьте на порции."
+      ],
+      "prep_minutes": 20,
+      "cook_minutes": 50,
+      "servings": 4,
+      "meal_types": [
+        "dinner"
+      ],
+      "category": "Основное",
+      "tags": [
+        "в духовке",
+        "сытное",
+        "семейное"
+      ],
+      "diet_flags": [
+        "gluten_free"
+      ],
+      "image_url": "https://www.themealdb.com/images/media/meals/h031jy1782853081.jpg",
+      "image_credit": "TheMealDB",
+      "cost_per_serving": 140,
+      "kcal_per_serving": 490,
+      "ingredients": [
+        {
+          "name": "картофель",
+          "quantity": 900,
+          "unit": "g"
+        },
+        {
+          "name": "фарш мясной",
+          "quantity": 500,
+          "unit": "g"
+        },
+        {
+          "name": "лук репчатый",
+          "quantity": 1,
+          "unit": "pcs"
+        },
+        {
+          "name": "яйцо",
+          "quantity": 2,
+          "unit": "pcs"
+        },
+        {
+          "name": "молоко",
+          "quantity": 100,
+          "unit": "ml"
+        },
+        {
+          "name": "сыр твёрдый",
+          "quantity": 80,
+          "unit": "g"
+        },
+        {
+          "name": "масло сливочное",
+          "quantity": 30,
+          "unit": "g"
+        },
+        {
+          "name": "соль",
+          "quantity": 0,
+          "unit": "to_taste"
+        },
+        {
+          "name": "перец чёрный молотый",
+          "quantity": 0,
+          "unit": "to_taste"
+        }
+      ],
+      "ingredient_meta": {
+        "картофель": {
+          "category": "produce",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "фарш мясной": {
+          "category": "meat",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "лук репчатый": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "яйцо": {
+          "category": "dairy",
+          "unit_family": "count",
+          "allergen_tags": [
+            "eggs"
+          ]
+        },
+        "молоко": {
+          "category": "dairy",
+          "unit_family": "volume",
+          "allergen_tags": [
+            "milk"
+          ]
+        },
+        "сыр твёрдый": {
+          "category": "dairy",
+          "unit_family": "mass",
+          "allergen_tags": [
+            "milk"
+          ]
+        },
+        "масло сливочное": {
+          "category": "dairy",
+          "unit_family": "mass",
+          "allergen_tags": [
+            "milk"
+          ]
+        },
+        "соль": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "перец чёрный молотый": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        }
+      }
+    },
+    {
+      "slug": "spagetti-s-krevetkami",
+      "title": "Спагетти с креветками и чесноком",
+      "description": "Морская паста за 25 минут: сочные креветки, чесночное оливковое масло и лимонная свежесть.",
+      "instructions": [
+        "Отварите спагетти аль денте, сохраните стакан воды от пасты.",
+        "Очистите креветки и обсушите бумажным полотенцем.",
+        "Разогрейте оливковое масло, обжарьте тонко нарезанный чеснок 30 секунд.",
+        "Добавьте креветки и жарьте 2–3 минуты до розового цвета, в конце выдавите лимон.",
+        "Переложите спагетти в сковороду, влейте немного воды от пасты и перемешайте.",
+        "Посыпьте петрушкой и подавайте сразу."
+      ],
+      "prep_minutes": 15,
+      "cook_minutes": 12,
+      "servings": 2,
+      "meal_types": [
+        "dinner"
+      ],
+      "category": "Основное",
+      "tags": [
+        "быстро",
+        "морепродукты",
+        "итальянское"
+      ],
+      "diet_flags": [
+        "pescatarian",
+        "dairy_free"
+      ],
+      "image_url": "https://www.themealdb.com/images/media/meals/usywpp1511189717.jpg",
+      "image_credit": "TheMealDB",
+      "cost_per_serving": 260,
+      "kcal_per_serving": 460,
+      "ingredients": [
+        {
+          "name": "спагетти",
+          "quantity": 200,
+          "unit": "g"
+        },
+        {
+          "name": "креветки",
+          "quantity": 300,
+          "unit": "g",
+          "note": "очищенные"
+        },
+        {
+          "name": "чеснок",
+          "quantity": 3,
+          "unit": "clove"
+        },
+        {
+          "name": "масло оливковое",
+          "quantity": 30,
+          "unit": "ml"
+        },
+        {
+          "name": "лимон",
+          "quantity": 0.5,
+          "unit": "pcs"
+        },
+        {
+          "name": "петрушка",
+          "quantity": 0.5,
+          "unit": "bunch"
+        },
+        {
+          "name": "соль",
+          "quantity": 0,
+          "unit": "to_taste"
+        },
+        {
+          "name": "перец чёрный молотый",
+          "quantity": 0,
+          "unit": "to_taste"
+        }
+      ],
+      "ingredient_meta": {
+        "спагетти": {
+          "category": "grains",
+          "unit_family": "mass",
+          "allergen_tags": [
+            "gluten"
+          ]
+        },
+        "креветки": {
+          "category": "fish",
+          "unit_family": "mass",
+          "allergen_tags": [
+            "shellfish"
+          ]
+        },
+        "чеснок": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "масло оливковое": {
+          "category": "oils",
+          "unit_family": "volume",
+          "allergen_tags": []
+        },
+        "лимон": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "петрушка": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "соль": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "перец чёрный молотый": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        }
+      }
+    },
+    {
+      "slug": "pertsy-farshirovannye",
+      "title": "Перцы, фаршированные мясом и рисом",
+      "description": "Сладкие болгарские перцы с начинкой из фарша и риса, томлённые в томатно-сметанном соусе.",
+      "instructions": [
+        "Отварите рис до полуготовности (10 минут) и остудите.",
+        "Срежьте у перцев верхушки, удалите семена и перегородки.",
+        "Смешайте фарш с рисом, натёртыми луком и морковью, солью и перцем.",
+        "Плотно наполните перцы начинкой и поставьте вертикально в кастрюлю.",
+        "Разведите томатную пасту и сметану в горячей воде, залейте перцы до половины.",
+        "Тушите под крышкой 40 минут на слабом огне, подавайте с соусом."
+      ],
+      "prep_minutes": 20,
+      "cook_minutes": 50,
+      "servings": 4,
+      "meal_types": [
+        "dinner"
+      ],
+      "category": "Основное",
+      "tags": [
+        "сытное",
+        "семейное",
+        "можно накануне"
+      ],
+      "diet_flags": [
+        "gluten_free"
+      ],
+      "image_url": "https://www.themealdb.com/images/media/meals/b66myb1683207208.jpg",
+      "image_credit": "TheMealDB",
+      "cost_per_serving": 150,
+      "kcal_per_serving": 380,
+      "ingredients": [
+        {
+          "name": "перец болгарский",
+          "quantity": 6,
+          "unit": "pcs"
+        },
+        {
+          "name": "фарш мясной",
+          "quantity": 400,
+          "unit": "g"
+        },
+        {
+          "name": "рис",
+          "quantity": 150,
+          "unit": "g"
+        },
+        {
+          "name": "лук репчатый",
+          "quantity": 1,
+          "unit": "pcs"
+        },
+        {
+          "name": "морковь",
+          "quantity": 1,
+          "unit": "pcs"
+        },
+        {
+          "name": "томатная паста",
+          "quantity": 40,
+          "unit": "g"
+        },
+        {
+          "name": "сметана",
+          "quantity": 100,
+          "unit": "g"
+        },
+        {
+          "name": "масло растительное",
+          "quantity": 20,
+          "unit": "ml"
+        },
+        {
+          "name": "соль",
+          "quantity": 0,
+          "unit": "to_taste"
+        },
+        {
+          "name": "перец чёрный молотый",
+          "quantity": 0,
+          "unit": "to_taste"
+        }
+      ],
+      "ingredient_meta": {
+        "перец болгарский": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "фарш мясной": {
+          "category": "meat",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "рис": {
+          "category": "grains",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "лук репчатый": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "морковь": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "томатная паста": {
+          "category": "canned",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "сметана": {
+          "category": "dairy",
+          "unit_family": "mass",
+          "allergen_tags": [
+            "milk"
+          ]
+        },
+        "масло растительное": {
+          "category": "oils",
+          "unit_family": "volume",
+          "allergen_tags": []
+        },
+        "соль": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "перец чёрный молотый": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        }
+      }
+    },
+    {
+      "slug": "khumus-s-ovoshchami",
+      "title": "Хумус с овощными стиками",
+      "description": "Кремовый хумус из консервированного нута за десять минут — полезный перекус с хрустящими овощами.",
+      "instructions": [
+        "Слейте с нута жидкость, сохранив пару ложек.",
+        "Взбейте нут блендером с тахини, лимонным соком, чесноком и солью до однородности.",
+        "Постепенно добавляйте жидкость от нута и оливковое масло до кремовой консистенции.",
+        "Нарежьте огурец, морковь и перец палочками.",
+        "Выложите хумус в миску, сделайте углубление, влейте масло и посыпьте паприкой.",
+        "Подавайте с овощными стиками."
+      ],
+      "prep_minutes": 10,
+      "cook_minutes": 0,
+      "servings": 4,
+      "meal_types": [
+        "snack"
+      ],
+      "category": "Закуска",
+      "tags": [
+        "быстро",
+        "веганское",
+        "без готовки",
+        "полезное"
+      ],
+      "diet_flags": [
+        "vegetarian",
+        "vegan",
+        "gluten_free",
+        "dairy_free"
+      ],
+      "image_url": "https://www.themealdb.com/images/media/meals/gpon5u1763801180.jpg",
+      "image_credit": "TheMealDB",
+      "cost_per_serving": 80,
+      "kcal_per_serving": 250,
+      "ingredients": [
+        {
+          "name": "нут консервированный",
+          "quantity": 400,
+          "unit": "g"
+        },
+        {
+          "name": "тахини",
+          "quantity": 50,
+          "unit": "g"
+        },
+        {
+          "name": "лимон",
+          "quantity": 0.5,
+          "unit": "pcs"
+        },
+        {
+          "name": "чеснок",
+          "quantity": 1,
+          "unit": "clove"
+        },
+        {
+          "name": "масло оливковое",
+          "quantity": 30,
+          "unit": "ml"
+        },
+        {
+          "name": "паприка",
+          "quantity": 2,
+          "unit": "g"
+        },
+        {
+          "name": "огурец",
+          "quantity": 1,
+          "unit": "pcs"
+        },
+        {
+          "name": "морковь",
+          "quantity": 2,
+          "unit": "pcs"
+        },
+        {
+          "name": "перец болгарский",
+          "quantity": 1,
+          "unit": "pcs"
+        },
+        {
+          "name": "соль",
+          "quantity": 0,
+          "unit": "to_taste"
+        }
+      ],
+      "ingredient_meta": {
+        "нут консервированный": {
+          "category": "canned",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "тахини": {
+          "category": "other",
+          "unit_family": "mass",
+          "allergen_tags": [
+            "sesame"
+          ]
+        },
+        "лимон": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "чеснок": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "масло оливковое": {
+          "category": "oils",
+          "unit_family": "volume",
+          "allergen_tags": []
+        },
+        "паприка": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "огурец": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "морковь": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "перец болгарский": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "соль": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        }
+      }
+    },
+    {
+      "slug": "energeticheskie-shariki",
+      "title": "Энергетические шарики из фиников и орехов",
+      "description": "Натуральные конфеты без сахара и без выпечки: финики, орехи и какао — и идеальный перекус готов.",
+      "instructions": [
+        "Замочите финики в тёплой воде на 10 минут, удалите косточки.",
+        "Измельчите орехи в блендере до крупной крошки.",
+        "Добавьте финики, какао и щепотку соли и пробейте до липкой массы.",
+        "Скатайте влажными руками шарики размером с грецкий орех.",
+        "Обваляйте в кокосовой стружке и охладите 30 минут в холодильнике."
+      ],
+      "prep_minutes": 15,
+      "cook_minutes": 0,
+      "servings": 4,
+      "meal_types": [
+        "snack"
+      ],
+      "category": "Десерт",
+      "tags": [
+        "быстро",
+        "веганское",
+        "без готовки",
+        "без сахара",
+        "полезное"
+      ],
+      "diet_flags": [
+        "vegetarian",
+        "vegan",
+        "gluten_free",
+        "dairy_free"
+      ],
+      "image_url": "https://www.themealdb.com/images/media/meals/si2rty1763282314.jpg",
+      "image_credit": "TheMealDB",
+      "cost_per_serving": 120,
+      "kcal_per_serving": 270,
+      "ingredients": [
+        {
+          "name": "финики",
+          "quantity": 200,
+          "unit": "g"
+        },
+        {
+          "name": "грецкие орехи",
+          "quantity": 100,
+          "unit": "g"
+        },
+        {
+          "name": "миндаль",
+          "quantity": 50,
+          "unit": "g"
+        },
+        {
+          "name": "какао",
+          "quantity": 20,
+          "unit": "g"
+        },
+        {
+          "name": "кокосовая стружка",
+          "quantity": 30,
+          "unit": "g"
+        },
+        {
+          "name": "соль",
+          "quantity": 1,
+          "unit": "pinch"
+        }
+      ],
+      "ingredient_meta": {
+        "финики": {
+          "category": "other",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "грецкие орехи": {
+          "category": "other",
+          "unit_family": "mass",
+          "allergen_tags": [
+            "nuts"
+          ]
+        },
+        "миндаль": {
+          "category": "other",
+          "unit_family": "mass",
+          "allergen_tags": [
+            "nuts"
+          ]
+        },
+        "какао": {
+          "category": "other",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "кокосовая стружка": {
+          "category": "other",
+          "unit_family": "mass",
+          "allergen_tags": []
+        },
+        "соль": {
+          "category": "spices",
+          "unit_family": "mass",
+          "allergen_tags": []
+        }
+      }
+    },
+    {
+      "slug": "buterbrody-s-seldyu-i-yaytsom",
+      "title": "Бутерброды с сельдью и яйцом",
+      "description": "Классика домашних закусок: ржаной хлеб, масло, слабосолёная сельдь и яйцо — просто и очень русский вкус.",
+      "instructions": [
+        "Сварите яйца вкрутую (8–9 минут), остудите и нарежьте кружочками.",
+        "Нарежьте ржаной хлеб и слегка подсушите на сковороде или в тостере.",
+        "Смажьте ломтики тонким слоем сливочного масла.",
+        "Выложите на каждый ломтик кусочки филе сельди и кружочки яйца.",
+        "Добавьте тонкие полукольца лука и кольца огурца.",
+        "Посыпьте укропом и подавайте."
+      ],
+      "prep_minutes": 15,
+      "cook_minutes": 0,
+      "servings": 2,
+      "meal_types": [
+        "snack",
+        "breakfast"
+      ],
+      "category": "Закуска",
+      "tags": [
+        "быстро",
+        "закуска",
+        "классика"
+      ],
+      "diet_flags": [
+        "pescatarian"
+      ],
+      "image_url": "https://www.themealdb.com/images/media/meals/7ttta31593350374.jpg",
+      "image_credit": "TheMealDB",
+      "cost_per_serving": 80,
+      "kcal_per_serving": 240,
+      "ingredients": [
+        {
+          "name": "хлеб ржаной",
+          "quantity": 4,
+          "unit": "slice"
+        },
+        {
+          "name": "сельдь",
+          "quantity": 150,
+          "unit": "g",
+          "note": "филе"
+        },
+        {
+          "name": "масло сливочное",
+          "quantity": 20,
+          "unit": "g"
+        },
+        {
+          "name": "яйцо",
+          "quantity": 2,
+          "unit": "pcs"
+        },
+        {
+          "name": "огурец",
+          "quantity": 1,
+          "unit": "pcs"
+        },
+        {
+          "name": "лук красный",
+          "quantity": 0.5,
+          "unit": "pcs"
+        },
+        {
+          "name": "укроп",
+          "quantity": 0.5,
+          "unit": "bunch"
+        }
+      ],
+      "ingredient_meta": {
+        "хлеб ржаной": {
+          "category": "bakery",
+          "unit_family": "count",
+          "allergen_tags": [
+            "gluten"
+          ]
+        },
+        "сельдь": {
+          "category": "fish",
+          "unit_family": "mass",
+          "allergen_tags": [
+            "fish"
+          ]
+        },
+        "масло сливочное": {
+          "category": "dairy",
+          "unit_family": "mass",
+          "allergen_tags": [
+            "milk"
+          ]
+        },
+        "яйцо": {
+          "category": "dairy",
+          "unit_family": "count",
+          "allergen_tags": [
+            "eggs"
+          ]
+        },
+        "огурец": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "лук красный": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        },
+        "укроп": {
+          "category": "produce",
+          "unit_family": "count",
+          "allergen_tags": []
+        }
+      }
+    }
+  ]
+}

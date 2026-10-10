@@ -1,0 +1,22 @@
+MealSwipe
+=========
+
+Copyright (c) 2026 Alexey Valeev (alexisvaleev). Licensed under the MIT
+License — see LICENSE.
+
+Third-party attributions
+------------------------
+
+Recipe photographs:
+  Seed recipes may reference images hosted on TheMealDB CDN
+  (https://www.themealdb.com). Such recipes carry `image_credit:
+  "TheMealDB"` in the dataset. TheMealDB is a free community recipe
+  database; images remain property of their respective contributors.
+
+Recipe texts:
+  Seed recipe names, descriptions and instructions bundled in
+  backend/data/recipes.seed.json are original texts written for this
+  project and are covered by the project license.
+
+Nutrition / cost values:
+  Marked as estimates (≈) in the UI; not verified data.

@@ -1,0 +1,16 @@
+# MealSwipe behind Caddy (automatic HTTPS via Let's Encrypt).
+# Adjust the domain, then: caddy run --config Caddyfile
+# The app listens on 127.0.0.1:8080 (APP_PORT in .env) — no direct exposure needed.
+
+mealswipe.example.com {
+    reverse_proxy 127.0.0.1:8080
+
+    header {
+        X-Content-Type-Options nosniff
+        X-Frame-Options DENY
+        Referrer-Policy strict-origin-when-cross-origin
+        -Server
+    }
+
+    encode gzip zstd
+}
