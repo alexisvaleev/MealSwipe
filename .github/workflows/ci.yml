@@ -29,7 +29,7 @@ jobs:
           --health-interval 5s --health-timeout 3s --health-retries 20
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-go@v5
+      - uses: actions/setup-go@v7
         with:
           go-version-file: backend/go.mod
           cache: true
@@ -91,7 +91,7 @@ jobs:
       - name: npm audit (high/critical)
         working-directory: frontend
         run: npm audit --audit-level=high --omit=dev || true
-      - uses: actions/setup-go@v5
+      - uses: actions/setup-go@v7
         with:
           go-version-file: backend/go.mod
       - name: govulncheck
