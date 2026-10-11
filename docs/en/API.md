@@ -23,7 +23,9 @@ with an appropriate HTTP status.
 | `GET /recipes/{id}` | ✓ | full recipe: `ingredients[]` with qty/unit, `instructions[]` |
 | `GET /discover?limit=` | ✓ | swipe deck: unseen, constraint-filtered, shuffled |
 | `PUT /recipes/{id}/swipe` | ✓ | `{direction:"like"\|"dislike"}` → `{swipe}` |
+| `DELETE /recipes/{id}/swipe` | ✓ | removes that swipe (unlike/undislike), idempotent `204` |
 | `POST /swipes/undo` | ✓ | removes the most recent swipe → `{undone:true}` or `404` |
+| `GET /likes?category=&q=&sort=` | ✓ | my liked recipes (personal, not shared) |
 | `PUT /recipes/{id}/favorite` | ✓ | add bookmark → `204` |
 | `DELETE /recipes/{id}/favorite` | ✓ | remove bookmark → `204` |
 | `GET /favorites?category=&q=&sort=` | ✓ | bookmarked recipes |

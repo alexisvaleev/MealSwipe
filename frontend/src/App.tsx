@@ -9,6 +9,7 @@ import { LoginPage, RegisterPage } from './pages/AuthPages'
 import { OnboardingPage } from './pages/OnboardingPage'
 import { SwipePage } from './pages/SwipePage'
 import { FavoritesPage } from './pages/FavoritesPage'
+import { LikesPage } from './pages/LikesPage'
 import { MenuPage } from './pages/MenuPage'
 import { ShoppingPage } from './pages/ShoppingPage'
 import { SettingsPage } from './pages/SettingsPage'
@@ -41,6 +42,7 @@ export default function App() {
           <Route element={<AppShell />}>
             <Route path="/onboarding" element={<OnboardingPage />} />
             <Route path="/swipe" element={<SwipePage />} />
+            <Route path="/likes" element={<LikesPage />} />
             <Route path="/favorites" element={<FavoritesPage />} />
             <Route path="/menu" element={<MenuPage />} />
             <Route path="/shopping" element={<ShoppingPage />} />

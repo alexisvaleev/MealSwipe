@@ -15,6 +15,15 @@ the project uses [Semantic Versioning](https://semver.org/).
   any member's dislike as a veto.
 - `GET/PATCH /household`, `POST /household/join|leave|invite/rotate` endpoints
   and a settings UI section (members, invite code copy/rotate, join, leave).
+- «Лайки» tab: `GET /likes` lists your personal liked recipes;
+  `DELETE /recipes/{id}/swipe` removes a swipe.
+
+### Fixed
+
+- Shopping list on narrow screens: control buttons no longer squeeze item
+  names to zero width.
+- TheMealDB importer dedupes repeated ingredients per recipe (was crashing
+  the whole import on a PK violation).
 
 ### Changed
 

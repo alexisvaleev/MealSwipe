@@ -330,6 +330,47 @@ func TestSwipeUndoAndFavorites(t *testing.T) {
 	}
 }
 
+// TestLikesList: /likes shows personal likes; DELETE swipe removes an entry.
+func TestLikesList(t *testing.T) {
+	ts, st := newTestServer(t)
+	seedDB(t, st, testSeedJSON)
+	c := newClient(t, ts.URL)
+	c.register("likes_t")
+
+	code, out := c.do("GET", "/api/v1/recipes", nil, true)
+	if code != 200 {
+		t.Fatalf("recipes -> %d: %v", code, out)
+	}
+	recipes := out["recipes"].([]any)
+	rid1 := recipes[0].(map[string]any)["id"].(string)
+	rid2 := recipes[1].(map[string]any)["id"].(string)
+
+	for _, rid := range []string{rid1, rid2} {
+		if code, out := c.do("PUT", "/api/v1/recipes/"+rid+"/swipe",
+			map[string]any{"direction": "like"}, true); code != 200 {
+			t.Fatalf("swipe -> %d: %v", code, out)
+		}
+	}
+
+	code, out = c.do("GET", "/api/v1/likes", nil, true)
+	likes, _ := out["recipes"].([]any)
+	if code != 200 || len(likes) != 2 {
+		t.Fatalf("likes -> %d: %v", code, out)
+	}
+
+	// DELETE swipe removes it; idempotent (second delete still 204).
+	if code, out := c.do("DELETE", "/api/v1/recipes/"+rid1+"/swipe", nil, true); code != 204 {
+		t.Fatalf("unswipe -> %d: %v", code, out)
+	}
+	if code, _ := c.do("DELETE", "/api/v1/recipes/"+rid1+"/swipe", nil, true); code != 204 {
+		t.Fatalf("unswipe again -> %d, want 204", code)
+	}
+	code, out = c.do("GET", "/api/v1/likes", nil, true)
+	if likes, _ := out["recipes"].([]any); code != 200 || len(likes) != 1 {
+		t.Fatalf("likes after unlike -> %d: %v", code, out)
+	}
+}
+
 func TestShoppingGeneration(t *testing.T) {
 	ts, st := newTestServer(t)
 	seedDB(t, st, testSeedJSON)

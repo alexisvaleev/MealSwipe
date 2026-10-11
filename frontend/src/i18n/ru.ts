@@ -9,6 +9,7 @@ export const ru = {
   // Navigation
   'nav.main': 'Основная навигация',
   'nav.swipe': 'Подбор',
+  'nav.likes': 'Лайки',
   'nav.favorites': 'Избранное',
   'nav.menu': 'Меню',
   'nav.shopping': 'Покупки',
@@ -231,6 +232,13 @@ export const ru = {
   'favorites.sortTime': 'По времени готовки',
   'favorites.removeTitle': 'Убрать из избранного',
   'favorites.count': '{count} блюд',
+
+  'likes.title': 'Лайки',
+  'likes.empty': 'Пока нет лайкнутых блюд',
+  'likes.emptyText': 'Свайпайте вправо — понравившиеся рецепты появятся здесь и будут чаще попадать в меню.',
+  'likes.toSwipe': 'К подбору',
+  'likes.removeTitle': 'Убрать лайк',
+  'likes.unlikedToast': 'Лайк убран',
 
   // Menu
   'menu.title': 'Меню на неделю',

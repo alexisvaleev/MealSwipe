@@ -51,6 +51,8 @@ func (s *Server) Routes() http.Handler {
 	au.HandleFunc("GET /api/v1/recipes/{id}", s.getRecipe)
 	au.HandleFunc("GET /api/v1/discover", s.discover)
 	au.HandleFunc("PUT /api/v1/recipes/{id}/swipe", s.swipe)
+	au.HandleFunc("DELETE /api/v1/recipes/{id}/swipe", s.unswipe)
+	au.HandleFunc("GET /api/v1/likes", s.likes)
 	au.HandleFunc("POST /api/v1/swipes/undo", s.undoSwipe)
 	au.HandleFunc("PUT /api/v1/recipes/{id}/favorite", s.favorite)
 	au.HandleFunc("DELETE /api/v1/recipes/{id}/favorite", s.unfavorite)

@@ -98,6 +98,33 @@ func (s *Server) swipe(w http.ResponseWriter, r *http.Request) {
 	writeJSON(w, http.StatusOK, map[string]any{"swipe": sw})
 }
 
+func (s *Server) unswipe(w http.ResponseWriter, r *http.Request) {
+	if !requireUUID(w, r, "id") {
+		return
+	}
+	sess := sessionFrom(r)
+	if s.storeErr(w, s.st.DeleteSwipe(r.Context(), sess.UserID, r.PathValue("id"))) {
+		return
+	}
+	w.WriteHeader(http.StatusNoContent)
+}
+
+// likes lists the current user's liked recipes (personal, unlike favorites).
+func (s *Server) likes(w http.ResponseWriter, r *http.Request) {
+	sess := sessionFrom(r)
+	hid, ok := s.mustHousehold(w, r, sess)
+	if !ok {
+		return
+	}
+	q := r.URL.Query()
+	items, err := s.st.ListLikes(r.Context(), sess.UserID, hid,
+		q.Get("category"), q.Get("q"), q.Get("sort"))
+	if s.storeErr(w, err) {
+		return
+	}
+	writeJSON(w, http.StatusOK, map[string]any{"recipes": items})
+}
+
 func (s *Server) undoSwipe(w http.ResponseWriter, r *http.Request) {
 	sess := sessionFrom(r)
 	ok, err := s.st.DeleteLatestSwipe(r.Context(), sess.UserID)

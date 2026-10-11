@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { t, type TranslationKey } from '../i18n/i18n'
 import { useAuth } from '../stores/auth'
 import { Spinner } from './States'
-import { IconCalendar, IconCards, IconCart, IconGear, IconHeart, IconX } from './Icons'
+import { IconCalendar, IconCards, IconCart, IconGear, IconHeart, IconThumbUp, IconX } from './Icons'
 
 const APP_NAME = import.meta.env.VITE_APP_NAME ?? 'MealSwipe'
 
@@ -16,6 +16,7 @@ interface NavItem {
 
 const NAV_ITEMS: NavItem[] = [
   { to: '/swipe', key: 'nav.swipe', icon: <IconCards className="size-6" /> },
+  { to: '/likes', key: 'nav.likes', icon: <IconThumbUp className="size-6" /> },
   { to: '/favorites', key: 'nav.favorites', icon: <IconHeart className="size-6" /> },
   { to: '/menu', key: 'nav.menu', icon: <IconCalendar className="size-6" /> },
   { to: '/shopping', key: 'nav.shopping', icon: <IconCart className="size-6" /> },

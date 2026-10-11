@@ -27,6 +27,8 @@ export const qk = {
   discover: ['discover'] as const,
   favorites: (q: string, category: string) => ['favorites', { q, category }] as const,
   favoritesAll: ['favorites'] as const,
+  likes: (q: string, category: string) => ['likes', { q, category }] as const,
+  likesAll: ['likes'] as const,
   recipe: (id: string) => ['recipe', id] as const,
   recipes: (mealType?: MealType, q?: string) => ['recipes', { mealType, q }] as const,
   menu: (week: string) => ['menu', week] as const,
@@ -123,15 +125,47 @@ export function useDiscover(limit = 15) {
 }
 
 export function useSwipe() {
+  const qc = useQueryClient()
   return useMutation({
     mutationFn: ({ recipeId, direction }: { recipeId: string; direction: SwipeDirection }) =>
       api(`/recipes/${recipeId}/swipe`, { method: 'PUT', body: { direction } }),
+    onSuccess: () => {
+      void qc.invalidateQueries({ queryKey: qk.likesAll })
+    },
+  })
+}
+
+export function useUnlike() {
+  const qc = useQueryClient()
+  return useMutation({
+    mutationFn: (recipeId: string) =>
+      api(`/recipes/${recipeId}/swipe`, { method: 'DELETE' }),
+    onSuccess: () => {
+      void qc.invalidateQueries({ queryKey: qk.likesAll })
+      void qc.invalidateQueries({ queryKey: qk.discover })
+    },
+  })
+}
+
+export function useLikes(params: { q?: string; category?: string }) {
+  return useQuery({
+    queryKey: qk.likes(params.q ?? '', params.category ?? ''),
+    queryFn: async () => {
+      const res = await api<{ recipes: RecipeSummary[] }>('/likes', {
+        query: { q: params.q, category: params.category },
+      })
+      return res.recipes ?? []
+    },
   })
 }
 
 export function useUndo() {
+  const qc = useQueryClient()
   return useMutation({
     mutationFn: () => api<{ undone: boolean }>('/swipes/undo', { method: 'POST' }),
+    onSuccess: () => {
+      void qc.invalidateQueries({ queryKey: qk.likesAll })
+    },
   })
 }
 
