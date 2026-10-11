@@ -167,11 +167,18 @@ func upsertMeal(ctx context.Context, pool *pgxpool.Pool, m map[string]any) error
 		`DELETE FROM recipe_ingredients WHERE recipe_id = $1::uuid`, recipeID); err != nil {
 		return err
 	}
+	// Meals may repeat an ingredient ("lime" + "lime juice" normalize to the
+	// same row); dedupe per recipe to satisfy recipe_ingredients PK.
+	seen := map[int64]bool{}
 	for pos, ing := range mealIngredients(m) {
 		ingID, err := ensureIngredient(ctx, tx, ing)
 		if err != nil {
 			return err
 		}
+		if seen[ingID] {
+			continue
+		}
+		seen[ingID] = true
 		if _, err := tx.Exec(ctx,
 			`INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity, unit, position)
 			 VALUES ($1::uuid,$2,$3,$4,$5)`, recipeID, ingID, ing.qty, ing.unit, pos); err != nil {

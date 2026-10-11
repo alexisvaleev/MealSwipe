@@ -285,9 +285,9 @@ function ShoppingRow({ item, listId }: { item: ShoppingListItem; listId: string 
           onChange={(e) => setQty(e.target.value)}
           onBlur={commitQty}
           onKeyDown={(e) => e.key === 'Enter' && (e.target as HTMLInputElement).blur()}
-          className="w-16 rounded-lg bg-cream-dark px-2 py-1 text-right text-sm tabular-nums focus:outline-none focus:ring-2 focus:ring-brand-500"
+          className="w-12 rounded-lg bg-cream-dark px-2 py-1 text-right text-sm tabular-nums focus:outline-none focus:ring-2 focus:ring-brand-500 sm:w-14"
         />
-        <span className="w-14 text-xs">
+        <span className="w-10 text-xs sm:w-12">
           {item.unit ? unitLabel(item.unit) : formatQuantity(null, '')}
         </span>
       </div>
@@ -298,9 +298,10 @@ function ShoppingRow({ item, listId }: { item: ShoppingListItem; listId: string 
           onClick={haveAtHome}
           title={t('shopping.haveAtHome')}
           aria-label={`${t('shopping.haveAtHome')}: ${item.name}`}
-          className="shrink-0 rounded-full bg-emerald-50 px-2.5 py-1 text-[11px] font-semibold text-emerald-700 transition hover:bg-emerald-100"
+          className="flex shrink-0 items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-1 text-[11px] font-semibold text-emerald-700 transition hover:bg-emerald-100"
         >
-          {t('shopping.haveAtHome')}
+          <IconCheck className="size-3.5 sm:hidden" />
+          <span className="hidden sm:inline">{t('shopping.haveAtHome')}</span>
         </button>
       )}
 
