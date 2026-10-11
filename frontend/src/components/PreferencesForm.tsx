@@ -150,7 +150,7 @@ function ExcludedPicker({ prefs, patch }: SectionProps) {
   const [open, setOpen] = useState(false)
   const boxRef = useRef<HTMLDivElement>(null)
   // Names for ids selected during this session (fetched lists may be paginated).
-  const [pickedNames, setPickedNames] = useState<Map<string, string>>(new Map())
+  const [pickedNames, setPickedNames] = useState<Map<number, string>>(new Map())
 
   useEffect(() => {
     const id = window.setTimeout(() => setDebounced(q.trim()), 250)
@@ -187,7 +187,7 @@ function ExcludedPicker({ prefs, patch }: SectionProps) {
     setQ('')
   }
 
-  const remove = (id: string) =>
+  const remove = (id: number) =>
     patch({ excluded_ingredient_ids: prefs.excluded_ingredient_ids.filter((x) => x !== id) })
 
   return (
