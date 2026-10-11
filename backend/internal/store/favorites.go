@@ -5,11 +5,12 @@ import (
 	"fmt"
 )
 
-// AddFavorite bookmarks a recipe.
-func (s *Store) AddFavorite(ctx context.Context, userID, recipeID string) error {
+// AddFavorite bookmarks a recipe for the whole household; userID records who did.
+func (s *Store) AddFavorite(ctx context.Context, householdID, userID, recipeID string) error {
 	_, err := s.pool.Exec(ctx,
-		`INSERT INTO favorites (user_id, recipe_id) VALUES ($1::uuid,$2::uuid)
-		 ON CONFLICT DO NOTHING`, userID, recipeID)
+		`INSERT INTO favorites (household_id, recipe_id, added_by) VALUES ($1::uuid,$2::uuid,$3::uuid)
+		 ON CONFLICT (household_id, recipe_id) DO UPDATE SET added_by = EXCLUDED.added_by`,
+		householdID, recipeID, userID)
 	if isFKViolation(err) {
 		return ErrNotFound
 	}
@@ -17,15 +18,16 @@ func (s *Store) AddFavorite(ctx context.Context, userID, recipeID string) error 
 }
 
 // RemoveFavorite deletes the bookmark (idempotent).
-func (s *Store) RemoveFavorite(ctx context.Context, userID, recipeID string) error {
+func (s *Store) RemoveFavorite(ctx context.Context, householdID, recipeID string) error {
 	_, err := s.pool.Exec(ctx,
-		`DELETE FROM favorites WHERE user_id = $1::uuid AND recipe_id = $2::uuid`, userID, recipeID)
+		`DELETE FROM favorites WHERE household_id = $1::uuid AND recipe_id = $2::uuid`,
+		householdID, recipeID)
 	return err
 }
 
-// ListFavorites returns favorited recipes with favorited_at.
+// ListFavorites returns the household's favorited recipes with favorited_at.
 // sort: "recent" (default), "oldest", "title". category/q filter the recipe.
-func (s *Store) ListFavorites(ctx context.Context, userID, category, q, sort string) ([]RecipeSummary, error) {
+func (s *Store) ListFavorites(ctx context.Context, userID, householdID, category, q, sort string) ([]RecipeSummary, error) {
 	order := "fv.created_at DESC"
 	switch sort {
 	case "oldest":
@@ -36,10 +38,10 @@ func (s *Store) ListFavorites(ctx context.Context, userID, category, q, sort str
 	rows, err := s.pool.Query(ctx,
 		`SELECT `+summaryCols+flagCols+`, fv.created_at::text
 		 FROM favorites fv JOIN recipes r ON r.id = fv.recipe_id
-		 WHERE fv.user_id = $1::uuid
-		   AND ($2 = '' OR r.category = $2)
-		   AND ($3 = '' OR r.title ILIKE '%' || $3 || '%')
-		 ORDER BY `+order, userID, category, q)
+		 WHERE fv.household_id = $2::uuid
+		   AND ($3 = '' OR r.category = $3)
+		   AND ($4 = '' OR r.title ILIKE '%' || $4 || '%')
+		 ORDER BY `+order, userID, householdID, category, q)
 	if err != nil {
 		return nil, fmt.Errorf("store: list favorites: %w", err)
 	}

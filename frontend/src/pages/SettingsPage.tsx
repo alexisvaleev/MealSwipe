@@ -11,7 +11,8 @@ import {
   HouseholdSection,
 } from '../components/PreferencesForm'
 import { DEFAULT_PREFERENCES, type Preferences } from '../lib/types'
-import { IconLogout } from '../components/Icons'
+import { HouseholdCard } from '../components/HouseholdCard'
+import { IconLogout, IconUsers } from '../components/Icons'
 
 export function SettingsPage() {
   const navigate = useNavigate()
@@ -36,8 +37,8 @@ export function SettingsPage() {
             <dd className="font-medium text-stone-800">{user?.display_name}</dd>
           </div>
           <div className="flex justify-between gap-4">
-            <dt className="text-stone-500">{t('settings.email')}</dt>
-            <dd className="truncate font-medium text-stone-800">{user?.email}</dd>
+            <dt className="text-stone-500">{t('settings.username')}</dt>
+            <dd className="truncate font-medium text-stone-800">{user?.username}</dd>
           </div>
         </dl>
         <button
@@ -48,6 +49,15 @@ export function SettingsPage() {
           <IconLogout className="size-4" />
           {t('auth.logout')}
         </button>
+      </section>
+
+      {/* Shared kitchen — household members, invite code, join/leave */}
+      <section className="rounded-3xl bg-white p-6 shadow-card" aria-label={t('household.title')}>
+        <h2 className="flex items-center gap-2 text-base font-bold text-stone-900">
+          <IconUsers className="size-5 text-brand-600" />
+          {t('household.title')}
+        </h2>
+        <HouseholdCard />
       </section>
 
       {/* Preferences — same form as onboarding */}

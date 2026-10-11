@@ -6,10 +6,10 @@ import (
 
 // PantryAdd marks an ingredient as already owned. The "already have it"
 // shopping flow is: DELETE the list item + PUT /pantry/{ingredient_id}.
-func (s *Store) PantryAdd(ctx context.Context, userID string, ingredientID int64) error {
+func (s *Store) PantryAdd(ctx context.Context, householdID string, ingredientID int64) error {
 	_, err := s.pool.Exec(ctx,
-		`INSERT INTO pantry_items (user_id, ingredient_id) VALUES ($1::uuid,$2)
-		 ON CONFLICT DO NOTHING`, userID, ingredientID)
+		`INSERT INTO pantry_items (household_id, ingredient_id) VALUES ($1::uuid,$2)
+		 ON CONFLICT DO NOTHING`, householdID, ingredientID)
 	if isFKViolation(err) {
 		return ErrNotFound
 	}
@@ -17,17 +17,17 @@ func (s *Store) PantryAdd(ctx context.Context, userID string, ingredientID int64
 }
 
 // PantryRemove removes a pantry marker (idempotent).
-func (s *Store) PantryRemove(ctx context.Context, userID string, ingredientID int64) error {
+func (s *Store) PantryRemove(ctx context.Context, householdID string, ingredientID int64) error {
 	_, err := s.pool.Exec(ctx,
-		`DELETE FROM pantry_items WHERE user_id = $1::uuid AND ingredient_id = $2`,
-		userID, ingredientID)
+		`DELETE FROM pantry_items WHERE household_id = $1::uuid AND ingredient_id = $2`,
+		householdID, ingredientID)
 	return err
 }
 
-// PantryIDs returns the user's pantry ingredient id set.
-func (s *Store) PantryIDs(ctx context.Context, userID string) (map[int64]bool, error) {
+// PantryIDs returns the household's pantry ingredient id set.
+func (s *Store) PantryIDs(ctx context.Context, householdID string) (map[int64]bool, error) {
 	rows, err := s.pool.Query(ctx,
-		`SELECT ingredient_id FROM pantry_items WHERE user_id = $1::uuid`, userID)
+		`SELECT ingredient_id FROM pantry_items WHERE household_id = $1::uuid`, householdID)
 	if err != nil {
 		return nil, err
 	}

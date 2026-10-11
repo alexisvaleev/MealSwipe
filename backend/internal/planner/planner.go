@@ -21,9 +21,11 @@ type Candidate struct {
 	CostPerServing *float64
 	IngredientIDs  []int64
 	AllergenTags   []string
-	Liked          bool
-	Disliked       bool
-	Favorited      bool
+	// LikedBy counts household members who liked the recipe (each adds +100).
+	LikedBy int
+	// Disliked is a veto: ANY household member's dislike excludes the recipe.
+	Disliked  bool
+	Favorited bool
 }
 
 // Prefs holds the user-level constraints and signals.
@@ -209,9 +211,7 @@ func dietOK(flags []string, diet string) bool {
 // score implements the SPEC §6 scoring table.
 func score(c Candidate, in Input, st *state, day int, mt string, servings float64) float64 {
 	s := 0.0
-	if c.Liked {
-		s += 100
-	}
+	s += 100 * float64(c.LikedBy)
 	if c.Favorited {
 		s += 60
 	}

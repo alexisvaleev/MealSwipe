@@ -31,8 +31,10 @@ must still take care of. Vulnerability reporting: [SECURITY.md](../../SECURITY.m
 
 ## Known limitations (by design, for MVP)
 
-- No email verification / password reset flow — a lost password means a new
-  account (or manual DB fix). On the roadmap.
+- Username+password accounts only — no email, no verification / password
+  reset flow; a lost password means a new account (or manual DB fix).
+- Household invite codes are the only join mechanism — anyone holding the
+  code can join; rotate it if it leaks (Settings → Обновить код).
 - Rate limiting is in-memory per backend instance (single instance is the
   supported topology anyway).
 - Recipe nutrition/cost values are estimates — never presented as verified

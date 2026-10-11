@@ -56,13 +56,18 @@ logic → encode JSON.
 
 ## Data integrity
 
-- All user-scoped queries filter by `user_id` from the session — IDOR-safe.
-- Uniqueness: `menus(user_id, week_start)`, `menu_items(menu_id, day_index,
-  meal_type)`, `swipes(user_id, recipe_id)`, `favorites(user_id, recipe_id)`,
-  `shopping_lists(user_id, menu_id)`.
-- Cascades: deleting a user removes sessions/prefs/swipes/favorites/menus/
-  lists/pantry rows; deleting a menu removes items and its list items via
-  `ON DELETE CASCADE` (list itself gets `menu_id = NULL`).
+- Personal queries filter by session `user_id`; shared ones (favorites,
+  menus, lists, pantry) by the user's `household_id` — IDOR-safe either way.
+- Uniqueness: `menus(household_id, week_start)`, `menu_items(menu_id, day_index,
+  meal_type)`, `swipes(user_id, recipe_id)`, `favorites(household_id, recipe_id)`,
+  `shopping_lists(household_id, menu_id)`.
+- Households: `users.household_id NOT NULL` — every user is in exactly one;
+  a personal kitchen is created at registration and `join`/`leave` swap it in
+  a transaction. An emptied household self-deletes, cascading its shared rows.
+- Cascades: deleting a user removes sessions/prefs/swipes rows; deleting a
+  household removes favorites/menus/lists/pantry; deleting a menu removes
+  items and its list items via `ON DELETE CASCADE` (list itself gets
+  `menu_id = NULL`).
 - Menu regeneration and shopping-list rebuilds run in DB transactions.
 
 ## Scaling notes / non-goals

@@ -14,7 +14,11 @@ func (s *Server) regenerateList(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	sess := sessionFrom(r)
-	list, err := s.st.GetList(r.Context(), sess.UserID, r.PathValue("id"))
+	hid, ok := s.mustHousehold(w, r, sess)
+	if !ok {
+		return
+	}
+	list, err := s.st.GetList(r.Context(), hid, r.PathValue("id"))
 	if s.storeErr(w, err) {
 		return
 	}
@@ -22,10 +26,10 @@ func (s *Server) regenerateList(w http.ResponseWriter, r *http.Request) {
 		writeErr(w, http.StatusBadRequest, "validation", "list is not bound to a menu")
 		return
 	}
-	if s.storeErr(w, s.st.GenerateListItems(r.Context(), sess.UserID, list.ID)) {
+	if s.storeErr(w, s.st.GenerateListItems(r.Context(), hid, list.ID)) {
 		return
 	}
-	l2, err := s.st.GetList(r.Context(), sess.UserID, list.ID)
+	l2, err := s.st.GetList(r.Context(), hid, list.ID)
 	if s.storeErr(w, err) {
 		return
 	}
@@ -40,12 +44,19 @@ type addListItemReq struct {
 }
 
 func (s *Server) addListItem(w http.ResponseWriter, r *http.Request) {
+	if !requireUUID(w, r, "id") {
+		return
+	}
 	sess := sessionFrom(r)
+	hid, ok := s.mustHousehold(w, r, sess)
+	if !ok {
+		return
+	}
 	var in addListItemReq
 	if !decode(w, r, &in) {
 		return
 	}
-	list, err := s.st.GetList(r.Context(), sess.UserID, r.PathValue("id"))
+	list, err := s.st.GetList(r.Context(), hid, r.PathValue("id"))
 	if s.storeErr(w, err) {
 		return
 	}
@@ -78,10 +89,14 @@ type patchListItemReq struct {
 }
 
 func (s *Server) patchListItem(w http.ResponseWriter, r *http.Request) {
-	if !requireUUID(w, r, "id", "item_id") {
+	if !requireUUID(w, r, "id") || !requireUUID(w, r, "item_id") {
 		return
 	}
 	sess := sessionFrom(r)
+	hid, ok := s.mustHousehold(w, r, sess)
+	if !ok {
+		return
+	}
 	var in patchListItemReq
 	if !decode(w, r, &in) {
 		return
@@ -94,7 +109,7 @@ func (s *Server) patchListItem(w http.ResponseWriter, r *http.Request) {
 		writeErr(w, http.StatusBadRequest, "validation", "bad name")
 		return
 	}
-	it, err := s.st.PatchListItem(r.Context(), sess.UserID, r.PathValue("id"),
+	it, err := s.st.PatchListItem(r.Context(), hid, r.PathValue("id"),
 		r.PathValue("item_id"), store.ListItemPatch{
 			Checked: in.Checked, Quantity: in.Quantity, Name: in.Name,
 		})
@@ -105,11 +120,15 @@ func (s *Server) patchListItem(w http.ResponseWriter, r *http.Request) {
 }
 
 func (s *Server) deleteListItem(w http.ResponseWriter, r *http.Request) {
-	if !requireUUID(w, r, "id", "item_id") {
+	if !requireUUID(w, r, "id") || !requireUUID(w, r, "item_id") {
 		return
 	}
 	sess := sessionFrom(r)
-	if s.storeErr(w, s.st.DeleteListItem(r.Context(), sess.UserID,
+	hid, ok := s.mustHousehold(w, r, sess)
+	if !ok {
+		return
+	}
+	if s.storeErr(w, s.st.DeleteListItem(r.Context(), hid,
 		r.PathValue("id"), r.PathValue("item_id"))) {
 		return
 	}

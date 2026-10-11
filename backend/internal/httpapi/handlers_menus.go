@@ -8,39 +8,75 @@ import (
 	"github.com/alexisvaleev/mealswipe/backend/internal/store"
 )
 
-func toPlannerPrefs(p store.Preferences) planner.Prefs {
+// dietRank orders restrictiveness so a household menu honours the strictest
+// member's diet: vegan > vegetarian > pescatarian > any.
+var dietRank = map[string]int{"any": 0, "pescatarian": 1, "vegetarian": 2, "vegan": 3}
+
+// mergeMemberPrefs builds the household-wide planner constraints: allergens,
+// excluded ingredients and dislike vetoes union across members, the diet is
+// the strictest member's, budget/time caps take the tightest value. The
+// schedule (meal types) and serving size come from the generating member —
+// a household shares one menu, so one schedule has to win.
+func mergeMemberPrefs(members []store.MemberPrefs, mine store.Preferences) (planner.Prefs, float64) {
 	allergens := map[string]bool{}
-	for _, a := range p.Allergens {
-		allergens[a] = true
-	}
 	excl := map[int64]bool{}
-	for _, id := range p.ExcludedIngredientIDs {
-		excl[id] = true
+	diet := "any"
+	var maxCook *int
+	var budget *float64
+	for _, m := range members {
+		for _, a := range m.Prefs.Allergens {
+			allergens[a] = true
+		}
+		for _, id := range m.Prefs.ExcludedIngredientIDs {
+			excl[id] = true
+		}
+		if dietRank[m.Prefs.DietType] > dietRank[diet] {
+			diet = m.Prefs.DietType
+		}
+		if m.Prefs.MaxCookMinutes != nil && (maxCook == nil || *m.Prefs.MaxCookMinutes < *maxCook) {
+			v := *m.Prefs.MaxCookMinutes
+			maxCook = &v
+		}
+		if m.Prefs.WeeklyBudget != nil && (budget == nil || *m.Prefs.WeeklyBudget < *budget) {
+			v := *m.Prefs.WeeklyBudget
+			budget = &v
+		}
 	}
 	return planner.Prefs{
-		MealTypes:             p.MealTypes,
-		DietType:              p.DietType,
+		MealTypes:             mine.MealTypes,
+		DietType:              diet,
 		Allergens:             allergens,
 		ExcludedIngredientIDs: excl,
-		MaxCookMinutes:        p.MaxCookMinutes,
-		WeeklyBudget:          p.WeeklyBudget,
-	}
+		MaxCookMinutes:        maxCook,
+		WeeklyBudget:          budget,
+	}, float64(mine.HouseholdSize)
 }
 
-// plannerInput loads the shared inputs for generation/swap.
-func (s *Server) plannerInput(r *http.Request, sess *sessionInfo, prefs store.Preferences,
+// plannerInput loads the shared inputs for generation/swap: the candidate
+// pool is household-scoped (likes summed over members, dislike = veto).
+func (s *Server) plannerInput(r *http.Request, sess *sessionInfo, householdID string,
 	placed []planner.PlacedItem, weekStart string) (planner.Input, error) {
-	pool, err := s.st.PlannerCandidates(r.Context(), sess.UserID)
+	mine, _, err := s.st.GetPreferences(r.Context(), sess.UserID)
 	if err != nil {
 		return planner.Input{}, err
 	}
-	prev, err := s.st.PrevWeekRecipeIDs(r.Context(), sess.UserID, weekStart)
+	members, err := s.st.HouseholdPreferences(r.Context(), householdID)
+	if err != nil {
+		return planner.Input{}, err
+	}
+	merged, servings := mergeMemberPrefs(members, mine)
+
+	pool, err := s.st.PlannerCandidates(r.Context(), householdID)
+	if err != nil {
+		return planner.Input{}, err
+	}
+	prev, err := s.st.PrevWeekRecipeIDs(r.Context(), householdID, weekStart)
 	if err != nil {
 		return planner.Input{}, err
 	}
 	return planner.Input{
-		Prefs:           toPlannerPrefs(prefs),
-		DefaultServings: float64(prefs.HouseholdSize),
+		Prefs:           merged,
+		DefaultServings: servings,
 		Pool:            pool,
 		Placed:          placed,
 		PrevWeek:        prev,
@@ -51,6 +87,10 @@ func (s *Server) plannerInput(r *http.Request, sess *sessionInfo, prefs store.Pr
 // currentMenu returns the menu for ?week=YYYY-MM-DD (default: this week).
 func (s *Server) currentMenu(w http.ResponseWriter, r *http.Request) {
 	sess := sessionFrom(r)
+	hid, ok := s.mustHousehold(w, r, sess)
+	if !ok {
+		return
+	}
 	week := monday(time.Now())
 	if v := r.URL.Query().Get("week"); v != "" {
 		t, err := parseDate(v)
@@ -60,7 +100,7 @@ func (s *Server) currentMenu(w http.ResponseWriter, r *http.Request) {
 		}
 		week = monday(t)
 	}
-	m, err := s.st.GetMenuByWeek(r.Context(), sess.UserID, week.Format("2006-01-02"))
+	m, err := s.st.GetMenuByWeek(r.Context(), hid, week.Format("2006-01-02"))
 	if s.storeErr(w, err) {
 		return
 	}
@@ -74,6 +114,10 @@ type generateReq struct {
 // generateMenu creates (or replaces non-locked items of) the week's menu.
 func (s *Server) generateMenu(w http.ResponseWriter, r *http.Request) {
 	sess := sessionFrom(r)
+	hid, ok := s.mustHousehold(w, r, sess)
+	if !ok {
+		return
+	}
 	var in generateReq
 	if !decode(w, r, &in) {
 		return
@@ -84,19 +128,15 @@ func (s *Server) generateMenu(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	week := monday(t).Format("2006-01-02")
-	m, err := s.st.GetOrCreateMenu(r.Context(), sess.UserID, week)
+	m, err := s.st.GetOrCreateMenu(r.Context(), hid, week)
 	if s.storeErr(w, err) {
 		return
 	}
-	prefs, _, err := s.st.GetPreferences(r.Context(), sess.UserID)
+	locked, err := s.st.PlacedItems(r.Context(), hid, m.ID, true, "")
 	if s.storeErr(w, err) {
 		return
 	}
-	locked, err := s.st.PlacedItems(r.Context(), sess.UserID, m.ID, true, "")
-	if s.storeErr(w, err) {
-		return
-	}
-	input, err := s.plannerInput(r, sess, prefs, locked, week)
+	input, err := s.plannerInput(r, sess, hid, locked, week)
 	if s.storeErr(w, err) {
 		return
 	}
@@ -104,7 +144,7 @@ func (s *Server) generateMenu(w http.ResponseWriter, r *http.Request) {
 	if s.storeErr(w, s.st.ReplaceUnlocked(r.Context(), m.ID, picks)) {
 		return
 	}
-	m2, err := s.st.GetMenuByID(r.Context(), sess.UserID, m.ID)
+	m2, err := s.st.GetMenuByID(r.Context(), hid, m.ID)
 	if s.storeErr(w, err) {
 		return
 	}
@@ -116,7 +156,11 @@ func (s *Server) getMenu(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	sess := sessionFrom(r)
-	m, err := s.st.GetMenuByID(r.Context(), sess.UserID, r.PathValue("id"))
+	hid, ok := s.mustHousehold(w, r, sess)
+	if !ok {
+		return
+	}
+	m, err := s.st.GetMenuByID(r.Context(), hid, r.PathValue("id"))
 	if s.storeErr(w, err) {
 		return
 	}
@@ -132,6 +176,10 @@ type addItemReq struct {
 
 func (s *Server) addMenuItem(w http.ResponseWriter, r *http.Request) {
 	sess := sessionFrom(r)
+	hid, ok := s.mustHousehold(w, r, sess)
+	if !ok {
+		return
+	}
 	var in addItemReq
 	if !decode(w, r, &in) {
 		return
@@ -147,7 +195,7 @@ func (s *Server) addMenuItem(w http.ResponseWriter, r *http.Request) {
 		p, _, _ := s.st.GetPreferences(r.Context(), sess.UserID)
 		in.Servings = float64(p.HouseholdSize)
 	}
-	it, err := s.st.UpsertMenuItem(r.Context(), sess.UserID, r.PathValue("id"),
+	it, err := s.st.UpsertMenuItem(r.Context(), hid, r.PathValue("id"),
 		in.DayIndex, in.MealType, in.RecipeID, in.Servings)
 	if s.storeErr(w, err) {
 		return
@@ -168,6 +216,10 @@ func (s *Server) patchMenuItem(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	sess := sessionFrom(r)
+	hid, ok := s.mustHousehold(w, r, sess)
+	if !ok {
+		return
+	}
 	var in patchItemReq
 	if !decode(w, r, &in) {
 		return
@@ -188,7 +240,7 @@ func (s *Server) patchMenuItem(w http.ResponseWriter, r *http.Request) {
 		writeErr(w, http.StatusBadRequest, "validation", "servings must be > 0")
 		return
 	}
-	it, err := s.st.PatchMenuItem(r.Context(), sess.UserID, r.PathValue("id"),
+	it, err := s.st.PatchMenuItem(r.Context(), hid, r.PathValue("id"),
 		r.PathValue("item_id"), store.ItemPatch{
 			RecipeID: in.RecipeID, Servings: in.Servings,
 			DayIndex: in.DayIndex, MealType: in.MealType, Locked: in.Locked,
@@ -204,7 +256,11 @@ func (s *Server) deleteMenuItem(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	sess := sessionFrom(r)
-	if s.storeErr(w, s.st.DeleteMenuItem(r.Context(), sess.UserID,
+	hid, ok := s.mustHousehold(w, r, sess)
+	if !ok {
+		return
+	}
+	if s.storeErr(w, s.st.DeleteMenuItem(r.Context(), hid,
 		r.PathValue("id"), r.PathValue("item_id"))) {
 		return
 	}
@@ -218,24 +274,24 @@ func (s *Server) swapMenuItem(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	sess := sessionFrom(r)
+	hid, ok := s.mustHousehold(w, r, sess)
+	if !ok {
+		return
+	}
 	menuID, itemID := r.PathValue("id"), r.PathValue("item_id")
-	item, err := s.st.GetMenuItem(r.Context(), sess.UserID, menuID, itemID)
+	item, err := s.st.GetMenuItem(r.Context(), hid, menuID, itemID)
 	if s.storeErr(w, err) {
 		return
 	}
-	menu, err := s.st.GetMenuByID(r.Context(), sess.UserID, menuID)
+	menu, err := s.st.GetMenuByID(r.Context(), hid, menuID)
 	if s.storeErr(w, err) {
 		return
 	}
-	prefs, _, err := s.st.GetPreferences(r.Context(), sess.UserID)
+	others, err := s.st.PlacedItems(r.Context(), hid, menuID, false, itemID)
 	if s.storeErr(w, err) {
 		return
 	}
-	others, err := s.st.PlacedItems(r.Context(), sess.UserID, menuID, false, itemID)
-	if s.storeErr(w, err) {
-		return
-	}
-	input, err := s.plannerInput(r, sess, prefs, others, menu.WeekStart)
+	input, err := s.plannerInput(r, sess, hid, others, menu.WeekStart)
 	if s.storeErr(w, err) {
 		return
 	}
@@ -245,7 +301,7 @@ func (s *Server) swapMenuItem(w http.ResponseWriter, r *http.Request) {
 		writeErr(w, http.StatusNotFound, "no_candidates", "no replacement recipe available")
 		return
 	}
-	it, err := s.st.SetMenuItemRecipe(r.Context(), sess.UserID, menuID, itemID, pick.RecipeID)
+	it, err := s.st.SetMenuItemRecipe(r.Context(), hid, menuID, itemID, pick.RecipeID)
 	if s.storeErr(w, err) {
 		return
 	}
@@ -260,11 +316,15 @@ func (s *Server) menuShoppingList(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	sess := sessionFrom(r)
-	m, err := s.st.GetMenuByID(r.Context(), sess.UserID, r.PathValue("id"))
+	hid, ok := s.mustHousehold(w, r, sess)
+	if !ok {
+		return
+	}
+	m, err := s.st.GetMenuByID(r.Context(), hid, r.PathValue("id"))
 	if s.storeErr(w, err) {
 		return
 	}
-	list, created, err := s.st.GetOrCreateListForMenu(r.Context(), sess.UserID, m.ID)
+	list, created, err := s.st.GetOrCreateListForMenu(r.Context(), hid, m.ID)
 	if s.storeErr(w, err) {
 		return
 	}
@@ -273,11 +333,11 @@ func (s *Server) menuShoppingList(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	if created || !has {
-		if s.storeErr(w, s.st.GenerateListItems(r.Context(), sess.UserID, list.ID)) {
+		if s.storeErr(w, s.st.GenerateListItems(r.Context(), hid, list.ID)) {
 			return
 		}
 	}
-	l2, err := s.st.GetList(r.Context(), sess.UserID, list.ID)
+	l2, err := s.st.GetList(r.Context(), hid, list.ID)
 	if s.storeErr(w, err) {
 		return
 	}

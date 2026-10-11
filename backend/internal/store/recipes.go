@@ -63,12 +63,15 @@ func scanSummary(scan func(...any) error, rs *RecipeSummary, extra ...any) error
 	return scan(args...)
 }
 
+// flagCols appends two flag columns after summaryCols:
+// $1=userID — my personal like; $2=householdID — any member's favorite.
 const flagCols = `,
 	EXISTS(SELECT 1 FROM swipes sw WHERE sw.user_id = $1::uuid AND sw.recipe_id = r.id AND sw.direction = 'like'),
-	EXISTS(SELECT 1 FROM favorites fv WHERE fv.user_id = $1::uuid AND fv.recipe_id = r.id)`
+	EXISTS(SELECT 1 FROM favorites fv WHERE fv.household_id = $2::uuid AND fv.recipe_id = r.id)`
 
 // ListRecipes returns card summaries + total count for pagination.
-func (s *Store) ListRecipes(ctx context.Context, userID, mealType, q string, page, pageSize int) ([]RecipeSummary, int, error) {
+// userID drives the personal "liked" flag; householdID the shared "favorited".
+func (s *Store) ListRecipes(ctx context.Context, userID, householdID, mealType, q string, page, pageSize int) ([]RecipeSummary, int, error) {
 	if page < 1 {
 		page = 1
 	}
@@ -82,12 +85,12 @@ func (s *Store) ListRecipes(ctx context.Context, userID, mealType, q string, pag
 		`SELECT count(*) FROM recipes r `+whereCount, mealType, q).Scan(&total); err != nil {
 		return nil, 0, fmt.Errorf("store: count recipes: %w", err)
 	}
-	where := `WHERE ($2 = '' OR r.meal_types @> ARRAY[$2]::text[])
-		  AND ($3 = '' OR r.title ILIKE '%' || $3 || '%' OR r.description ILIKE '%' || $3 || '%')`
+	where := `WHERE ($3 = '' OR r.meal_types @> ARRAY[$3]::text[])
+		  AND ($4 = '' OR r.title ILIKE '%' || $4 || '%' OR r.description ILIKE '%' || $4 || '%')`
 	rows, err := s.pool.Query(ctx,
 		`SELECT `+summaryCols+flagCols+` FROM recipes r `+where+
-			` ORDER BY r.title LIMIT $4 OFFSET $5`,
-		userID, mealType, q, pageSize, (page-1)*pageSize)
+			` ORDER BY r.title LIMIT $5 OFFSET $6`,
+		userID, householdID, mealType, q, pageSize, (page-1)*pageSize)
 	if err != nil {
 		return nil, 0, fmt.Errorf("store: list recipes: %w", err)
 	}
@@ -104,11 +107,11 @@ func (s *Store) ListRecipes(ctx context.Context, userID, mealType, q string, pag
 }
 
 // GetRecipe returns a full recipe with joined ingredients.
-func (s *Store) GetRecipe(ctx context.Context, userID, id string) (*RecipeDetail, error) {
+func (s *Store) GetRecipe(ctx context.Context, userID, householdID, id string) (*RecipeDetail, error) {
 	var d RecipeDetail
 	err := scanSummary(s.pool.QueryRow(ctx,
-		`SELECT `+summaryCols+flagCols+`, r.instructions FROM recipes r WHERE r.id = $2::uuid`,
-		userID, id).Scan,
+		`SELECT `+summaryCols+flagCols+`, r.instructions FROM recipes r WHERE r.id = $3::uuid`,
+		userID, householdID, id).Scan,
 		&d.RecipeSummary, &d.Liked, &d.Favorited, &d.Instructions)
 	if err != nil {
 		return nil, mapErr(err)
@@ -152,16 +155,21 @@ const candidateAgg = `
 		FROM recipe_ingredients ri WHERE ri.recipe_id = r.id
 	) ii ON true`
 
-// PlannerCandidates returns every recipe with the signals the planner needs.
-func (s *Store) PlannerCandidates(ctx context.Context, userID string) ([]Candidate, error) {
+// PlannerCandidates returns every recipe with the signals the planner needs,
+// aggregated over the whole household: likes count distinct members, a single
+// member's dislike is a veto, favorites are shared.
+func (s *Store) PlannerCandidates(ctx context.Context, householdID string) ([]Candidate, error) {
 	rows, err := s.pool.Query(ctx,
 		`SELECT r.id::text, r.meal_types, r.diet_flags, r.prep_minutes, r.cook_minutes,
 		        r.category, r.servings::float8, r.cost_per_serving::float8,
 		        COALESCE(ii.ing_ids, '{}'::bigint[]), COALESCE(ii.tags, '{}'::text[]),
-		        EXISTS(SELECT 1 FROM swipes sw WHERE sw.user_id = $1::uuid AND sw.recipe_id = r.id AND sw.direction = 'like'),
-		        EXISTS(SELECT 1 FROM swipes sw WHERE sw.user_id = $1::uuid AND sw.recipe_id = r.id AND sw.direction = 'dislike'),
-		        EXISTS(SELECT 1 FROM favorites fv WHERE fv.user_id = $1::uuid AND fv.recipe_id = r.id)
-		 FROM recipes r `+candidateAgg, userID)
+		        (SELECT count(DISTINCT sw.user_id) FROM swipes sw
+		           JOIN users m ON m.id = sw.user_id
+		          WHERE m.household_id = $1::uuid AND sw.recipe_id = r.id AND sw.direction = 'like'),
+		        EXISTS(SELECT 1 FROM swipes sw JOIN users m ON m.id = sw.user_id
+		               WHERE m.household_id = $1::uuid AND sw.recipe_id = r.id AND sw.direction = 'dislike'),
+		        EXISTS(SELECT 1 FROM favorites fv WHERE fv.household_id = $1::uuid AND fv.recipe_id = r.id)
+		 FROM recipes r `+candidateAgg, householdID)
 	if err != nil {
 		return nil, fmt.Errorf("store: planner candidates: %w", err)
 	}
@@ -179,7 +187,7 @@ func scanCandidates(rows interface {
 		var c Candidate
 		if err := rows.Scan(&c.RecipeID, &c.MealTypes, &c.DietFlags, &c.PrepMinutes,
 			&c.CookMinutes, &c.Category, &c.Servings, &c.CostPerServing,
-			&c.IngredientIDs, &c.AllergenTags, &c.Liked, &c.Disliked, &c.Favorited); err != nil {
+			&c.IngredientIDs, &c.AllergenTags, &c.LikedBy, &c.Disliked, &c.Favorited); err != nil {
 			return nil, err
 		}
 		out = append(out, c)
@@ -198,7 +206,8 @@ type DiscoverFilter struct {
 }
 
 // DiscoverRecipes returns unseen, hard-filtered recipes in random order.
-func (s *Store) DiscoverRecipes(ctx context.Context, userID string, f DiscoverFilter) ([]RecipeSummary, error) {
+// The deck is personal (userID prefs + unseen); only the favorited flag is shared.
+func (s *Store) DiscoverRecipes(ctx context.Context, userID, householdID string, f DiscoverFilter) ([]RecipeSummary, error) {
 	if f.Limit <= 0 || f.Limit > 100 {
 		f.Limit = 20
 	}
@@ -216,14 +225,14 @@ func (s *Store) DiscoverRecipes(ctx context.Context, userID string, f DiscoverFi
 		 FROM recipes r `+candidateAgg+`
 		 WHERE NOT EXISTS(SELECT 1 FROM swipes sw WHERE sw.user_id = $1::uuid AND sw.recipe_id = r.id)
 		   AND NOT EXISTS(SELECT 1 FROM recipe_ingredients ri JOIN ingredients i ON i.id = ri.ingredient_id
-		                  WHERE ri.recipe_id = r.id AND i.allergen_tags && $2::text[])
+		                  WHERE ri.recipe_id = r.id AND i.allergen_tags && $3::text[])
 		   AND NOT EXISTS(SELECT 1 FROM recipe_ingredients ri
-		                  WHERE ri.recipe_id = r.id AND ri.ingredient_id = ANY($3::bigint[]))
-		   AND (cardinality($4::text[]) = 0 OR r.meal_types && $4::text[])
+		                  WHERE ri.recipe_id = r.id AND ri.ingredient_id = ANY($4::bigint[]))
+		   AND (cardinality($5::text[]) = 0 OR r.meal_types && $5::text[])
 		   AND (`+diet+`)
-		   AND ($5::int IS NULL OR r.prep_minutes + r.cook_minutes <= $5)
-		 ORDER BY random() LIMIT $6`,
-		userID, f.Allergens, f.ExcludedIDs, f.MealTypes, f.MaxCookMinutes, f.Limit)
+		   AND ($6::int IS NULL OR r.prep_minutes + r.cook_minutes <= $6)
+		 ORDER BY random() LIMIT $7`,
+		userID, householdID, f.Allergens, f.ExcludedIDs, f.MealTypes, f.MaxCookMinutes, f.Limit)
 	if err != nil {
 		return nil, fmt.Errorf("store: discover: %w", err)
 	}

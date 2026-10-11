@@ -70,6 +70,11 @@ func (s *Server) Routes() http.Handler {
 	au.HandleFunc("GET /api/v1/pantry", s.pantryList)
 	au.HandleFunc("PUT /api/v1/pantry/{ingredient_id}", s.pantryAdd)
 	au.HandleFunc("DELETE /api/v1/pantry/{ingredient_id}", s.pantryRemove)
+	au.HandleFunc("GET /api/v1/household", s.getHousehold)
+	au.HandleFunc("PATCH /api/v1/household", s.patchHousehold)
+	au.HandleFunc("POST /api/v1/household/join", s.joinHousehold)
+	au.HandleFunc("POST /api/v1/household/leave", s.leaveHousehold)
+	au.HandleFunc("POST /api/v1/household/invite/rotate", s.rotateInvite)
 	api.Handle("/api/v1/", s.requireAuth(au))
 
 	return securityHeaders(

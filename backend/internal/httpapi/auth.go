@@ -2,7 +2,7 @@ package httpapi
 
 import (
 	"net/http"
-	"net/mail"
+	"regexp"
 	"strings"
 	"time"
 	"unicode/utf8"
@@ -43,20 +43,23 @@ func clearSessionCookie(w http.ResponseWriter, secure bool) {
 }
 
 type registerReq struct {
-	Email       string `json:"email"`
+	Username    string `json:"username"`
 	Password    string `json:"password"`
 	DisplayName string `json:"display_name"`
 }
+
+// usernameRe: 3..32 chars, starts alphanumeric, then letters/digits/_/./-.
+var usernameRe = regexp.MustCompile(`^[A-Za-z0-9][A-Za-z0-9_.-]{2,31}$`)
 
 func (s *Server) register(w http.ResponseWriter, r *http.Request) {
 	var in registerReq
 	if !decode(w, r, &in) {
 		return
 	}
-	email := strings.ToLower(strings.TrimSpace(in.Email))
-	addr, err := mail.ParseAddress(email)
-	if err != nil || addr.Address != email || !strings.Contains(email, "@") {
-		writeErr(w, http.StatusBadRequest, "validation", "invalid email")
+	username := strings.ToLower(strings.TrimSpace(in.Username))
+	if !usernameRe.MatchString(username) {
+		writeErr(w, http.StatusBadRequest, "validation",
+			"username must be 3..32 chars: letters, digits, '_', '.', '-'")
 		return
 	}
 	if len(in.Password) < 8 || len(in.Password) > 72 {
@@ -69,14 +72,14 @@ func (s *Server) register(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	if name == "" {
-		name = email[:strings.Index(email, "@")]
+		name = username
 	}
 	hash, err := bcrypt.GenerateFromPassword([]byte(in.Password), bcryptCost)
 	if err != nil {
 		writeErr(w, http.StatusInternalServerError, "internal", "hash error")
 		return
 	}
-	u, err := s.st.CreateUser(r.Context(), email, string(hash), name)
+	u, err := s.st.CreateUser(r.Context(), username, string(hash), name)
 	if s.storeErr(w, err) {
 		return
 	}
@@ -84,7 +87,7 @@ func (s *Server) register(w http.ResponseWriter, r *http.Request) {
 }
 
 type loginReq struct {
-	Email    string `json:"email"`
+	Username string `json:"username"`
 	Password string `json:"password"`
 }
 
@@ -93,13 +96,13 @@ func (s *Server) login(w http.ResponseWriter, r *http.Request) {
 	if !decode(w, r, &in) {
 		return
 	}
-	u, err := s.st.UserByEmail(r.Context(), strings.ToLower(strings.TrimSpace(in.Email)))
+	u, err := s.st.UserByUsername(r.Context(), strings.ToLower(strings.TrimSpace(in.Username)))
 	if err != nil {
-		writeErr(w, http.StatusUnauthorized, "invalid_credentials", "wrong email or password")
+		writeErr(w, http.StatusUnauthorized, "invalid_credentials", "wrong username or password")
 		return
 	}
 	if bcrypt.CompareHashAndPassword([]byte(u.PasswordHash), []byte(in.Password)) != nil {
-		writeErr(w, http.StatusUnauthorized, "invalid_credentials", "wrong email or password")
+		writeErr(w, http.StatusUnauthorized, "invalid_credentials", "wrong username or password")
 		return
 	}
 	s.issueSession(w, r, u, http.StatusOK)

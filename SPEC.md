@@ -62,19 +62,28 @@ embedding makes the binary self-contained.
 
 Authoritative SQL: `backend/migrations/0001_init.up.sql`.
 
-Entities: `users`, `sessions`, `user_preferences`,
+Entities: `households`, `users`, `sessions`, `user_preferences`,
 `user_excluded_ingredients`, `ingredients`, `recipes`, `recipe_ingredients`,
 `swipes`, `favorites`, `menus`, `menu_items`, `shopping_lists`,
 `shopping_list_items`, `pantry_items`.
 
+**Two scopes.** Personal (`user_id`): preferences, excluded ingredients,
+swipes, sessions — a member's taste signals stay theirs. Shared
+(`household_id`): favorites, menus, shopping lists, pantry — the things a
+household cooks and buys together. Every user belongs to exactly one
+household (a personal one is created at registration; joining another swaps
+membership).
+
 Key rules:
 
+- `users.username citext UNIQUE` — login is username+password (no email;
+  self-hosted local use). `households.invite_code UNIQUE` joins members.
 - `sessions.token_hash` = SHA-256 of the opaque token (never store raw token).
 - `swipes` PK `(user_id, recipe_id)`, `direction IN ('like','dislike')`,
   `updated_at` — re-swiping overwrites.
 - `favorites` is separate from likes (like = algorithm signal, favorite =
-  bookmark).
-- `menus` UNIQUE `(user_id, week_start)`; `week_start` is a Monday `date`.
+  shared bookmark; `added_by` records who bookmarked).
+- `menus` UNIQUE `(household_id, week_start)`; `week_start` is a Monday `date`.
 - `menu_items` UNIQUE `(menu_id, day_index, meal_type)` — one recipe per slot;
   `locked` protects an item from regeneration; `servings` numeric.
 - `ingredients.allergen_tags text[]` ⊂ `{milk,eggs,gluten,nuts,peanuts,fish,
@@ -86,8 +95,8 @@ Key rules:
   `cost_per_serving`, `kcal_per_serving` nullable + `nutrition_estimate bool`.
 - `shopping_list_items.ingredient_id` nullable (manual items), `is_manual`,
   `checked`, `category`, `position`.
-- `pantry_items(user_id, ingredient_id)` — stuff the user already has; excluded
-  from generated shopping list.
+- `pantry_items(household_id, ingredient_id)` — stuff already at home;
+  excluded from generated shopping list.
 
 ## 5. API contract — `/api/v1`, JSON, session cookie auth
 
@@ -100,8 +109,8 @@ send `X-CSRF-Token`. If `Origin` header present it must match Host or
 | Method | Path | Auth | Body → Response |
 |---|---|---|---|
 | GET | /health | no | → `{"status":"ok","version":..}` |
-| POST | /auth/register | no | `{email,password,display_name}` → 201 `{user,csrf}` |
-| POST | /auth/login | no | `{email,password}` → `{user,csrf}` |
+| POST | /auth/register | no | `{username,password,display_name}` → 201 `{user,csrf}` |
+| POST | /auth/login | no | `{username,password}` → `{user,csrf}` |
 | POST | /auth/logout | yes | → 204 |
 | GET | /auth/me | yes | → `{user,csrf}` |
 | GET | /preferences | yes | → `{preferences}` (defaults if unset) |
@@ -126,28 +135,41 @@ send `X-CSRF-Token`. If `Origin` header present it must match Host or
 | POST | /shopping-lists/{id}/items | yes | `{name,quantity?,unit?,category?}` → `{item}` |
 | PATCH | /shopping-lists/{id}/items/{item_id} | yes | `{checked?,quantity?,name?}` → `{item}` |
 | DELETE | /shopping-lists/{id}/items/{item_id} | yes | → 204 |
+| GET | /household | yes | → `{household:{id,name,invite_code,members[]}}` |
+| PATCH | /household | yes | `{name}` → `{household}` |
+| POST | /household/join | yes | `{code}` → `{household}` (moves the user) |
+| POST | /household/leave | yes | → `{household}` (fresh personal kitchen) |
+| POST | /household/invite/rotate | yes | → `{household}` (old code invalidated) |
 
-Auth code: `user` = `{id,email,display_name,has_preferences}`.
+Auth code: `user` = `{id,username,display_name,has_preferences}`.
 Every menu item response embeds its recipe summary.
 All `/api/v1/*` except `/health` and `/auth/register|login` require a valid session.
-All user-scoped queries filter by `user_id` from the session — never trust ids.
+Personal-scope queries filter by session `user_id`; shared-scope by the
+user's `household_id` — never trust ids.
 
 ## 6. Menu planner (`internal/planner`, pure functions)
 
 `Generate(input) (items, unfilled)` — deterministic given the same `randSeed`.
 
+Household merge (for shared menus): constraints union **across all members** —
+allergens ∪, excluded ingredients ∪, the strictest `diet_type`
+(vegan > vegetarian > pescatarian > any), and the tightest budget/time caps.
+A dislike by ANY member is a veto. The schedule (`meal_types`) and default
+servings come from the member who generates.
+
 Hard filters (per slot, before scoring): recipe has the slot's `meal_type`;
 diet_type compatibility (`vegetarian`→flags∩{vegetarian,vegan}≠∅;
 `vegan`→vegan; `pescatarian`→flags∩{vegetarian,vegan,pescatarian}≠∅;
-`any`→no check); no ingredient with allergen_tags ∩ prefs.allergens ≠ ∅;
-no excluded ingredient; not disliked; `prep+cook ≤ max_cook_minutes` when set;
+`any`→no check); no ingredient with allergen_tags ∩ merged allergens ≠ ∅;
+no member-excluded ingredient; not disliked by any member;
+`prep+cook ≤ max_cook_minutes` when set;
 recipe not already used in the menu; not in `excludeRecipeIDs`.
 
 Score (higher wins):
 
 | Signal | Points |
 |---|---|
-| liked | +100 |
+| liked (per household member who liked it) | +100 each |
 | favorited | +60 |
 | shared ingredient with already-picked recipes (reuse) | +8 each, cap +25 |
 | category not yet present in menu (variety) | +10 |
@@ -260,7 +282,8 @@ repo — `.env` gitignored, `.env.example` placeholders only.
 
 ## 13. Non-goals (documented honestly)
 
-No email verification/password reset (self-hosted MVP, roadmap item). No LLM in
+No email accounts, verification, or password reset (self-hosted MVP,
+username+password only, roadmap item). No LLM in
 menu generation. Nutrition/cost are rough estimates, flagged `≈` in UI. Recipe
 catalog is a curated seed; TheMealDB import optional. No multi-user social
 features.

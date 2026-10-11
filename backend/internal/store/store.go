@@ -12,9 +12,9 @@ import (
 
 // Sentinel errors mapped to HTTP status codes by the httpapi layer.
 var (
-	ErrNotFound   = errors.New("store: not found")
-	ErrConflict   = errors.New("store: conflict")
-	ErrEmailTaken = errors.New("store: email taken")
+	ErrNotFound      = errors.New("store: not found")
+	ErrConflict      = errors.New("store: conflict")
+	ErrUsernameTaken = errors.New("store: username taken")
 )
 
 // Store wraps the connection pool; per-entity methods live in their own files.

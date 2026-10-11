@@ -230,11 +230,23 @@ func TestDeterminism(t *testing.T) {
 func TestLikedPreferred(t *testing.T) {
 	plain := cand("plain", []string{"lunch"}, nil, nil, nil)
 	liked := cand("liked", []string{"lunch"}, nil, nil, nil)
-	liked.Liked = true
+	liked.LikedBy = 1
 	in := baseInput([]Candidate{plain, liked})
 	items, _ := Generate(in)
 	if len(items) == 0 || items[0].RecipeID != "liked" {
 		t.Fatalf("liked recipe not picked first: %+v", items)
+	}
+}
+
+func TestBothMembersLikedBeatsSingleLike(t *testing.T) {
+	solo := cand("solo", []string{"lunch"}, nil, nil, nil)
+	solo.LikedBy = 1
+	shared := cand("shared", []string{"lunch"}, nil, nil, nil)
+	shared.LikedBy = 2
+	in := baseInput([]Candidate{solo, shared})
+	items, _ := Generate(in)
+	if len(items) == 0 || items[0].RecipeID != "shared" {
+		t.Fatalf("recipe liked by both not picked first: %+v", items)
 	}
 }
 

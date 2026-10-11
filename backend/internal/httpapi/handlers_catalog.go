@@ -17,8 +17,12 @@ func (s *Server) listIngredients(w http.ResponseWriter, r *http.Request) {
 
 func (s *Server) listRecipes(w http.ResponseWriter, r *http.Request) {
 	sess := sessionFrom(r)
+	hid, ok := s.mustHousehold(w, r, sess)
+	if !ok {
+		return
+	}
 	q := r.URL.Query()
-	items, total, err := s.st.ListRecipes(r.Context(), sess.UserID,
+	items, total, err := s.st.ListRecipes(r.Context(), sess.UserID, hid,
 		q.Get("meal_type"), q.Get("q"),
 		queryInt(r, "page", 1), queryInt(r, "page_size", 24))
 	if s.storeErr(w, err) {
@@ -32,7 +36,11 @@ func (s *Server) getRecipe(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	sess := sessionFrom(r)
-	d, err := s.st.GetRecipe(r.Context(), sess.UserID, r.PathValue("id"))
+	hid, ok := s.mustHousehold(w, r, sess)
+	if !ok {
+		return
+	}
+	d, err := s.st.GetRecipe(r.Context(), sess.UserID, hid, r.PathValue("id"))
 	if s.storeErr(w, err) {
 		return
 	}
@@ -40,14 +48,19 @@ func (s *Server) getRecipe(w http.ResponseWriter, r *http.Request) {
 }
 
 // discover returns the swipe deck: unseen + hard-filtered, random order.
+// The deck stays personal; the favorited flag is household-wide.
 func (s *Server) discover(w http.ResponseWriter, r *http.Request) {
 	sess := sessionFrom(r)
+	hid, ok := s.mustHousehold(w, r, sess)
+	if !ok {
+		return
+	}
 	p, _, err := s.st.GetPreferences(r.Context(), sess.UserID)
 	if s.storeErr(w, err) {
 		return
 	}
 	limit := queryInt(r, "limit", 20)
-	items, err := s.st.DiscoverRecipes(r.Context(), sess.UserID, store.DiscoverFilter{
+	items, err := s.st.DiscoverRecipes(r.Context(), sess.UserID, hid, store.DiscoverFilter{
 		Allergens:      p.Allergens,
 		ExcludedIDs:    p.ExcludedIngredientIDs,
 		MealTypes:      p.MealTypes,
@@ -104,7 +117,11 @@ func (s *Server) favorite(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	sess := sessionFrom(r)
-	if s.storeErr(w, s.st.AddFavorite(r.Context(), sess.UserID, r.PathValue("id"))) {
+	hid, ok := s.mustHousehold(w, r, sess)
+	if !ok {
+		return
+	}
+	if s.storeErr(w, s.st.AddFavorite(r.Context(), hid, sess.UserID, r.PathValue("id"))) {
 		return
 	}
 	w.WriteHeader(http.StatusNoContent)
@@ -115,7 +132,11 @@ func (s *Server) unfavorite(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	sess := sessionFrom(r)
-	if s.storeErr(w, s.st.RemoveFavorite(r.Context(), sess.UserID, r.PathValue("id"))) {
+	hid, ok := s.mustHousehold(w, r, sess)
+	if !ok {
+		return
+	}
+	if s.storeErr(w, s.st.RemoveFavorite(r.Context(), hid, r.PathValue("id"))) {
 		return
 	}
 	w.WriteHeader(http.StatusNoContent)
@@ -123,8 +144,12 @@ func (s *Server) unfavorite(w http.ResponseWriter, r *http.Request) {
 
 func (s *Server) listFavorites(w http.ResponseWriter, r *http.Request) {
 	sess := sessionFrom(r)
+	hid, ok := s.mustHousehold(w, r, sess)
+	if !ok {
+		return
+	}
 	q := r.URL.Query()
-	items, err := s.st.ListFavorites(r.Context(), sess.UserID,
+	items, err := s.st.ListFavorites(r.Context(), sess.UserID, hid,
 		q.Get("category"), q.Get("q"), q.Get("sort"))
 	if s.storeErr(w, err) {
 		return
@@ -134,7 +159,11 @@ func (s *Server) listFavorites(w http.ResponseWriter, r *http.Request) {
 
 func (s *Server) pantryList(w http.ResponseWriter, r *http.Request) {
 	sess := sessionFrom(r)
-	ids, err := s.st.PantryIDs(r.Context(), sess.UserID)
+	hid, ok := s.mustHousehold(w, r, sess)
+	if !ok {
+		return
+	}
+	ids, err := s.st.PantryIDs(r.Context(), hid)
 	if s.storeErr(w, err) {
 		return
 	}
@@ -154,12 +183,16 @@ func (s *Server) pantryList(w http.ResponseWriter, r *http.Request) {
 // PUT /pantry/{ingredient_id} so future generations skip it.
 func (s *Server) pantryAdd(w http.ResponseWriter, r *http.Request) {
 	sess := sessionFrom(r)
+	hid, ok := s.mustHousehold(w, r, sess)
+	if !ok {
+		return
+	}
 	id, err := strconv.ParseInt(r.PathValue("ingredient_id"), 10, 64)
 	if err != nil {
 		writeErr(w, http.StatusBadRequest, "validation", "bad ingredient id")
 		return
 	}
-	if s.storeErr(w, s.st.PantryAdd(r.Context(), sess.UserID, id)) {
+	if s.storeErr(w, s.st.PantryAdd(r.Context(), hid, id)) {
 		return
 	}
 	w.WriteHeader(http.StatusNoContent)
@@ -167,12 +200,16 @@ func (s *Server) pantryAdd(w http.ResponseWriter, r *http.Request) {
 
 func (s *Server) pantryRemove(w http.ResponseWriter, r *http.Request) {
 	sess := sessionFrom(r)
+	hid, ok := s.mustHousehold(w, r, sess)
+	if !ok {
+		return
+	}
 	id, err := strconv.ParseInt(r.PathValue("ingredient_id"), 10, 64)
 	if err != nil {
 		writeErr(w, http.StatusBadRequest, "validation", "bad ingredient id")
 		return
 	}
-	if s.storeErr(w, s.st.PantryRemove(r.Context(), sess.UserID, id)) {
+	if s.storeErr(w, s.st.PantryRemove(r.Context(), hid, id)) {
 		return
 	}
 	w.WriteHeader(http.StatusNoContent)

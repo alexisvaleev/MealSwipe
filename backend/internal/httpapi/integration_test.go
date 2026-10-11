@@ -129,10 +129,10 @@ func (c *client) do(method, path string, body any, withAuth bool) (int, map[stri
 	return resp.StatusCode, out
 }
 
-func (c *client) register(email string) {
+func (c *client) register(username string) {
 	c.t.Helper()
 	code, out := c.do("POST", "/api/v1/auth/register",
-		map[string]any{"email": email, "password": "password123", "display_name": "Tester"}, false)
+		map[string]any{"username": username, "password": "password123", "display_name": "Tester"}, false)
 	if code != 201 {
 		c.t.Fatalf("register -> %d: %v", code, out)
 	}
@@ -158,12 +158,12 @@ func TestAuthFlow(t *testing.T) {
 	c := newClient(t, ts.URL)
 
 	code, out := c.do("POST", "/api/v1/auth/register",
-		map[string]any{"email": "a@b.c", "password": "password123", "display_name": "A"}, false)
+		map[string]any{"username": "alice_1", "password": "password123", "display_name": "A"}, false)
 	if code != 201 {
 		t.Fatalf("register -> %d: %v", code, out)
 	}
 	u, _ := out["user"].(map[string]any)
-	if u["email"] != "a@b.c" || u["has_preferences"] != false {
+	if u["username"] != "alice_1" || u["has_preferences"] != false {
 		t.Fatalf("bad user payload: %v", u)
 	}
 	c.csrf, _ = out["csrf"].(string)
@@ -185,12 +185,12 @@ func TestAuthFlow(t *testing.T) {
 	// new session via login
 	c.cookie = nil
 	code, out = c.do("POST", "/api/v1/auth/login",
-		map[string]any{"email": "a@b.c", "password": "password123"}, false)
+		map[string]any{"username": "alice_1", "password": "password123"}, false)
 	if code != 200 || out["csrf"] == nil {
 		t.Fatalf("login -> %d: %v", code, out)
 	}
 	code, _ = c.do("POST", "/api/v1/auth/login",
-		map[string]any{"email": "a@b.c", "password": "wrong-password"}, false)
+		map[string]any{"username": "alice_1", "password": "wrong-password"}, false)
 	if code != 401 {
 		t.Fatalf("bad login -> %d, want 401", code)
 	}
@@ -200,9 +200,10 @@ func TestRegisterValidation(t *testing.T) {
 	ts, _ := newTestServer(t)
 	c := newClient(t, ts.URL)
 	for i, body := range []map[string]any{
-		{"email": "not-an-email", "password": "password123"},
-		{"email": "x@y.z", "password": "short"},
-		{"email": "x@y.z", "password": "password123", "display_name": string(make([]byte, 100))},
+		{"username": "no spaces!", "password": "password123"},
+		{"username": "ab", "password": "password123"}, // too short
+		{"username": "valid_user", "password": "short"},
+		{"username": "valid_user", "password": "password123", "display_name": string(make([]byte, 100))},
 	} {
 		if code, out := c.do("POST", "/api/v1/auth/register", body, false); code != 400 {
 			t.Fatalf("case %d -> %d: %v", i, code, out)
@@ -213,7 +214,7 @@ func TestRegisterValidation(t *testing.T) {
 func TestCSRFRequired(t *testing.T) {
 	ts, _ := newTestServer(t)
 	c := newClient(t, ts.URL)
-	c.register("csrf@t.io")
+	c.register("csrf_t")
 	c.csrf = ""
 	code, out := c.do("PUT", "/api/v1/preferences",
 		map[string]any{"household_size": 2, "meals_per_day": 3,
@@ -242,9 +243,9 @@ func TestMenuGenerateAndUserIsolation(t *testing.T) {
 	seedDB(t, st, testSeedJSON)
 
 	a := newClient(t, ts.URL)
-	a.register("a@t.io")
+	a.register("a_t")
 	b := newClient(t, ts.URL)
-	b.register("b@t.io")
+	b.register("b_t")
 
 	code, out := a.do("PUT", "/api/v1/preferences",
 		map[string]any{"household_size": 2, "meals_per_day": 1,
@@ -289,7 +290,7 @@ func TestSwipeUndoAndFavorites(t *testing.T) {
 	ts, st := newTestServer(t)
 	seedDB(t, st, testSeedJSON)
 	c := newClient(t, ts.URL)
-	c.register("sw@t.io")
+	c.register("sw_t")
 
 	code, out := c.do("GET", "/api/v1/recipes", nil, true)
 	if code != 200 {
@@ -333,7 +334,7 @@ func TestShoppingGeneration(t *testing.T) {
 	ts, st := newTestServer(t)
 	seedDB(t, st, testSeedJSON)
 	c := newClient(t, ts.URL)
-	c.register("shop@t.io")
+	c.register("shop_t")
 
 	code, out := c.do("PUT", "/api/v1/preferences",
 		map[string]any{"household_size": 2, "meals_per_day": 1,
@@ -441,7 +442,7 @@ func TestSwap(t *testing.T) {
 	ts, st := newTestServer(t)
 	seedDB(t, st, testSeedJSON)
 	c := newClient(t, ts.URL)
-	c.register("swap@t.io")
+	c.register("swap_t")
 	c.do("PUT", "/api/v1/preferences",
 		map[string]any{"household_size": 2, "meals_per_day": 1,
 			"meal_types": []string{"lunch"}, "diet_type": "any",
@@ -475,6 +476,110 @@ func TestSwap(t *testing.T) {
 	newRecipe := out["item"].(map[string]any)["recipe"].(map[string]any)["id"].(string)
 	if newRecipe == oldRecipe {
 		t.Fatal("swap returned the same recipe")
+	}
+}
+
+// TestHouseholdSharing: two users join one household — favorites/menus become
+// shared, a member's dislike vetoes a recipe, and leaving isolates again.
+func TestHouseholdSharing(t *testing.T) {
+	ts, st := newTestServer(t)
+	seedDB(t, st, testSeedJSON)
+
+	a := newClient(t, ts.URL)
+	a.register("owner_a")
+	b := newClient(t, ts.URL)
+	b.register("member_b")
+
+	// A's personal household: 1 member + invite code.
+	code, out := a.do("GET", "/api/v1/household", nil, true)
+	if code != 200 {
+		t.Fatalf("get household -> %d: %v", code, out)
+	}
+	h := out["household"].(map[string]any)
+	invite := h["invite_code"].(string)
+	if len(h["members"].([]any)) != 1 {
+		t.Fatalf("expected 1 member, got %v", h["members"])
+	}
+
+	// B joins by code.
+	code, out = b.do("POST", "/api/v1/household/join", map[string]any{"code": invite}, true)
+	if code != 200 {
+		t.Fatalf("join -> %d: %v", code, out)
+	}
+	if len(out["household"].(map[string]any)["members"].([]any)) != 2 {
+		t.Fatalf("expected 2 members after join")
+	}
+	// Bad code -> 404.
+	code, _ = b.do("POST", "/api/v1/household/join", map[string]any{"code": "ZZZZ-ZZZZ"}, true)
+	if code != 404 {
+		t.Fatalf("join bad code -> %d, want 404", code)
+	}
+
+	// Shared favorites: B's bookmark is visible to A.
+	code, out = b.do("GET", "/api/v1/recipes", nil, true)
+	if code != 200 {
+		t.Fatalf("recipes -> %d", code)
+	}
+	recipes := out["recipes"].([]any)
+	rid := recipes[0].(map[string]any)["id"].(string)
+	otherRid := recipes[1].(map[string]any)["id"].(string)
+	if code, _ := b.do("PUT", "/api/v1/recipes/"+rid+"/favorite", nil, true); code != 204 {
+		t.Fatalf("favorite -> %d", code)
+	}
+	code, out = a.do("GET", "/api/v1/favorites", nil, true)
+	if code != 200 || len(out["recipes"].([]any)) != 1 {
+		t.Fatalf("shared favorites -> %d: %v", code, out)
+	}
+
+	// Dislike = veto: member B's dislike keeps the recipe out of the menu.
+	if code, _ := b.do("PUT", "/api/v1/recipes/"+otherRid+"/swipe",
+		map[string]any{"direction": "dislike"}, true); code != 200 {
+		t.Fatalf("dislike -> %d", code)
+	}
+	code, out = a.do("PUT", "/api/v1/preferences",
+		map[string]any{"household_size": 2, "meals_per_day": 1,
+			"meal_types": []string{"lunch"}, "diet_type": "any",
+			"allergens": []string{}, "excluded_ingredient_ids": []int64{}, "goal": ""}, true)
+	if code != 200 {
+		t.Fatalf("prefs -> %d", code)
+	}
+	code, out = a.do("POST", "/api/v1/menus/generate",
+		map[string]any{"week_start": "2026-10-12"}, true)
+	if code != 200 {
+		t.Fatalf("generate -> %d: %v", code, out)
+	}
+	for _, it := range out["menu"].(map[string]any)["items"].([]any) {
+		got := it.(map[string]any)["recipe"].(map[string]any)["id"].(string)
+		if got == otherRid {
+			t.Fatal("vetoed recipe landed in the shared menu")
+		}
+	}
+
+	// Leaving isolates: B gets a fresh solo household and loses shared data.
+	code, out = b.do("POST", "/api/v1/household/leave", nil, true)
+	if code != 200 {
+		t.Fatalf("leave -> %d: %v", code, out)
+	}
+	if len(out["household"].(map[string]any)["members"].([]any)) != 1 {
+		t.Fatal("expected solo household after leave")
+	}
+	code, out = b.do("GET", "/api/v1/favorites", nil, true)
+	if code != 200 || len(out["recipes"].([]any)) != 0 {
+		t.Fatalf("favorites after leave -> %d: %v", code, out)
+	}
+}
+
+func TestUsernameTaken(t *testing.T) {
+	ts, _ := newTestServer(t)
+	c := newClient(t, ts.URL)
+	c.register("dup_user")
+	code, out := c.do("POST", "/api/v1/auth/register",
+		map[string]any{"username": "DUP_USER", "password": "password123"}, false)
+	if code != 409 {
+		t.Fatalf("duplicate username -> %d: %v", code, out)
+	}
+	if c2 := out["error"].(map[string]any)["code"]; c2 != "username_taken" {
+		t.Fatalf("code = %v, want username_taken", c2)
 	}
 }
 

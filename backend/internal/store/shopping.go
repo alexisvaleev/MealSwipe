@@ -43,31 +43,31 @@ func (s *Store) listByWhere(ctx context.Context, where string, args ...any) (*Sh
 	return &l, nil
 }
 
-// GetList returns a list owned by userID with its items.
-func (s *Store) GetList(ctx context.Context, userID, listID string) (*ShoppingList, error) {
-	return s.listByWhere(ctx, `user_id = $1::uuid AND id = $2::uuid`, userID, listID)
+// GetList returns a list owned by householdID with its items.
+func (s *Store) GetList(ctx context.Context, householdID, listID string) (*ShoppingList, error) {
+	return s.listByWhere(ctx, `household_id = $1::uuid AND id = $2::uuid`, householdID, listID)
 }
 
 // ListByMenu returns the list bound to a menu (ErrNotFound when absent).
-func (s *Store) ListByMenu(ctx context.Context, userID, menuID string) (*ShoppingList, error) {
-	return s.listByWhere(ctx, `user_id = $1::uuid AND menu_id = $2::uuid`, userID, menuID)
+func (s *Store) ListByMenu(ctx context.Context, householdID, menuID string) (*ShoppingList, error) {
+	return s.listByWhere(ctx, `household_id = $1::uuid AND menu_id = $2::uuid`, householdID, menuID)
 }
 
 // GetOrCreateListForMenu returns (list, created, err).
-func (s *Store) GetOrCreateListForMenu(ctx context.Context, userID, menuID string) (*ShoppingList, bool, error) {
+func (s *Store) GetOrCreateListForMenu(ctx context.Context, householdID, menuID string) (*ShoppingList, bool, error) {
 	var id string
 	err := s.pool.QueryRow(ctx,
-		`INSERT INTO shopping_lists (user_id, menu_id) VALUES ($1::uuid,$2::uuid)
-		 ON CONFLICT (user_id, menu_id) DO NOTHING RETURNING id::text`,
-		userID, menuID).Scan(&id)
+		`INSERT INTO shopping_lists (household_id, menu_id) VALUES ($1::uuid,$2::uuid)
+		 ON CONFLICT (household_id, menu_id) DO NOTHING RETURNING id::text`,
+		householdID, menuID).Scan(&id)
 	if err == pgx.ErrNoRows {
-		l, err := s.ListByMenu(ctx, userID, menuID)
+		l, err := s.ListByMenu(ctx, householdID, menuID)
 		return l, false, err
 	}
 	if err != nil {
 		return nil, false, fmt.Errorf("store: create list: %w", err)
 	}
-	l, err := s.GetList(ctx, userID, id)
+	l, err := s.GetList(ctx, householdID, id)
 	return l, true, err
 }
 
@@ -104,12 +104,12 @@ func (s *Store) loadListItems(ctx context.Context, l *ShoppingList) error {
 
 // GenerateListItems rebuilds non-manual items from the bound menu (SPEC §7):
 // manual rows survive; checked state is preserved by (ingredient_id,unit,name).
-func (s *Store) GenerateListItems(ctx context.Context, userID, listID string) error {
-	parts, err := s.listParts(ctx, userID, listID)
+func (s *Store) GenerateListItems(ctx context.Context, householdID, listID string) error {
+	parts, err := s.listParts(ctx, householdID, listID)
 	if err != nil {
 		return err
 	}
-	pantry, err := s.PantryIDs(ctx, userID)
+	pantry, err := s.PantryIDs(ctx, householdID)
 	if err != nil {
 		return err
 	}
@@ -162,7 +162,7 @@ func checkKey(id int64, unit, name string) string {
 }
 
 // listParts loads the menu's recipe lines for the shopping generator.
-func (s *Store) listParts(ctx context.Context, userID, listID string) ([]shopping.Part, error) {
+func (s *Store) listParts(ctx context.Context, householdID, listID string) ([]shopping.Part, error) {
 	rows, err := s.pool.Query(ctx,
 		`SELECT mi.id::text, mi.servings::float8, r.servings::float8,
 		        ri.ingredient_id, i.name, i.category, i.unit_family,
@@ -172,8 +172,8 @@ func (s *Store) listParts(ctx context.Context, userID, listID string) ([]shoppin
 		 JOIN recipes r ON r.id = mi.recipe_id
 		 JOIN recipe_ingredients ri ON ri.recipe_id = r.id
 		 JOIN ingredients i ON i.id = ri.ingredient_id
-		 WHERE l.id = $1::uuid AND l.user_id = $2::uuid
-		 ORDER BY mi.day_index, mi.id, ri.position`, listID, userID)
+		 WHERE l.id = $1::uuid AND l.household_id = $2::uuid
+		 ORDER BY mi.day_index, mi.id, ri.position`, listID, householdID)
 	if err != nil {
 		return nil, fmt.Errorf("store: list parts: %w", err)
 	}
@@ -233,8 +233,8 @@ type ListItemPatch struct {
 	Name     *string
 }
 
-// PatchListItem applies a partial update to an item of a user's list.
-func (s *Store) PatchListItem(ctx context.Context, userID, listID, itemID string, p ListItemPatch) (*ShoppingItem, error) {
+// PatchListItem applies a partial update to an item of the household's list.
+func (s *Store) PatchListItem(ctx context.Context, householdID, listID, itemID string, p ListItemPatch) (*ShoppingItem, error) {
 	var it ShoppingItem
 	err := s.pool.QueryRow(ctx,
 		`UPDATE shopping_list_items si SET
@@ -242,11 +242,11 @@ func (s *Store) PatchListItem(ctx context.Context, userID, listID, itemID string
 			quantity = COALESCE($5, si.quantity),
 			name     = COALESCE($6, si.name)
 		 FROM shopping_lists l
-		 WHERE l.id = si.list_id AND l.user_id = $1::uuid
+		 WHERE l.id = si.list_id AND l.household_id = $1::uuid
 		   AND si.list_id = $2::uuid AND si.id = $3::uuid
 		 RETURNING si.id::text, si.ingredient_id, si.name, si.quantity::float8,
 		           si.unit, si.category, si.checked, si.is_manual, si.position`,
-		userID, listID, itemID, p.Checked, p.Quantity, p.Name).
+		householdID, listID, itemID, p.Checked, p.Quantity, p.Name).
 		Scan(&it.ID, &it.IngredientID, &it.Name, &it.Quantity, &it.Unit,
 			&it.Category, &it.Checked, &it.IsManual, &it.Position)
 	if err != nil {
@@ -255,12 +255,12 @@ func (s *Store) PatchListItem(ctx context.Context, userID, listID, itemID string
 	return &it, nil
 }
 
-// DeleteListItem removes an item from a user's list.
-func (s *Store) DeleteListItem(ctx context.Context, userID, listID, itemID string) error {
+// DeleteListItem removes an item from the household's list.
+func (s *Store) DeleteListItem(ctx context.Context, householdID, listID, itemID string) error {
 	tag, err := s.pool.Exec(ctx,
 		`DELETE FROM shopping_list_items si USING shopping_lists l
-		 WHERE l.id = si.list_id AND l.user_id = $1::uuid
-		   AND si.list_id = $2::uuid AND si.id = $3::uuid`, userID, listID, itemID)
+		 WHERE l.id = si.list_id AND l.household_id = $1::uuid
+		   AND si.list_id = $2::uuid AND si.id = $3::uuid`, householdID, listID, itemID)
 	if err != nil {
 		return err
 	}

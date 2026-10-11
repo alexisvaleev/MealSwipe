@@ -12,8 +12,8 @@ with an appropriate HTTP status.
 | Method & path | Auth | Description |
 |---|---|---|
 | `GET /health` | — | Liveness: `{status:"ok",version}` |
-| `POST /auth/register` | — | `{email,password,display_name}` → `201 {user,csrf}` + cookie |
-| `POST /auth/login` | — | `{email,password}` → `{user,csrf}` + cookie |
+| `POST /auth/register` | — | `{username,password,display_name}` → `201 {user,csrf}` + cookie |
+| `POST /auth/login` | — | `{username,password}` → `{user,csrf}` + cookie |
 | `POST /auth/logout` | ✓ | Destroys session → `204` |
 | `GET /auth/me` | ✓ | → `{user,csrf}` (also used on app load) |
 | `GET /preferences` | ✓ | → `{preferences}` (server defaults if unset) |
@@ -41,14 +41,21 @@ with an appropriate HTTP status.
 | `DELETE /shopping-lists/{id}/items/{item_id}` | ✓ | remove line → `204` |
 | `PUT /pantry/{ingredient_id}` | ✓ | mark "already have it" (excluded from lists) → `204` |
 | `DELETE /pantry/{ingredient_id}` | ✓ | unmark → `204` |
+| `GET /household` | ✓ | → `{household:{id,name,invite_code,members[]}}` |
+| `PATCH /household` | ✓ | `{name}` rename the shared kitchen → `{household}` |
+| `POST /household/join` | ✓ | `{code}` move into that household → `{household}` |
+| `POST /household/leave` | ✓ | fresh personal household → `{household}` |
+| `POST /household/invite/rotate` | ✓ | new invite code (old invalidated) → `{household}` |
 
 ## Conventions
 
 - `week`/`week_start` are ISO dates of the week's **Monday**.
-- `user` object: `{id,email,display_name,has_preferences}`.
+- `user` object: `{id,username,display_name,has_preferences}`.
 - `menu.items[]` embed their recipe summary; `list.items[]` carry `category`
   for grouping.
-- All list endpoints are user-scoped: foreign IDs return `404`, not `403`
+- Scopes: preferences/swipes are per-user; favorites/menus/shopping/pantry
+  are per-**household** (every user sits in exactly one household — personal
+  until they join another). Foreign IDs return `404`, not `403`
   (no existence leak).
 - Unauthenticated calls → `401`; CSRF/origin failures → `403`;
   validation → `400`/`422`; conflicts → `409`; rate limit → `429`.
@@ -58,4 +65,6 @@ with an appropriate HTTP status.
 `POST /menus/generate` fills all `7 × prefs.meal_types` slots greedily by
 score (see [ARCHITECTURE.md](ARCHITECTURE.md) and `internal/planner` source for
 weights). Hard constraints are never violated to fill a slot — unfillable
-slots come back in `unfilled[]` with a `reason`.
+slots come back in `unfilled[]` with a `reason`. For multi-member households
+the constraints merge across members (allergens/exclusions ∪, strictest diet,
+tightest caps, any member's dislike = veto) and each member's like adds +100.

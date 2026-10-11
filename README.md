@@ -26,7 +26,11 @@ menu, and get a consolidated shopping list. Self-hosted, Russian UI.
 - **Shopping list** — serving-scaled aggregation, unit normalisation
   (g⇄kg, ml⇄tbsp…), category grouping, check-off, manual items,
   "already have it" pantry exclusions
-- **Accounts** — e-mail + password, session-cookie auth with CSRF protection
+- **Shared kitchen** — invite your partner by code and plan together: common
+  favorites, menu, shopping list and pantry; everyone's dislikes veto,
+  everyone's likes boost
+- **Accounts** — username + password (no e-mail — it's self-hosted),
+  session-cookie auth with CSRF protection
 - **Self-hosting** — one `docker compose up`; PostgreSQL, migrations and a
   curated Russian recipe seed included; optional TheMealDB import
 

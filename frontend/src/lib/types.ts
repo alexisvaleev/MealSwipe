@@ -56,9 +56,24 @@ export const INGREDIENT_CATEGORIES: readonly IngredientCategory[] = [
 
 export interface User {
   id: string
-  email: string
+  username: string
   display_name: string
   has_preferences: boolean
+}
+
+/** A shared kitchen: members share favorites/menus/shopping/pantry;
+ *  preferences and swipes stay personal. */
+export interface HouseholdMember {
+  id: string
+  display_name: string
+  joined_at: string
+}
+
+export interface Household {
+  id: string
+  name: string
+  invite_code: string
+  members: HouseholdMember[]
 }
 
 export interface Preferences {
@@ -69,7 +84,7 @@ export interface Preferences {
   max_cook_minutes?: number | null
   diet_type: DietType
   allergens: Allergen[]
-  excluded_ingredient_ids: string[]
+  excluded_ingredient_ids: number[]
   goal?: string | null
 }
 
@@ -89,7 +104,7 @@ export const DEFAULT_PREFERENCES: Preferences = {
 export type SwipeDirection = 'like' | 'dislike'
 
 export interface Ingredient {
-  id: string
+  id: number
   name: string
   category: IngredientCategory
   unit_family: 'mass' | 'volume' | 'count'
@@ -98,7 +113,7 @@ export interface Ingredient {
 
 /** Ingredient line inside a full recipe. */
 export interface RecipeIngredient {
-  ingredient_id?: string | null
+  ingredient_id?: number | null
   name: string
   quantity: number | null
   unit: string | null
@@ -128,8 +143,9 @@ export interface RecipeSummary {
   ingredient_count?: number
   ingredients?: RecipeIngredient[]
   favorited_at?: string
+  favorited?: boolean
   /** Some endpoints may report favorite membership; treated as optional. */
-  is_favorite?: boolean
+
 }
 
 export interface Recipe extends RecipeSummary {
@@ -160,7 +176,7 @@ export interface UnfilledSlot {
 
 export interface ShoppingListItem {
   id: string
-  ingredient_id?: string | null
+  ingredient_id?: number | null
   name: string
   quantity?: number | null
   unit?: string | null

@@ -40,8 +40,8 @@ func (s *Server) storeErr(w http.ResponseWriter, err error) bool {
 		writeErr(w, http.StatusNotFound, "not_found", "not found")
 	case errors.Is(err, store.ErrConflict):
 		writeErr(w, http.StatusConflict, "conflict", "slot already occupied")
-	case errors.Is(err, store.ErrEmailTaken):
-		writeErr(w, http.StatusConflict, "email_taken", "email already registered")
+	case errors.Is(err, store.ErrUsernameTaken):
+		writeErr(w, http.StatusConflict, "username_taken", "username already registered")
 	default:
 		s.log.Error("internal", "err", err)
 		writeErr(w, http.StatusInternalServerError, "internal", "internal error")
@@ -94,6 +94,17 @@ func parseDate(s string) (time.Time, error) {
 }
 
 func uuidLike(s string) bool { return len(s) == 36 }
+
+// mustHousehold resolves the session user's household id (shared scope) or
+// writes the error response. Handlers for household-scoped data call this.
+func (s *Server) mustHousehold(w http.ResponseWriter, r *http.Request, sess *sessionInfo) (string, bool) {
+	id, err := s.st.HouseholdID(r.Context(), sess.UserID)
+	if err != nil {
+		s.storeErr(w, err)
+		return "", false
+	}
+	return id, true
+}
 
 // requireUUID 404s when a path value can never match a uuid column.
 func requireUUID(w http.ResponseWriter, r *http.Request, keys ...string) bool {

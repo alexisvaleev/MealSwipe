@@ -8,9 +8,25 @@ the project uses [Semantic Versioning](https://semver.org/).
 
 ### Added
 
+- Shared households («наша кухня»): members join via invite code and share
+  favorites, weekly menu, shopping lists and pantry; preferences and swipes
+  stay personal. Menu generation merges all members' hard constraints
+  (allergens/exclusions ∪, strictest diet, tightest budget/time) and treats
+  any member's dislike as a veto.
+- `GET/PATCH /household`, `POST /household/join|leave|invite/rotate` endpoints
+  and a settings UI section (members, invite code copy/rotate, join, leave).
+
+### Changed
+
+- Accounts now use **username+password** instead of email+password — the app
+  is self-hosted/local, no email needed. Migration `0002` renames the column
+  in place; existing usernames keep working.
+
+### Added (initial release)
+
 - Initial public release of MealSwipe.
 - Swipe-based recipe discovery with keyboard, pointer and button controls.
-- Email/password accounts with session-cookie auth and CSRF protection.
+- Username/password accounts with session-cookie auth and CSRF protection.
 - Onboarding preferences: household size, meals per day, budget, max cook time,
   diet type, allergens, excluded ingredients.
 - Deterministic weekly menu generator honoring hard dietary constraints with a

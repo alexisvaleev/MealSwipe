@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 // Critical happy path: register → skip onboarding → swipe → generate menu →
 // open shopping list → reload keeps session.
 
-const email = `e2e-${Date.now()}@example.com`;
+const username = `e2e_${Date.now().toString(36)}`;
 const password = 'e2e-password-123';
 
 test.describe('MealSwipe smoke', () => {
@@ -17,7 +17,7 @@ test.describe('MealSwipe smoke', () => {
       await page.getByRole('link', { name: /регистрац|создать/i }).first().click();
     }
     await page.getByLabel(/зовут|имя/i).fill('E2E User');
-    await page.getByLabel(/эл\. почта|email/i).fill(email);
+    await page.getByLabel(/логин/i).fill(username);
     await page.getByLabel(/пароль/i).first().fill(password);
     await page.getByRole('button', { name: /зарегистр/i }).click();
 

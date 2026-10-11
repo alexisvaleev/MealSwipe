@@ -8,7 +8,8 @@ import { Spinner } from '../components/States'
 
 const APP_NAME = import.meta.env.VITE_APP_NAME ?? 'MealSwipe'
 
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+// Mirrors the backend rule: 3..32 chars, alnum start, then letters/digits/_/./-.
+const USERNAME_RE = /^[A-Za-z0-9][A-Za-z0-9_.-]{2,31}$/
 
 function AuthLayout({ children, title, subtitle }: { children: ReactNode; title: string; subtitle: string }) {
   return (
@@ -36,7 +37,7 @@ const errCls = 'mt-1 text-xs text-rose-600'
 function mapAuthError(err: unknown): string {
   if (err instanceof ApiError) {
     if (err.code === 'invalid_credentials' || err.status === 401) return t('auth.invalidCredentials')
-    if (err.code === 'email_taken' || err.status === 409) return t('auth.emailTaken')
+    if (err.code === 'username_taken' || err.status === 409) return t('auth.usernameTaken')
     if (err.code === 'network_error') return t('common.networkError')
     return err.message
   }
@@ -50,9 +51,9 @@ export function LoginPage() {
   const location = useLocation()
   const from = (location.state as { from?: string } | null)?.from
 
-  const [email, setEmail] = useState('')
+  const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const [errors, setErrors] = useState<{ email?: string; password?: string }>({})
+  const [errors, setErrors] = useState<{ username?: string; password?: string }>({})
   const [serverError, setServerError] = useState('')
   const [busy, setBusy] = useState(false)
 
@@ -61,8 +62,8 @@ export function LoginPage() {
   const submit = async (e: FormEvent) => {
     e.preventDefault()
     const next: typeof errors = {}
-    if (!email.trim()) next.email = t('auth.emailRequired')
-    else if (!EMAIL_RE.test(email.trim())) next.email = t('auth.emailInvalid')
+    if (!username.trim()) next.username = t('auth.usernameRequired')
+    else if (!USERNAME_RE.test(username.trim())) next.username = t('auth.usernameInvalid')
     if (!password) next.password = t('auth.passwordRequired')
     setErrors(next)
     if (Object.keys(next).length > 0) return
@@ -70,7 +71,7 @@ export function LoginPage() {
     setBusy(true)
     setServerError('')
     try {
-      const user = await login(email.trim(), password)
+      const user = await login(username.trim(), password)
       toast(t('auth.welcomeBack', { name: user.display_name }), 'success')
       navigate(user.has_preferences ? (from ?? '/swipe') : '/onboarding', { replace: true })
     } catch (err) {
@@ -84,17 +85,17 @@ export function LoginPage() {
     <AuthLayout title={t('auth.loginTitle')} subtitle={t('auth.loginSubtitle')}>
       <form onSubmit={submit} noValidate className="space-y-4">
         <div>
-          <label htmlFor="login-email" className={labelCls}>{t('auth.email')}</label>
+          <label htmlFor="login-username" className={labelCls}>{t('auth.username')}</label>
           <input
-            id="login-email"
-            type="email"
-            autoComplete="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            aria-invalid={Boolean(errors.email)}
+            id="login-username"
+            type="text"
+            autoComplete="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            aria-invalid={Boolean(errors.username)}
             className={inputCls}
           />
-          {errors.email && <p role="alert" className={errCls}>{errors.email}</p>}
+          {errors.username && <p role="alert" className={errCls}>{errors.username}</p>}
         </div>
         <div>
           <label htmlFor="login-password" className={labelCls}>{t('auth.password')}</label>
@@ -142,9 +143,9 @@ export function RegisterPage() {
   const navigate = useNavigate()
 
   const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
+  const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const [errors, setErrors] = useState<{ name?: string; email?: string; password?: string }>({})
+  const [errors, setErrors] = useState<{ name?: string; username?: string; password?: string }>({})
   const [serverError, setServerError] = useState('')
   const [busy, setBusy] = useState(false)
 
@@ -154,8 +155,8 @@ export function RegisterPage() {
     e.preventDefault()
     const next: typeof errors = {}
     if (!name.trim()) next.name = t('auth.nameRequired')
-    if (!email.trim()) next.email = t('auth.emailRequired')
-    else if (!EMAIL_RE.test(email.trim())) next.email = t('auth.emailInvalid')
+    if (!username.trim()) next.username = t('auth.usernameRequired')
+    else if (!USERNAME_RE.test(username.trim())) next.username = t('auth.usernameInvalid')
     if (!password) next.password = t('auth.passwordRequired')
     else if (password.length < 8) next.password = t('auth.passwordTooShort')
     setErrors(next)
@@ -164,7 +165,7 @@ export function RegisterPage() {
     setBusy(true)
     setServerError('')
     try {
-      await register(email.trim(), password, name.trim())
+      await register(username.trim(), password, name.trim())
       toast(t('auth.accountCreated'), 'success')
       navigate('/onboarding', { replace: true })
     } catch (err) {
@@ -191,17 +192,17 @@ export function RegisterPage() {
           {errors.name && <p role="alert" className={errCls}>{errors.name}</p>}
         </div>
         <div>
-          <label htmlFor="reg-email" className={labelCls}>{t('auth.email')}</label>
+          <label htmlFor="reg-username" className={labelCls}>{t('auth.username')}</label>
           <input
-            id="reg-email"
-            type="email"
-            autoComplete="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            aria-invalid={Boolean(errors.email)}
+            id="reg-username"
+            type="text"
+            autoComplete="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            aria-invalid={Boolean(errors.username)}
             className={inputCls}
           />
-          {errors.email && <p role="alert" className={errCls}>{errors.email}</p>}
+          {errors.username && <p role="alert" className={errCls}>{errors.username}</p>}
         </div>
         <div>
           <label htmlFor="reg-password" className={labelCls}>

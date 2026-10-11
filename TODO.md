@@ -41,3 +41,19 @@
 - [x] LICENSE (MIT), CONTRIBUTING, CODE_OF_CONDUCT, SECURITY.md, CHANGELOG
 - [x] .github: workflows, templates, dependabot
 - [x] security audit, публикация alexisvaleev/MealSwipe (public) — CI на push зелёный
+
+## Общие кухни (households) + логин вместо email
+- [x] Миграция 0002: `users.email`→`username`, таблица `households`,
+  `users.household_id`, перескопинг favorites/menus/shopping_lists/pantry_items
+  на household_id (`added_by` у избранного)
+- [x] Backend: household store (join/leave/invite/members/merged prefs),
+  `GET|PATCH /household`, `POST join|leave|invite/rotate`; household-scope во
+  всех shared-хендлерах
+- [x] Planner: `LikedBy` (лайк = +100 на участника), дизлайк любого
+  участника = вето, объединение аллергенов/исключений/строжайшей диеты
+- [x] Username-аутентификация (3–32, латиница/цифры/_/.), `username_taken`
+- [x] Frontend: логин-поле вместо email, секция «Наша кухня» в настройках
+  (участники, код, копировать/обновить, вступить, выйти)
+- [x] Тесты: household-флоу (join → общие избранное/меню, вето, leave),
+  username-валидация/дубликат; все интеграционные зелёные
+- [x] Docs: SPEC/API/DATABASE/ARCHITECTURE/README/CHANGELOG (EN+RU)

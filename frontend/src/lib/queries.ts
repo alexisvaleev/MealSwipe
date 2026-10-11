@@ -9,6 +9,7 @@ import {
 } from '@tanstack/react-query'
 import { api, ApiError } from './api'
 import type {
+  Household,
   Ingredient,
   MealType,
   Menu,
@@ -32,6 +33,78 @@ export const qk = {
   shoppingList: (menuId: string) => ['shopping-list', menuId] as const,
   preferences: ['preferences'] as const,
   ingredients: (q: string) => ['ingredients', q] as const,
+  household: ['household'] as const,
+}
+
+// ---------- Household (shared kitchen) ----------
+
+export function useHousehold() {
+  return useQuery({
+    queryKey: qk.household,
+    queryFn: async () => {
+      const res = await api<{ household: Household }>('/household')
+      return res.household
+    },
+  })
+}
+
+/** Join/leave swaps the whole shared scope — drop every household-derived cache. */
+function invalidateShared(qc: ReturnType<typeof useQueryClient>) {
+  void qc.invalidateQueries({ queryKey: qk.household })
+  void qc.invalidateQueries({ queryKey: ['menu'] })
+  void qc.invalidateQueries({ queryKey: qk.favoritesAll })
+  void qc.invalidateQueries({ queryKey: ['shopping-list'] })
+  void qc.invalidateQueries({ queryKey: qk.discover })
+  void qc.invalidateQueries({ queryKey: ['recipes'] })
+  void qc.invalidateQueries({ queryKey: ['recipe'] })
+}
+
+export function useJoinHousehold() {
+  const qc = useQueryClient()
+  return useMutation({
+    mutationFn: (code: string) =>
+      api<{ household: Household }>('/household/join', {
+        method: 'POST',
+        body: { code },
+      }),
+    onSuccess: (res) => {
+      qc.setQueryData(qk.household, res.household)
+      invalidateShared(qc)
+    },
+  })
+}
+
+export function useLeaveHousehold() {
+  const qc = useQueryClient()
+  return useMutation({
+    mutationFn: () =>
+      api<{ household: Household }>('/household/leave', { method: 'POST' }),
+    onSuccess: (res) => {
+      qc.setQueryData(qk.household, res.household)
+      invalidateShared(qc)
+    },
+  })
+}
+
+export function useRenameHousehold() {
+  const qc = useQueryClient()
+  return useMutation({
+    mutationFn: (name: string) =>
+      api<{ household: Household }>('/household', {
+        method: 'PATCH',
+        body: { name },
+      }),
+    onSuccess: (res) => qc.setQueryData(qk.household, res.household),
+  })
+}
+
+export function useRotateInvite() {
+  const qc = useQueryClient()
+  return useMutation({
+    mutationFn: () =>
+      api<{ household: Household }>('/household/invite/rotate', { method: 'POST' }),
+    onSuccess: (res) => qc.setQueryData(qk.household, res.household),
+  })
 }
 
 // ---------- Discover / swipes ----------
@@ -269,7 +342,7 @@ export function useDeleteItem(listId: string | undefined) {
 /** PUT /pantry/{ingredient_id} — mark as "already have at home" (backend extension per spec). */
 export function useAddPantryItem() {
   return useMutation({
-    mutationFn: (ingredientId: string) =>
+    mutationFn: (ingredientId: string | number) =>
       api(`/pantry/${ingredientId}`, { method: 'PUT' }),
   })
 }

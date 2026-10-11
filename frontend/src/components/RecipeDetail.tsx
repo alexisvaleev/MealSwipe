@@ -135,9 +135,9 @@ export function RecipeDetailBody({ recipe }: { recipe: Recipe }) {
   const user = useAuth((s) => s.user)
   const favorite = useFavorite()
   const [servings, setServings] = useState(recipe.servings || 2)
-  // Favorite state: server hint (is_favorite / favorited_at) with local override.
+  // Favorite state: server hint (favorited / favorited_at) with local override.
   const [favOverride, setFavOverride] = useState<boolean | null>(null)
-  const isFav = favOverride ?? recipe.is_favorite ?? recipe.favorited_at != null
+  const isFav = favOverride ?? recipe.favorited ?? recipe.favorited_at != null
 
   const base = recipe.servings || 1
   const minutes = totalMinutes(recipe)

@@ -9,8 +9,8 @@ interface AuthState {
   user: User | null
   /** Probe the session cookie; called once on app mount. */
   init: () => Promise<void>
-  login: (email: string, password: string) => Promise<User>
-  register: (email: string, password: string, displayName: string) => Promise<User>
+  login: (username: string, password: string) => Promise<User>
+  register: (username: string, password: string, displayName: string) => Promise<User>
   logout: () => Promise<void>
   setUser: (user: User | null) => void
 }
@@ -47,10 +47,10 @@ export const useAuth = create<AuthState>((set) => ({
     return initInFlight
   },
 
-  login: async (email, password) => {
+  login: async (username, password) => {
     const res = await api<AuthResponse>('/auth/login', {
       method: 'POST',
-      body: { email, password },
+      body: { username, password },
       skipUnauthorized: true,
     })
     setCsrfToken(res.csrf)
@@ -58,10 +58,10 @@ export const useAuth = create<AuthState>((set) => ({
     return res.user
   },
 
-  register: async (email, password, displayName) => {
+  register: async (username, password, displayName) => {
     const res = await api<AuthResponse>('/auth/register', {
       method: 'POST',
-      body: { email, password, display_name: displayName },
+      body: { username, password, display_name: displayName },
       skipUnauthorized: true,
     })
     setCsrfToken(res.csrf)
